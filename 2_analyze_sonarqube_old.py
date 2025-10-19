@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Script 2: Análise SonarQube de Repositórios (Versão com Logging para Paralelo)
+Script 2: Análise SonarQube de Repositórios
 
 OBJETIVO:
 Processar repositórios do dataset com análise de código SonarQube.
-Suporta processamento paralelo com logging organizado.
+Suporta processamento paralelo e retomada de análises interrompidas.
 
 PRÉ-REQUISITOS:
 - Docker rodando
@@ -30,13 +30,10 @@ import subprocess
 import tempfile
 import shutil
 import stat
-import logging
 from pathlib import Path
 from typing import Optional, List
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime
-from queue import Queue
-from threading import Thread, Lock
 
 from dotenv import load_dotenv
 import psycopg2
@@ -48,76 +45,26 @@ from utils import SonarQubeAPI
 load_dotenv()
 
 
-class ProgressTracker:
-    """Rastreia progresso da análise com saída organizada"""
-    
-    def __init__(self, total: int):
-        self.total = total
-        self.completed = 0
-        self.successful = 0
-        self.failed = 0
-        self.lock = Lock()
-        self.start_time = time.time()
-    
-    def update(self, repo_name: str, success: bool, message: str = ""):
-        """Atualiza progresso de forma thread-safe"""
-        with self.lock:
-            self.completed += 1
-            if success:
-                self.successful += 1
-                status = "✅"
-            else:
-                self.failed += 1
-                status = "❌"
-            
-            elapsed = time.time() - self.start_time
-            avg_time = elapsed / self.completed if self.completed > 0 else 0
-            eta = avg_time * (self.total - self.completed)
-            
-            # Limpa linha e imprime progresso
-            print(f"\r{' ' * 120}\r", end='', flush=True)
-            progress = f"[{self.completed}/{self.total}] {status} {repo_name}"
-            if message:
-                progress += f" - {message}"
-            print(progress, flush=True)
-            
-            # Barra de progresso
-            percent = (self.completed / self.total) * 100
-            bar_length = 50
-            filled = int(bar_length * self.completed / self.total)
-            bar = '█' * filled + '░' * (bar_length - filled)
-            
-            stats = f"[{bar}] {percent:.1f}% | ✅ {self.successful} | ❌ {self.failed} | ETA: {eta/60:.1f}min"
-            print(stats, flush=True)
-            print()  # Linha em branco para separar
-
-
 class SonarQubeAnalyzer:
     """Analisa repositórios com SonarQube"""
     
-    def __init__(self, sonarqube_api: SonarQubeAPI, dataset_manager: DatasetManager, 
-                 worker_id: int = 0, quiet: bool = False):
+    def __init__(self, sonarqube_api: SonarQubeAPI, dataset_manager: DatasetManager):
         self.sonarqube_api = sonarqube_api
         self.dataset = dataset_manager
-        self.worker_id = worker_id
-        self.quiet = quiet
         self.temp_base_dir = os.path.join(tempfile.gettempdir(), "repos_analise")
         Path(self.temp_base_dir).mkdir(parents=True, exist_ok=True)
-    
-    def _log(self, message: str):
-        """Log interno (não imprime em modo paralelo)"""
-        if not self.quiet:
-            print(f"  [Worker {self.worker_id}] {message}")
     
     def _clone_repository(self, owner: str, name: str) -> Optional[str]:
         """Clona um repositório para análise"""
         repo_url = f"https://github.com/{owner}/{name}.git"
-        temp_dir = os.path.join(self.temp_base_dir, f"{owner}_{name}_{self.worker_id}")
+        temp_dir = os.path.join(self.temp_base_dir, f"{owner}_{name}")
         
         if os.path.exists(temp_dir):
+            print(f"  🗑️  Removendo diretório existente...")
             self._cleanup_temp_dir(temp_dir)
         
         try:
+            print(f"  📥 Clonando repositório...")
             result = subprocess.run(
                 ['git', 'clone', '--depth', '1', repo_url, temp_dir],
                 capture_output=True,
@@ -126,16 +73,21 @@ class SonarQubeAnalyzer:
             )
             
             if result.returncode == 0:
+                print(f"  ✅ Clonado com sucesso")
                 return temp_dir
             else:
+                print(f"  ❌ Erro ao clonar: {result.stderr[:200]}")
                 return None
                 
         except subprocess.TimeoutExpired:
+            print(f"  ⏱️  Timeout ao clonar")
             self._cleanup_temp_dir(temp_dir)
             return None
         except FileNotFoundError:
+            print("  ❌ Git não instalado")
             return None
         except Exception as e:
+            print(f"  ❌ Erro: {e}")
             self._cleanup_temp_dir(temp_dir)
             return None
     
@@ -147,6 +99,7 @@ class SonarQubeAnalyzer:
         sonar_token = os.getenv("SONAR_TOKEN")
         
         if not sonar_token:
+            print("  ❌ SONAR_TOKEN não configurado")
             return False
         
         if os.name == 'nt':
@@ -170,6 +123,7 @@ class SonarQubeAnalyzer:
         ]
         
         try:
+            print(f"  🔍 Executando SonarScanner...")
             result = subprocess.run(
                 docker_cmd,
                 capture_output=True,
@@ -179,16 +133,21 @@ class SonarQubeAnalyzer:
             )
             
             if result.returncode == 0:
+                print(f"  ✅ SonarScanner concluído")
                 time.sleep(30)  # Aguarda processamento
                 return True
             else:
+                print(f"  ❌ SonarScanner falhou (exit {result.returncode})")
                 return False
                 
         except subprocess.TimeoutExpired:
+            print(f"  ⏱️  Timeout no SonarScanner")
             return False
         except FileNotFoundError:
+            print("  ❌ Docker não instalado")
             return False
         except Exception as e:
+            print(f"  ❌ Erro: {e}")
             return False
     
     def _cleanup_temp_dir(self, temp_dir: str):
@@ -203,8 +162,9 @@ class SonarQubeAnalyzer:
                         raise
                 
                 shutil.rmtree(temp_dir, onerror=handle_remove_readonly)
+                print(f"  🗑️  Diretório temporário removido")
         except Exception as e:
-            pass
+            print(f"  ⚠️  Erro ao remover diretório: {e}")
     
     def _save_metrics_to_db(self, repo_full_name: str, metrics: dict) -> bool:
         """Salva métricas no banco de dados"""
@@ -229,6 +189,7 @@ class SonarQubeAnalyzer:
                 result = cursor.fetchone()
                 
                 if not result:
+                    print(f"  ⚠️  Repositório não encontrado no BD")
                     conn.close()
                     return False
                 
@@ -260,16 +221,22 @@ class SonarQubeAnalyzer:
             return True
             
         except Exception as e:
+            print(f"  ⚠️  Erro ao salvar no BD: {e}")
             return False
     
-    def analyze_repository(self, repo_data: dict) -> tuple:
+    def analyze_repository(self, repo_data: dict) -> bool:
         """
         Analisa um repositório com SonarQube
-        Retorna (full_name, success, message)
+        Retorna True se bem-sucedido
         """
         owner = repo_data['owner']
         name = repo_data['name']
         full_name = repo_data['full_name']
+        
+        print(f"\n{'─'*80}")
+        print(f"🔬 Analisando: {full_name}")
+        print(f"   Tipo: {repo_data['release_type'].upper()}")
+        print(f"{'─'*80}")
         
         temp_dir = None
         
@@ -277,18 +244,22 @@ class SonarQubeAnalyzer:
             # 1. Clone
             temp_dir = self._clone_repository(owner, name)
             if not temp_dir:
-                return (full_name, False, "Falha ao clonar")
+                return False
             
             # 2. SonarScanner
             if not self._run_sonar_scanner(temp_dir, owner, name):
-                return (full_name, False, "SonarScanner falhou")
+                return False
             
             # 3. Extrai métricas
             project_key = f"{owner}_{name}"
+            print(f"  📊 Extraindo métricas...")
             metrics = self.sonarqube_api.get_project_metrics(project_key)
             
             if not metrics:
-                return (full_name, False, "Sem métricas")
+                print(f"  ⚠️  Nenhuma métrica encontrada")
+                return False
+            
+            print(f"  ✅ Métricas extraídas: {len(metrics)} itens")
             
             # 4. Salva no BD
             self._save_metrics_to_db(full_name, metrics)
@@ -303,29 +274,32 @@ class SonarQubeAnalyzer:
                     break
             self.dataset.save_dataset(dataset)
             
-            return (full_name, True, "Concluído")
+            print(f"  ✅ ANÁLISE CONCLUÍDA COM SUCESSO")
+            return True
             
         except Exception as e:
-            return (full_name, False, f"Erro: {str(e)[:50]}")
+            print(f"  ❌ Erro na análise: {e}")
+            return False
             
         finally:
             if temp_dir:
                 self._cleanup_temp_dir(temp_dir)
 
 
-def analyze_single_repo_worker(repo_data: dict, sonar_host: str, sonar_token: str, 
-                                dataset_file: str, worker_id: int) -> tuple:
+def analyze_single_repo(repo_data: dict, sonar_host: str, sonar_token: str, 
+                       dataset_file: str) -> tuple:
     """Função auxiliar para análise paralela"""
     try:
         sonarqube_api = SonarQubeAPI(sonar_host, sonar_token)
         dataset_manager = DatasetManager(dataset_file)
-        analyzer = SonarQubeAnalyzer(sonarqube_api, dataset_manager, worker_id, quiet=True)
+        analyzer = SonarQubeAnalyzer(sonarqube_api, dataset_manager)
         
-        full_name, success, message = analyzer.analyze_repository(repo_data)
-        return (full_name, success, message)
+        success = analyzer.analyze_repository(repo_data)
+        return (repo_data['full_name'], success)
         
     except Exception as e:
-        return (repo_data.get('full_name', 'unknown'), False, f"Worker error: {str(e)[:50]}")
+        print(f"❌ Erro no worker: {e}")
+        return (repo_data.get('full_name', 'unknown'), False)
 
 
 def main():
@@ -347,7 +321,7 @@ def main():
     args = parser.parse_args()
     
     print("="*80)
-    print("🔬 SCRIPT 2: ANÁLISE SONARQUBE (Modo Paralelo Otimizado)")
+    print("🔬 SCRIPT 2: ANÁLISE SONARQUBE")
     print("="*80)
     
     # Verifica SonarQube
@@ -371,64 +345,54 @@ def main():
     if args.limit:
         repositories = repositories[:args.limit]
     
-    print(f"\n📊 Configuração:")
-    print(f"   • Repositórios: {len(repositories)}")
-    print(f"   • Tipo: {args.type}")
-    print(f"   • Workers: {args.workers}")
-    print(f"   • Skip analyzed: {args.skip_analyzed}")
-    print(f"   • Dataset: {args.dataset}\n")
+    print(f"\n📊 Repositórios para analisar: {len(repositories)}")
+    print(f"   Tipo: {args.type}")
+    print(f"   Workers: {args.workers}")
+    print(f"   Skip analyzed: {args.skip_analyzed}\n")
     
     if not repositories:
         print("⚠️  Nenhum repositório para analisar")
         sys.exit(0)
     
-    # Cria tracker de progresso
-    tracker = ProgressTracker(len(repositories))
-    
-    print("🚀 Iniciando análise...\n")
-    
     # Análise sequencial ou paralela
+    results = []
+    
     if args.workers == 1:
-        # Sequencial com saída detalhada
-        print("Modo: SEQUENCIAL (1 worker)\n")
+        # Sequencial
         sonarqube_api = SonarQubeAPI(sonar_host, sonar_token)
-        analyzer = SonarQubeAnalyzer(sonarqube_api, dataset_manager, quiet=False)
+        analyzer = SonarQubeAnalyzer(sonarqube_api, dataset_manager)
         
         for i, repo in enumerate(repositories, 1):
-            print(f"\n{'─'*80}")
-            print(f"[{i}/{len(repositories)}] 🔬 {repo['full_name']} ({repo['release_type'].upper()})")
-            print(f"{'─'*80}")
-            
-            full_name, success, message = analyzer.analyze_repository(repo)
-            tracker.update(full_name, success, message)
+            print(f"\n[{i}/{len(repositories)}]")
+            success = analyzer.analyze_repository(repo)
+            results.append((repo['full_name'], success))
     
     else:
-        # Paralelo com saída organizada
-        print(f"Modo: PARALELO ({args.workers} workers)\n")
+        # Paralelo
+        print(f"🚀 Iniciando {args.workers} workers...\n")
         
         with ProcessPoolExecutor(max_workers=args.workers) as executor:
-            # Submete todas as tarefas
-            futures = {}
-            for i, repo in enumerate(repositories):
-                future = executor.submit(
-                    analyze_single_repo_worker, 
-                    repo, sonar_host, sonar_token, args.dataset, i % args.workers
-                )
-                futures[future] = repo
+            futures = {
+                executor.submit(
+                    analyze_single_repo, 
+                    repo, sonar_host, sonar_token, args.dataset
+                ): repo for repo in repositories
+            }
             
-            # Processa resultados conforme completam
             for future in as_completed(futures):
-                full_name, success, message = future.result()
-                tracker.update(full_name, success, message)
+                full_name, success = future.result()
+                results.append((full_name, success))
     
     # Relatório final
+    successful = sum(1 for _, success in results if success)
+    failed = len(results) - successful
+    
     print(f"\n{'='*80}")
     print("📊 RELATÓRIO FINAL")
     print(f"{'='*80}")
-    print(f"Total analisados: {tracker.completed}")
-    print(f"✅ Bem-sucedidos: {tracker.successful}")
-    print(f"❌ Falharam: {tracker.failed}")
-    print(f"⏱️  Tempo total: {(time.time() - tracker.start_time) / 60:.1f} minutos")
+    print(f"Total analisados: {len(results)}")
+    print(f"✅ Bem-sucedidos: {successful}")
+    print(f"❌ Falharam: {failed}")
     print(f"{'='*80}\n")
     
     dataset_manager.print_statistics()

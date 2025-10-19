@@ -1,7 +1,7 @@
 {
   "metadata": {
     "created_at": "2025-10-19T18:14:49.281527",
-    "last_updated": "2025-10-19T18:46:45.634535",
+    "last_updated": "2025-10-19T19:38:22.510052",
     "total_repositories": 25,
     "rapid_releases_count": 22,
     "slow_releases_count": 3
@@ -82,7 +82,7 @@
       "distinct_releases_count": 27,
       "collected_at": "2025-10-19T18:18:39.207493",
       "sonarqube_analyzed": true,
-      "sonarqube_analyzed_at": "2025-10-19T18:31:56.820734",
+      "sonarqube_analyzed_at": "2025-10-19T19:33:42.837669",
       "sonarqube_metrics": {
         "coverage": 0.0,
         "complexity": 8513,
@@ -113,7 +113,7 @@
       "distinct_releases_count": 155,
       "collected_at": "2025-10-19T18:18:54.110760",
       "sonarqube_analyzed": true,
-      "sonarqube_analyzed_at": "2025-10-19T18:32:26.886217",
+      "sonarqube_analyzed_at": "2025-10-19T19:34:12.746520",
       "sonarqube_metrics": {
         "coverage": 0.0,
         "complexity": 11103,
@@ -144,7 +144,7 @@
       "distinct_releases_count": 26,
       "collected_at": "2025-10-19T18:18:59.781688",
       "sonarqube_analyzed": true,
-      "sonarqube_analyzed_at": "2025-10-19T18:32:42.986802",
+      "sonarqube_analyzed_at": "2025-10-19T19:34:01.057511",
       "sonarqube_metrics": {
         "complexity": 1,
         "reliability_rating": "3.0",
@@ -204,7 +204,7 @@
       "distinct_releases_count": 341,
       "collected_at": "2025-10-19T18:19:35.557728",
       "sonarqube_analyzed": true,
-      "sonarqube_analyzed_at": "2025-10-19T18:34:09.633975",
+      "sonarqube_analyzed_at": "2025-10-19T19:35:27.542347",
       "sonarqube_metrics": {
         "coverage": 0.0,
         "complexity": 16790,
@@ -266,7 +266,7 @@
       "distinct_releases_count": 123,
       "collected_at": "2025-10-19T18:20:07.917833",
       "sonarqube_analyzed": true,
-      "sonarqube_analyzed_at": "2025-10-19T18:39:51.477757",
+      "sonarqube_analyzed_at": "2025-10-19T19:38:22.510042",
       "sonarqube_metrics": {
         "coverage": 0.0,
         "complexity": 25111,
@@ -402,7 +402,23 @@
       "collaborator_count": 71100,
       "distinct_releases_count": 131,
       "collected_at": "2025-10-19T18:21:58.386700",
-      "sonarqube_analyzed": false
+      "sonarqube_analyzed": true,
+      "sonarqube_analyzed_at": "2025-10-19T18:58:55.741541",
+      "sonarqube_metrics": {
+        "coverage": 0.0,
+        "complexity": 9079,
+        "reliability_rating": "5.0",
+        "duplicated_lines_density": 4.4,
+        "code_smells": 1107,
+        "security_rating": "5.0",
+        "sqale_index": 11051,
+        "sqale_rating": "1.0",
+        "bugs": 50,
+        "alert_status": "OK",
+        "cognitive_complexity": 12065,
+        "ncloc": 69642,
+        "vulnerabilities": 8
+      }
     },
     {
       "owner": "d3",
@@ -417,7 +433,23 @@
       "collaborator_count": 15200,
       "distinct_releases_count": 194,
       "collected_at": "2025-10-19T18:22:06.994420",
-      "sonarqube_analyzed": false
+      "sonarqube_analyzed": true,
+      "sonarqube_analyzed_at": "2025-10-19T18:59:47.368064",
+      "sonarqube_metrics": {
+        "coverage": 0.0,
+        "complexity": 232,
+        "reliability_rating": "1.0",
+        "duplicated_lines_density": 0.0,
+        "code_smells": 40,
+        "security_rating": "1.0",
+        "sqale_index": 205,
+        "sqale_rating": "1.0",
+        "bugs": 0,
+        "alert_status": "OK",
+        "cognitive_complexity": 135,
+        "ncloc": 1221,
+        "vulnerabilities": 0
+      }
     },
     {
       "owner": "mrdoob",
@@ -432,7 +464,23 @@
       "collaborator_count": 243600,
       "distinct_releases_count": 172,
       "collected_at": "2025-10-19T18:22:13.455410",
-      "sonarqube_analyzed": false
+      "sonarqube_analyzed": true,
+      "sonarqube_analyzed_at": "2025-10-19T19:10:10.246899",
+      "sonarqube_metrics": {
+        "coverage": 0.0,
+        "complexity": 61025,
+        "reliability_rating": "5.0",
+        "duplicated_lines_density": 14.6,
+        "code_smells": 22314,
+        "security_rating": "4.0",
+        "sqale_index": 118449,
+        "sqale_rating": "1.0",
+        "bugs": 2565,
+        "alert_status": "OK",
+        "cognitive_complexity": 66316,
+        "ncloc": 643963,
+        "vulnerabilities": 1
+      }
     },
     {
       "owner": "rust-lang",
@@ -477,7 +525,23 @@
       "collaborator_count": 112000,
       "distinct_releases_count": 349,
       "collected_at": "2025-10-19T18:22:57.081368",
-      "sonarqube_analyzed": false
+      "sonarqube_analyzed": true,
+      "sonarqube_analyzed_at": "2025-10-19T19:13:11.838901",
+      "sonarqube_metrics": {
+        "coverage": 0.0,
+        "complexity": 66692,
+        "reliability_rating": "5.0",
+        "duplicated_lines_density": 4.1,
+        "code_smells": 4761,
+        "security_rating": "4.0",
+        "sqale_index": 29579,
+        "sqale_rating": "1.0",
+        "bugs": 539,
+        "alert_status": "OK",
+        "cognitive_complexity": 45006,
+        "ncloc": 484555,
+        "vulnerabilities": 7
+      }
     },
     {
       "owner": "facebook",
@@ -492,7 +556,23 @@
       "collaborator_count": 94500,
       "distinct_releases_count": 83,
       "collected_at": "2025-10-19T18:23:10.077843",
-      "sonarqube_analyzed": false
+      "sonarqube_analyzed": true,
+      "sonarqube_analyzed_at": "2025-10-19T19:08:32.583706",
+      "sonarqube_metrics": {
+        "coverage": 0.0,
+        "complexity": 2098,
+        "reliability_rating": "3.0",
+        "duplicated_lines_density": 0.5,
+        "code_smells": 544,
+        "security_rating": "1.0",
+        "sqale_index": 4850,
+        "sqale_rating": "1.0",
+        "bugs": 7,
+        "alert_status": "OK",
+        "cognitive_complexity": 1198,
+        "ncloc": 12868,
+        "vulnerabilities": 0
+      }
     },
     {
       "owner": "godotengine",
@@ -522,7 +602,23 @@
       "collaborator_count": 45400,
       "distinct_releases_count": 142,
       "collected_at": "2025-10-19T18:23:36.312527",
-      "sonarqube_analyzed": false
+      "sonarqube_analyzed": true,
+      "sonarqube_analyzed_at": "2025-10-19T19:12:21.172333",
+      "sonarqube_metrics": {
+        "coverage": 0.0,
+        "complexity": 42,
+        "reliability_rating": "5.0",
+        "duplicated_lines_density": 0.0,
+        "code_smells": 14,
+        "security_rating": "1.0",
+        "sqale_index": 43,
+        "sqale_rating": "1.0",
+        "bugs": 4,
+        "alert_status": "OK",
+        "cognitive_complexity": 27,
+        "ncloc": 4600,
+        "vulnerabilities": 0
+      }
     }
   ]
 }

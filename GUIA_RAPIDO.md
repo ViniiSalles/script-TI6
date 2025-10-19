@@ -102,12 +102,12 @@ python 1_collect_repositories.py --rapid 100 --slow 100 --max-search 2000
 ### Dia 2-5: Análise em Lotes
 
 ```bash
-# Lote 1
-python 2_analyze_sonarqube.py --workers 4 --limit 50 --skip-analyzed
+# Processar todos (recomendado - progresso organizado)
+python 2_analyze_sonarqube.py --workers 4 --skip-analyzed
 
-# Lote 2
+# Ou em lotes menores
 python 2_analyze_sonarqube.py --workers 4 --limit 50 --skip-analyzed
-
+python 2_analyze_sonarqube.py --workers 4 --limit 50 --skip-analyzed
 # ... até completar todos
 ```
 
