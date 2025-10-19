@@ -30,7 +30,7 @@ Quando executado com `--workers 4`, múltiplos processos imprimiam simultaneamen
 ```python
 class ProgressTracker:
     """Rastreia progresso com saída organizada"""
-    
+
     def __init__(self, total: int):
         self.total = total
         self.completed = 0
@@ -46,10 +46,10 @@ def update(self, repo_name: str, success: bool, message: str = ""):
     with self.lock:  # <-- Apenas 1 thread imprime por vez
         # Limpa linha anterior
         print(f"\r{' ' * 120}\r", end='', flush=True)
-        
+
         # Status atual
         progress = f"[{self.completed}/{self.total}] {status} {repo_name}"
-        
+
         # Barra de progresso
         bar = '█' * filled + '░' * (bar_length - filled)
         stats = f"[{bar}] {percent:.1f}% | ✅ {successful} | ❌ {failed} | ETA: {eta}min"
@@ -59,9 +59,9 @@ def update(self, repo_name: str, success: bool, message: str = ""):
 
 ```python
 analyzer = SonarQubeAnalyzer(
-    sonarqube_api, 
-    dataset_manager, 
-    worker_id, 
+    sonarqube_api,
+    dataset_manager,
+    worker_id,
     quiet=True  # <-- Workers não imprimem detalhes
 )
 ```
@@ -137,21 +137,25 @@ Modo: SEQUENCIAL (1 worker)
 ## 🎯 Vantagens da Nova Implementação
 
 ### ✅ Legibilidade
+
 - Saída organizada e limpa
 - Barra de progresso visual
 - Estatísticas em tempo real
 
 ### ✅ Informação Útil
+
 - ETA (tempo estimado de conclusão)
 - Contadores de sucesso/falha
 - Status de cada repositório
 
 ### ✅ Performance Mantida
+
 - Mesma velocidade de processamento paralelo
 - Zero overhead de sincronização
 - Workers continuam independentes
 
 ### ✅ Debugging Facilitado
+
 - Modo sequencial mantém logs detalhados
 - Mensagens de erro informativas
 - Rastreamento de qual worker falhou
@@ -160,14 +164,14 @@ Modo: SEQUENCIAL (1 worker)
 
 ## 🔄 Comparação
 
-| Aspecto | Versão Antiga | Versão Nova |
-|---------|---------------|-------------|
-| **Saída paralela** | Embaralhada 😵 | Organizada ✅ |
-| **Progresso** | Confuso | Barra visual ✅ |
-| **ETA** | Não tinha | Tempo estimado ✅ |
-| **Thread-safe** | Não | Sim ✅ |
-| **Estatísticas** | Final only | Tempo real ✅ |
-| **Performance** | Rápido ⚡ | Rápido ⚡ |
+| Aspecto            | Versão Antiga  | Versão Nova       |
+| ------------------ | -------------- | ----------------- |
+| **Saída paralela** | Embaralhada 😵 | Organizada ✅     |
+| **Progresso**      | Confuso        | Barra visual ✅   |
+| **ETA**            | Não tinha      | Tempo estimado ✅ |
+| **Thread-safe**    | Não            | Sim ✅            |
+| **Estatísticas**   | Final only     | Tempo real ✅     |
+| **Performance**    | Rápido ⚡      | Rápido ⚡         |
 
 ---
 
@@ -198,19 +202,21 @@ python 2_analyze_sonarqube.py --limit 1
 ## 🔧 Melhorias Técnicas
 
 ### 1. Threading Lock
+
 ```python
 from threading import Lock
 
 class ProgressTracker:
     def __init__(self, total: int):
         self.lock = Lock()  # Sincroniza acesso ao terminal
-    
+
     def update(self, ...):
         with self.lock:  # Apenas 1 thread imprime por vez
             print(...)
 ```
 
 ### 2. Workers Silenciosos
+
 ```python
 analyzer = SonarQubeAnalyzer(
     ...,
@@ -222,6 +228,7 @@ return (full_name, success, message)
 ```
 
 ### 3. Progress Bar Dinâmica
+
 ```python
 # Limpa linha anterior
 print(f"\r{' ' * 120}\r", end='', flush=True)
@@ -234,6 +241,7 @@ bar = '█' * filled + '░' * (bar_length - filled)
 ```
 
 ### 4. ETA Calculation
+
 ```python
 elapsed = time.time() - self.start_time
 avg_time = elapsed / self.completed
