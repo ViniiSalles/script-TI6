@@ -134,29 +134,31 @@ python3 research_automation_script.py
 
 ### Tabelas Criadas
 
-- **repositories**: Dados gerais e métricas calculadas
-- **pull_requests**: Detalhes de cada PR
-- **issues**: Detalhes de cada issue
-- **sonarqube_metrics**: Métricas de qualidade de código
+- **research_repositories**: Dados gerais e métricas calculadas dos repositórios
+- **research_pull_requests**: Detalhes de cada PR analisado
+- **research_issues**: Detalhes de cada issue coletada
+- **research_sonarqube_metrics**: Métricas de qualidade de código do SonarQube
+
+> **Nota**: O prefixo `research_` foi adicionado para evitar conflito com as tabelas do SonarQube.
 
 ### Consultas de Exemplo
 
 ```sql
 -- Repositórios por tipo de release
-SELECT release_type, COUNT(*) FROM repositories GROUP BY release_type;
+SELECT release_type, COUNT(*) FROM research_repositories GROUP BY release_type;
 
 -- Métricas médias de qualidade por tipo
 SELECT r.release_type,
        AVG(s.bugs) as avg_bugs,
        AVG(s.vulnerabilities) as avg_vulnerabilities,
        AVG(s.coverage) as avg_coverage
-FROM repositories r
-JOIN sonarqube_metrics s ON r.id = s.repo_id
+FROM research_repositories r
+JOIN research_sonarqube_metrics s ON r.id = s.repo_id
 GROUP BY r.release_type;
 
 -- Top repositórios por taxa de merge
 SELECT full_name, pull_request_merge_rate
-FROM repositories
+FROM research_repositories
 ORDER BY pull_request_merge_rate DESC
 LIMIT 10;
 ```
@@ -287,9 +289,9 @@ docker exec sonarqube_db pg_dump -U sonar sonar > backup.sql
 
 ```sql
 -- Limpar dados antigos
-DELETE FROM sonarqube_metrics WHERE analysis_date < '2024-01-01';
-DELETE FROM pull_requests WHERE repo_id NOT IN (SELECT id FROM repositories);
-DELETE FROM issues WHERE repo_id NOT IN (SELECT id FROM repositories);
+DELETE FROM research_sonarqube_metrics WHERE analysis_date < '2024-01-01';
+DELETE FROM research_pull_requests WHERE repo_id NOT IN (SELECT id FROM research_repositories);
+DELETE FROM research_issues WHERE repo_id NOT IN (SELECT id FROM research_repositories);
 ```
 
 ### Restart dos Serviços

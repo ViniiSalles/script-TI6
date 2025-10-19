@@ -247,6 +247,75 @@ class GitHubAPI:
         except Exception as e:
             print(f"Erro ao obter detalhes do repositório {owner}/{name}: {e}")
             return {}
+    
+    def get_contributors_count(self, owner: str, name: str) -> int:
+        """Obtém o número total de contribuidores via API REST"""
+        try:
+            # Primeiro, tenta obter apenas o primeiro contribuidor com anon=true
+            # A API retorna o header 'Link' com informação de paginação
+            url = f"{self.rest_base_url}/repos/{owner}/{name}/contributors"
+            params = {
+                "per_page": 1,
+                "anon": "true"  # Inclui contribuidores anônimos
+            }
+            
+            response = self.session.get(url, params=params)
+            self._handle_rate_limit(response)
+            
+            # Verifica se há dados
+            data = response.json()
+            if not data or isinstance(data, dict):
+                # Se retornar um dict, pode ser um erro ou repositório sem contribuidores
+                return 0
+            
+            # Verifica o header Link para obter o total de páginas
+            link_header = response.headers.get('Link', '')
+            if 'rel="last"' in link_header:
+                # Extrai o número da última página do header Link
+                import re
+                match = re.search(r'page=(\d+)>; rel="last"', link_header)
+                if match:
+                    last_page = int(match.group(1))
+                    # Como pedimos 1 por página, o número de páginas = número de contribuidores
+                    # Mas vamos fazer uma verificação mais precisa
+                    # Pega a última página para contar exatamente
+                    last_page_response = self.session.get(url, params={"per_page": 100, "page": last_page, "anon": "true"})
+                    if last_page_response.status_code == 200:
+                        last_page_data = last_page_response.json()
+                        total = (last_page - 1) * 100 + len(last_page_data)
+                        return total
+            else:
+                # Sem paginação, significa que há apenas uma página
+                return len(data)
+            
+            # Fallback: conta manualmente (limitado a 500 para não consumir muitas requisições)
+            total_contributors = 0
+            page = 1
+            max_pages = 5  # Limita a 5 páginas (500 contribuidores) para não gastar rate limit
+            
+            while page <= max_pages:
+                response = self.session.get(url, params={"per_page": 100, "page": page, "anon": "true"})
+                if response.status_code != 200:
+                    break
+                    
+                contributors = response.json()
+                if not contributors:
+                    break
+                    
+                total_contributors += len(contributors)
+                
+                # Se retornou menos de 100, é a última página
+                if len(contributors) < 100:
+                    break
+                    
+                page += 1
+                time.sleep(0.5)  # Pequeno delay entre páginas
+            
+            return total_contributors
+            
+        except Exception as e:
+            print(f"Erro ao obter contribuidores de {owner}/{name}: {e}")
+            return 0
 
 
 class SonarQubeAPI:
@@ -339,7 +408,7 @@ class DatabaseManager:
         
         tables_sql = [
             """
-            CREATE TABLE IF NOT EXISTS repositories (
+            CREATE TABLE IF NOT EXISTS research_repositories (
                 id SERIAL PRIMARY KEY,
                 owner VARCHAR(255) NOT NULL,
                 name VARCHAR(255) NOT NULL,
@@ -365,36 +434,9 @@ class DatabaseManager:
             )
             """,
             """
-            CREATE TABLE IF NOT EXISTS pull_requests (
+            CREATE TABLE IF NOT EXISTS research_sonarqube_metrics (
                 id SERIAL PRIMARY KEY,
-                repo_id INTEGER REFERENCES repositories(id),
-                pr_number INTEGER,
-                merged BOOLEAN,
-                created_at TIMESTAMP,
-                merged_at TIMESTAMP,
-                commit_count INTEGER,
-                comment_count INTEGER,
-                churn INTEGER,
-                merge_time_hours DECIMAL(10, 2),
-                UNIQUE(repo_id, pr_number)
-            )
-            """,
-            """
-            CREATE TABLE IF NOT EXISTS issues (
-                id SERIAL PRIMARY KEY,
-                repo_id INTEGER REFERENCES repositories(id),
-                issue_number INTEGER,
-                created_at TIMESTAMP,
-                closed_at TIMESTAMP,
-                reopened_events INTEGER,
-                time_to_close_hours DECIMAL(10, 2),
-                UNIQUE(repo_id, issue_number)
-            )
-            """,
-            """
-            CREATE TABLE IF NOT EXISTS sonarqube_metrics (
-                id SERIAL PRIMARY KEY,
-                repo_id INTEGER REFERENCES repositories(id),
+                repo_id INTEGER REFERENCES research_repositories(id),
                 analysis_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 bugs INTEGER,
                 vulnerabilities INTEGER,
@@ -430,7 +472,7 @@ class DatabaseManager:
             return 1  # ID fictício
             
         sql = """
-        INSERT INTO repositories (
+        INSERT INTO research_repositories (
             owner, name, full_name, stargazer_count, fork_count, language,
             total_releases, avg_release_interval_days, release_type,
             collaborator_count, distinct_releases_count, total_issues,
@@ -482,7 +524,7 @@ class DatabaseManager:
             return
             
         sql = """
-        INSERT INTO pull_requests (
+        INSERT INTO research_pull_requests (
             repo_id, pr_number, merged, created_at, merged_at,
             commit_count, comment_count, churn, merge_time_hours
         ) VALUES (
@@ -513,7 +555,7 @@ class DatabaseManager:
             return
             
         sql = """
-        INSERT INTO issues (
+        INSERT INTO research_issues (
             repo_id, issue_number, created_at, closed_at,
             reopened_events, time_to_close_hours
         ) VALUES (
@@ -541,7 +583,7 @@ class DatabaseManager:
             return
             
         sql = """
-        INSERT INTO sonarqube_metrics (
+        INSERT INTO research_sonarqube_metrics (
             repo_id, bugs, vulnerabilities, code_smells, sqale_index,
             coverage, duplicated_lines_density, ncloc, complexity,
             cognitive_complexity, reliability_rating, security_rating,
@@ -838,26 +880,54 @@ class RepositoryProcessor:
             print(f"Falha ao obter detalhes do repositório {full_name}")
             return
         
-        # 2. Aplica filtros iniciais (relaxados para funcionar sem permissões especiais)
+        # 2. Aplica filtros iniciais
         total_releases = repo_details.get('releases', {}).get('totalCount', 0)
         stargazer_count = repo_details.get('stargazerCount', 0)
-        fork_count = repo_details.get('forkCount', 0)
-        
-        # Usa stars e forks como proxy para atividade do projeto
-        if stargazer_count < 100:
-            print(f"Repositório {full_name} não atende critério de popularidade (tem {stargazer_count} stars, precisa >= 100)")
+
+        # Filtro: Mínimo de stars
+        if stargazer_count <= 50:
+            print(f"❌ Repositório {full_name} não atende critério de stars (tem {stargazer_count}, precisa >= 50)")
+            return
+        print(f"✅ Repositório {full_name} passou filtro de stars ({stargazer_count} stars)")
+
+        # Filtro: Mínimo de releases
+        if total_releases <= 19:
+            print(f"❌ Repositório {full_name} não atende critério de releases (tem {total_releases}, precisa > 19)")
             return
         
-        if total_releases < 5:  # Reduzido para ser mais inclusivo
-            print(f"Repositório {full_name} não atende critério de releases (tem {total_releases}, precisa >= 5)")
+        print(f"✅ Repositório {full_name} passou filtro de releases ({total_releases} releases)")
+        
+        # 3. Obtém número de contribuidores via API REST
+        print(f"Obtendo número de contribuidores...")
+        contributors_count = self.github_api.get_contributors_count(owner, name)
+        print(f"Contribuidores: {contributors_count}")
+        
+        # Filtro: Mínimo de contribuidores
+        if contributors_count <= 19:
+            print(f"❌ Repositório {full_name} não atende critério de contribuidores (tem {contributors_count}, precisa > 19)")
             return
         
-        print(f"Repositório {full_name} passou nos filtros iniciais")
+        print(f"✅ Repositório {full_name} passou filtro de contribuidores ({contributors_count} contribuidores)")
         
-        # 3. Calcula métricas do GitHub
+        # 4. Calcula métricas do GitHub
         releases_nodes = repo_details.get('releases', {}).get('nodes', [])
         avg_interval = self._calculate_avg_release_interval(releases_nodes)
-        release_type = self._classify_release_type(avg_interval)
+        
+        # Filtro: Intervalo de releases (Rapid: 5-35 dias OU Slow: >60 dias)
+        if avg_interval is None:
+            print(f"❌ Repositório {full_name} não tem intervalo de releases calculável")
+            return
+        
+        is_rapid = 5 <= avg_interval <= 35
+        is_slow = avg_interval > 60
+        
+        if not (is_rapid or is_slow):
+            print(f"❌ Repositório {full_name} não atende critério de intervalo de releases")
+            print(f"   Intervalo médio: {avg_interval:.1f} dias (precisa ser 5-35 para Rapid OU >60 para Slow)")
+            return
+        
+        release_type = 'rapid' if is_rapid else 'slow'
+        print(f"✅ Repositório {full_name} classificado como '{release_type.upper()}' (intervalo: {avg_interval:.1f} dias)")
         
         pr_nodes = repo_details.get('pullRequests', {}).get('nodes', [])
         total_prs, merged_prs, pr_merge_rate, avg_merge_time, pr_churn = self._calculate_pr_metrics(pr_nodes)
@@ -869,7 +939,7 @@ class RepositoryProcessor:
             issue_nodes, open_issues, closed_issues
         )
         
-        # 4. Prepara dados do repositório
+        # 5. Prepara dados do repositório
         repo_data = {
             'owner': owner,
             'name': name,
@@ -880,7 +950,7 @@ class RepositoryProcessor:
             'total_releases': total_releases,
             'avg_release_interval_days': avg_interval,
             'release_type': release_type,
-            'collaborator_count': repo_details.get('collaborators', {}).get('totalCount', 0),
+            'collaborator_count': contributors_count,
             'distinct_releases_count': total_releases,
             'total_issues': total_issues,
             'open_issues': open_issues,
@@ -893,7 +963,7 @@ class RepositoryProcessor:
             'avg_issue_close_time_hours': avg_close_time
         }
         
-        # 5. Exibe/Persiste dados do repositório
+        # 6. Exibe/Persiste dados do repositório
         print(f"\n📊 MÉTRICAS CALCULADAS para {full_name}:")
         print(f"   ⭐ Stars: {repo_data['stargazer_count']}")
         print(f"   🍴 Forks: {repo_data['fork_count']}")
@@ -915,50 +985,6 @@ class RepositoryProcessor:
         else:
             repo_id = 1  # ID fictício para continuar o processamento
         
-        # 6. Persiste pull requests
-        for pr in pr_nodes:
-            pr_data = {
-                'pr_number': pr.get('number', 0),
-                'merged': pr.get('merged', False),
-                'created_at': pr.get('createdAt'),
-                'merged_at': pr.get('mergedAt'),
-                'commit_count': pr.get('commits', {}).get('totalCount', 0),
-                'comment_count': pr.get('comments', {}).get('totalCount', 0),
-                'churn': pr.get('commits', {}).get('totalCount', 0),  # Placeholder
-                'merge_time_hours': None
-            }
-            
-            # Calcula tempo de merge se disponível
-            if pr.get('createdAt') and pr.get('mergedAt'):
-                try:
-                    created = datetime.fromisoformat(pr['createdAt'].replace('Z', '+00:00'))
-                    merged = datetime.fromisoformat(pr['mergedAt'].replace('Z', '+00:00'))
-                    pr_data['merge_time_hours'] = (merged - created).total_seconds() / 3600
-                except:
-                    pass
-            
-            self.db_manager.insert_pull_request(repo_id, pr_data)
-        
-        # 7. Persiste issues
-        for issue in issue_nodes:
-            issue_data = {
-                'issue_number': issue.get('number', 0),
-                'created_at': issue.get('createdAt'),
-                'closed_at': issue.get('closedAt'),
-                'reopened_events': issue.get('timelineItems', {}).get('totalCount', 0),
-                'time_to_close_hours': None
-            }
-            
-            # Calcula tempo de fechamento se disponível
-            if issue.get('createdAt') and issue.get('closedAt'):
-                try:
-                    created = datetime.fromisoformat(issue['createdAt'].replace('Z', '+00:00'))
-                    closed = datetime.fromisoformat(issue['closedAt'].replace('Z', '+00:00'))
-                    issue_data['time_to_close_hours'] = (closed - created).total_seconds() / 3600
-                except:
-                    pass
-            
-            self.db_manager.insert_issue(repo_id, issue_data)
         
         # 8. Análise SonarQube (se token disponível)
         if self.sonarqube_api and os.getenv('SONAR_TOKEN'):
@@ -1095,65 +1121,58 @@ def main():
             print("Continuando sem banco de dados - dados serão apenas exibidos\n")
         
         processor = RepositoryProcessor(github_api, sonarqube_api, db_manager)
-        
-        # Queries de busca para diferentes tipos de repositório (critérios ajustados)
-        search_queries = [
-            "stars:>100 forks:>50 language:Python",
-            "stars:>100 forks:>50 language:JavaScript", 
-            "stars:>100 forks:>50 language:Java",
-            "stars:>100 forks:>50 language:TypeScript",
-            "stars:>100 forks:>50 language:Go",
-            "stars:>200 forks:>100",  # Busca geral com critérios mais altos
-        ]
-        
+
         processed_repos = set()
         total_processed = 0
-        target_repos_per_type = 1  # Ainda mais reduzido para teste inicial
+        target_repos_per_type = 10  # Aumentado para compensar filtros mais rigorosos
         
-        print(f"Iniciando busca de repositórios (máximo {target_repos_per_type} por linguagem)...")
-        print("Para aumentar, modifique 'target_repos_per_type' no código\n")
+        print(f"\n{'='*80}")
+        print(f"CRITÉRIOS DE FILTRAGEM:")
+        print(f"  • Releases: > 19")
+        print(f"  • Contribuidores: > 19")
+        print(f"  • Intervalo entre releases: 5-35 dias (RAPID) OU > 60 dias (SLOW)")
+        print(f"{'='*80}\n")
         
-        for query in search_queries:
-            print(f"\n--- Buscando repositórios com query: {query} ---")
+        print(f"Iniciando busca de repositórios (máximo {target_repos_per_type} tentativas por query)...")
+        print("Nota: Muitos repositórios serão descartados pelos filtros\n")
+        
+        query = "stars:>50 forks:>50"
+
+        print(f"\n--- Buscando repositórios com query: {query} ---")
+        
+        try:
+            repositories = github_api.search_repositories(query, target_repos_per_type)
             
-            try:
-                repositories = github_api.search_repositories(query, target_repos_per_type)
+            for repo in repositories:
+                owner = repo['owner']['login']
+                name = repo['name']
+                full_name = f"{owner}/{name}"
                 
-                for repo in repositories:
-                    owner = repo['owner']['login']
-                    name = repo['name']
-                    full_name = f"{owner}/{name}"
-                    
-                    # Evita processar o mesmo repositório múltiplas vezes
-                    if full_name in processed_repos:
-                        print(f"Pulando {full_name} (já processado)")
-                        continue
-                    
-                    processed_repos.add(full_name)
-                    
-                    try:
-                        print(f"\n[{total_processed + 1}] Processando: {full_name}")
-                        processor.process_repository(owner, name)
-                        total_processed += 1
-                        
-                        # Pausa para respeitar rate limiting
-                        time.sleep(2)
-                        
-                        # Status report a cada 5 repositórios
-                        if total_processed % 5 == 0:
-                            print(f"\n*** PROGRESSO: {total_processed} repositórios processados ***\n")
-                        
-                    except Exception as e:
-                        print(f"ERRO ao processar repositório {full_name}: {e}")
-                        continue
+                # Evita processar o mesmo repositório múltiplas vezes
+                if full_name in processed_repos:
+                    print(f"Pulando {full_name} (já processado)")
+                    continue
                 
-                # Pausa entre queries
-                print(f"Pausando 3 segundos antes da próxima query...")
-                time.sleep(3)
+                processed_repos.add(full_name)
                 
-            except Exception as e:
-                print(f"ERRO na busca com query '{query}': {e}")
-                continue
+                try:
+                    print(f"\n[{total_processed + 1}] Processando: {full_name}")
+                    processor.process_repository(owner, name)
+                    total_processed += 1
+                    
+                    # Pausa para respeitar rate limiting
+                    time.sleep(2)
+                    
+                    # Status report a cada 5 repositórios
+                    if total_processed % 5 == 0:
+                        print(f"\n*** PROGRESSO: {total_processed} repositórios processados ***\n")
+                    
+                except Exception as e:
+                    print(f"ERRO ao processar repositório {full_name}: {e}")
+                    continue
+                
+        except Exception as e:
+            print(f"ERRO na busca com query '{query}': {e}")
         
         print(f"\n=== PROCESSAMENTO CONCLUÍDO ===")
         print(f"Total de repositórios processados: {total_processed}")
