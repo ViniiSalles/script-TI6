@@ -6,15 +6,16 @@ Este projeto automatiza a pesquisa comparativa entre projetos de software open-s
 
 ### Software Necessário
 
-- **Docker** e **Docker Compose**
+- **Docker Desktop** (em execução)
 - **Python 3.7+**
 - **Git**
-- **SonarScanner CLI** - [Download aqui](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/)
 
 ### Tokens de API
 
 - **GitHub Personal Access Token** com permissões de leitura de repositórios
 - **SonarQube Token** (gerado após configuração inicial)
+
+> ⚠️ **Nota**: O SonarScanner CLI **não** precisa ser instalado separadamente. O script usa a imagem Docker oficial `sonarsource/sonar-scanner-cli`.
 
 ## 🚀 Instalação e Configuração
 
@@ -73,24 +74,30 @@ docker-compose ps
 5. Clique em **Tokens** para o usuário admin
 6. Gere um novo token e copie para a variável `SONAR_TOKEN` no `.env`
 
-### 5. Instale o SonarScanner CLI
+### 5. Verificação
 
-**macOS (via Homebrew):**
+Antes de executar, o script verificará automaticamente:
 
 ```bash
-brew install sonar-scanner
+# Execute o script - ele verificará os pré-requisitos
+python research_automation_script.py
 ```
 
-**Linux/Windows:**
+O script verificará:
 
-- Baixe de: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
-- Extraia e adicione ao PATH do sistema
+- ✅ Git instalado
+- ✅ Docker instalado e em execução
+- ✅ Variáveis de ambiente configuradas
 
 ## 🔧 Uso
 
 ### Execução Principal
 
 ```bash
+# Windows PowerShell
+python research_automation_script.py
+
+# Linux/macOS
 python3 research_automation_script.py
 ```
 
@@ -116,9 +123,10 @@ python3 research_automation_script.py
 
 4. **Análise SonarQube**:
 
-   - Clona repositórios temporariamente
-   - Executa sonar-scanner
+   - Clona repositórios temporariamente (com tratamento de permissões Windows)
+   - Executa análise via Docker: `docker run sonarsource/sonar-scanner-cli`
    - Coleta métricas de qualidade de código
+   - Limpa diretórios temporários automaticamente
 
 5. **Armazena Dados**: Persiste tudo no PostgreSQL
 
@@ -197,10 +205,24 @@ time.sleep(2)
 - O script aguarda automaticamente quando o rate limit é atingido
 - GitHub permite 5000 requests/hora para usuários autenticados
 
-### Erro: "SonarScanner not found"
+### Erro: "Docker não está instalado ou não está no PATH"
 
-- Verifique se o sonar-scanner está instalado e no PATH
-- Teste: `sonar-scanner --version`
+- Verifique se o Docker Desktop está instalado
+- Verifique se o Docker Desktop está **em execução**
+- Teste: `docker --version` e `docker ps`
+- Windows: Reinicie o Docker Desktop se necessário
+
+### Erro: "[WinError 5] Acesso negado" (Windows)
+
+- ✅ **Corrigido**: O script agora trata permissões de arquivos Git automaticamente
+- Se persistir, execute o PowerShell como Administrador
+
+### Erro de Conexão com SonarQube via Docker
+
+- Verifique se o SonarQube está rodando: `docker-compose ps`
+- Teste acesso: http://localhost:9000
+- Use `--network host` no Docker (já configurado no script)
+- Logs: `docker-compose logs sonarqube`
 
 ### Erro de Conexão com Banco
 
@@ -220,8 +242,12 @@ environment:
 
 ### Espaço em Disco
 
-- Repositórios são clonados em `/tmp/repos_analise/` e limpos automaticamente
-- Em caso de falha, limpe manualmente: `rm -rf /tmp/repos_analise/`
+- **Windows**: Repositórios clonados em `C:\Users\<Usuario>\AppData\Local\Temp\repos_analise\`
+- **Linux/macOS**: Repositórios clonados em `/tmp/repos_analise/`
+- Diretórios são limpos automaticamente após análise
+- Em caso de falha, limpe manualmente:
+  - Windows: `Remove-Item -Recurse -Force $env:TEMP\repos_analise`
+  - Linux/macOS: `rm -rf /tmp/repos_analise/`
 
 ## 📈 Monitoramento
 

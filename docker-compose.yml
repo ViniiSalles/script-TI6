@@ -1,7 +1,7 @@
 
 services:
   sonarqube:
-    image: sonarqube:lts-community
+    image: sonarqube:latest
     container_name: sonarqube
     ports:
       - "9000:9000"
@@ -19,7 +19,7 @@ services:
       - db
 
   db:
-    image: postgres:13
+    image: postgres:latest
     container_name: sonarqube_db
     environment:
       - POSTGRES_USER=sonar

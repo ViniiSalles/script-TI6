@@ -9,10 +9,10 @@ filtra repositórios, executa análises de qualidade de código com SonarQube e
 persiste todas as métricas em um banco de dados PostgreSQL.
 
 PRÉ-REQUISITOS:
-- Docker e Docker Compose instalados
+- Docker e Docker Compose instalados e em execução
 - Python 3.7+ com pacotes: requests, psycopg2-binary, python-dotenv
 - Git instalado no sistema
-- SonarScanner CLI instalado e disponível no PATH (opcional - apenas se usar SonarQube)
+- Imagem Docker do SonarScanner será baixada automaticamente (sonarsource/sonar-scanner-cli)
 
 CONFIGURAÇÃO DE VARIÁVEIS DE AMBIENTE:
 Configure o arquivo .env com as seguintes variáveis:
@@ -41,6 +41,7 @@ import os
 import sys
 import time
 import json
+import stat
 import subprocess
 import tempfile
 import shutil
@@ -584,7 +585,8 @@ class RepositoryProcessor:
         self.github_api = github_api
         self.sonarqube_api = sonarqube_api
         self.db_manager = database_manager
-        self.temp_base_dir = "/tmp/repos_analise"
+        # Usa diretório temporário do sistema (funciona no Windows e Linux)
+        self.temp_base_dir = os.path.join(tempfile.gettempdir(), "repos_analise")
         
         # Cria diretório temporário base apenas se SonarQube estiver habilitado
         if self.sonarqube_api:
@@ -618,9 +620,7 @@ class RepositoryProcessor:
     
     def _classify_release_type(self, avg_interval: Optional[float]) -> str:
         """Classifica o tipo de release baseado no intervalo médio"""
-        if avg_interval is None:
-            return 'unclassified'
-        elif 5 <= avg_interval <= 35:
+        if 5 <= avg_interval <= 35:
             return 'rapid'
         elif avg_interval >= 60:
             return 'slow'
@@ -691,9 +691,10 @@ class RepositoryProcessor:
         repo_url = f"https://github.com/{owner}/{name}.git"
         temp_dir = os.path.join(self.temp_base_dir, f"{owner}_{name}")
         
-        # Remove diretório se já existir
+        # Remove diretório se já existir (com tratamento de permissões)
         if os.path.exists(temp_dir):
-            shutil.rmtree(temp_dir)
+            print(f"Removendo diretório existente: {temp_dir}")
+            self._cleanup_temp_dir(temp_dir)
         
         try:
             print(f"Clonando repositório {owner}/{name}...")
@@ -711,54 +712,120 @@ class RepositoryProcessor:
                 print(f"Erro ao clonar repositório: {result.stderr}")
                 return None
                 
+        except subprocess.TimeoutExpired:
+            print(f"Timeout ao clonar repositório {owner}/{name}")
+            self._cleanup_temp_dir(temp_dir)
+            return None
+        except FileNotFoundError:
+            print("ERRO: Git não está instalado ou não está no PATH")
+            print("Instale o Git: https://git-scm.com/download/win")
+            return None
         except Exception as e:
             print(f"Erro ao clonar repositório {owner}/{name}: {e}")
+            self._cleanup_temp_dir(temp_dir)
             return None
     
     def _run_sonar_scanner(self, repo_dir: str, owner: str, name: str) -> bool:
-        """Executa o SonarScanner em um repositório"""
+        """Executa o SonarScanner via Docker em um repositório"""
         project_key = f"{owner}_{name}"
         
-        sonar_args = [
-            'sonar-scanner',
-            f'-Dsonar.projectKey={project_key}',
-            f'-Dsonar.projectName={project_key}',
-            f'-Dsonar.host.url={os.getenv("SONAR_HOST")}',
-            f'-Dsonar.login={os.getenv("SONAR_TOKEN")}',
-            '-Dsonar.sources=.'
+        # Obtém configurações do ambiente
+        sonar_host = os.getenv("SONAR_HOST", "http://localhost:9000")
+        sonar_token = os.getenv("SONAR_TOKEN")
+        
+        if not sonar_token:
+            print("ERRO: SONAR_TOKEN não configurado")
+            return False
+        
+        # Converte path do Windows para formato Docker (se necessário)
+        # Ex: C:\Users\... -> /c/Users/...
+        if os.name == 'nt':  # Windows
+            # Normaliza o caminho
+            repo_dir_normalized = os.path.abspath(repo_dir)
+            # Converte para formato Docker volume (Windows)
+            # Mantém o formato Windows para Docker Desktop
+            docker_volume = f"{repo_dir_normalized}:/usr/src"
+        else:
+            docker_volume = f"{repo_dir}:/usr/src"
+        
+        # Comando Docker para executar SonarScanner
+        docker_cmd = [
+            'docker', 'run',
+            '--rm',  # Remove container após execução
+            '--network', 'host',  # Permite acesso ao localhost
+            '-e', f'SONAR_HOST_URL={sonar_host}',
+            '-e', f'SONAR_TOKEN={sonar_token}',
+            '-v', docker_volume,
+            'sonarsource/sonar-scanner-cli',
+            '-Dsonar.projectKey=' + project_key,
+            '-Dsonar.projectName=' + project_key,
+            '-Dsonar.sources=.',
+            '-Dsonar.python.version=3.13'
         ]
         
         try:
-            print(f"Executando SonarScanner para {owner}/{name}...")
+            print(f"Executando SonarScanner via Docker para {owner}/{name}...")
+            print(f"Comando: {' '.join(docker_cmd)}")
+            
             result = subprocess.run(
-                sonar_args,
-                cwd=repo_dir,
+                docker_cmd,
                 capture_output=True,
                 text=True,
-                timeout=600  # Timeout de 10 minutos
+                timeout=900,  # Timeout de 15 minutos
+                cwd=repo_dir  # Define working directory
             )
             
+            # Exibe saída para debug
+            if result.stdout:
+                print("STDOUT:", result.stdout[-500:])  # Últimos 500 chars
+            
             if result.returncode == 0:
-                print(f"SonarScanner executado com sucesso para {owner}/{name}")
+                print(f"✅ SonarScanner executado com sucesso para {owner}/{name}")
                 # Aguarda processamento no SonarQube
+                print("Aguardando processamento no SonarQube...")
                 time.sleep(30)
                 return True
             else:
-                print(f"Erro no SonarScanner: {result.stderr}")
+                print(f"❌ Erro no SonarScanner (exit code {result.returncode}):")
+                if result.stderr:
+                    print("STDERR:", result.stderr[-500:])
                 return False
                 
+        except subprocess.TimeoutExpired:
+            print(f"⏱️ Timeout ao executar SonarScanner para {owner}/{name}")
+            return False
+        except FileNotFoundError:
+            print("❌ ERRO: Docker não está instalado ou não está no PATH")
+            print("Instale o Docker Desktop: https://www.docker.com/products/docker-desktop")
+            return False
         except Exception as e:
-            print(f"Erro ao executar SonarScanner para {owner}/{name}: {e}")
+            print(f"❌ Erro ao executar SonarScanner via Docker para {owner}/{name}: {e}")
             return False
     
     def _cleanup_temp_dir(self, temp_dir: str):
-        """Limpa diretório temporário"""
+        """Limpa diretório temporário com tratamento especial para Windows e repositórios Git"""
         try:
             if os.path.exists(temp_dir):
-                shutil.rmtree(temp_dir)
+                # No Windows, arquivos Git podem ter atributo somente-leitura
+                # Esta função remove esse atributo antes de deletar
+                def handle_remove_readonly(func, path, exc):
+                    """Trata erros de permissão ao remover arquivos no Windows"""
+                    import stat
+                    if not os.access(path, os.W_OK):
+                        # Remove atributo somente-leitura
+                        os.chmod(path, stat.S_IWUSR | stat.S_IREAD)
+                        func(path)
+                    else:
+                        raise
+                
+                # Remove com tratamento de erros de permissão
+                shutil.rmtree(temp_dir, onerror=handle_remove_readonly)
                 print(f"Diretório temporário {temp_dir} removido")
+        except PermissionError as e:
+            print(f"AVISO: Erro de permissão ao remover {temp_dir}: {e}")
+            print(f"Você pode precisar remover manualmente: {temp_dir}")
         except Exception as e:
-            print(f"Erro ao remover diretório temporário {temp_dir}: {e}")
+            print(f"AVISO: Erro ao remover diretório temporário {temp_dir}: {e}")
     
     def process_repository(self, owner: str, name: str):
         """Processa um repositório completo"""
@@ -813,7 +880,7 @@ class RepositoryProcessor:
             'total_releases': total_releases,
             'avg_release_interval_days': avg_interval,
             'release_type': release_type,
-            'collaborator_count': 0,  # N/A - sem permissão de acesso
+            'collaborator_count': repo_details.get('collaborators', {}).get('totalCount', 0),
             'distinct_releases_count': total_releases,
             'total_issues': total_issues,
             'open_issues': open_issues,
@@ -830,7 +897,7 @@ class RepositoryProcessor:
         print(f"\n📊 MÉTRICAS CALCULADAS para {full_name}:")
         print(f"   ⭐ Stars: {repo_data['stargazer_count']}")
         print(f"   🍴 Forks: {repo_data['fork_count']}")
-        print(f"   👥 Colaboradores: {repo_data['collaborator_count']} (N/A - sem permissão)")
+        print(f"   👥 Colaboradores: {repo_data['collaborator_count']}")
         print(f"   🏷️  Releases: {repo_data['total_releases']}")
         print(f"   📈 Tipo de Release: {repo_data['release_type']}")
         if repo_data['avg_release_interval_days']:
@@ -895,10 +962,11 @@ class RepositoryProcessor:
         
         # 8. Análise SonarQube (se token disponível)
         if self.sonarqube_api and os.getenv('SONAR_TOKEN'):
-            # Clona repositório
-            temp_dir = self._clone_repository(owner, name)
-            if temp_dir:
-                try:
+            temp_dir = None
+            try:
+                # Clona repositório
+                temp_dir = self._clone_repository(owner, name)
+                if temp_dir:
                     # Executa SonarScanner
                     if self._run_sonar_scanner(temp_dir, owner, name):
                         # Extrai métricas
@@ -910,9 +978,11 @@ class RepositoryProcessor:
                             print(f"Métricas SonarQube inseridas para {full_name}")
                         else:
                             print(f"Nenhuma métrica SonarQube encontrada para {full_name}")
-                    
-                finally:
-                    # Limpa diretório temporário
+            except Exception as e:
+                print(f"ERRO durante análise SonarQube de {full_name}: {e}")
+            finally:
+                # Limpa diretório temporário
+                if temp_dir:
                     self._cleanup_temp_dir(temp_dir)
         else:
             print("SonarQube não configurado, pulando análise de código")
@@ -920,10 +990,58 @@ class RepositoryProcessor:
         print(f"=== Processamento de {full_name} concluído ===\n")
 
 
+def check_prerequisites() -> Tuple[bool, bool]:
+    """Verifica pré-requisitos do sistema"""
+    print("=== Verificando pré-requisitos ===")
+    
+    # Verifica Git
+    git_available = False
+    try:
+        result = subprocess.run(['git', '--version'], capture_output=True, text=True)
+        if result.returncode == 0:
+            print(f"✅ Git: {result.stdout.strip()}")
+            git_available = True
+        else:
+            print("❌ Git: Não encontrado")
+    except FileNotFoundError:
+        print("❌ Git: Não instalado")
+        print("   Instale: https://git-scm.com/download/win")
+    
+    # Verifica Docker
+    docker_available = False
+    try:
+        result = subprocess.run(['docker', '--version'], capture_output=True, text=True)
+        if result.returncode == 0:
+            print(f"✅ Docker: {result.stdout.strip()}")
+            docker_available = True
+            
+            # Verifica se Docker está rodando
+            result = subprocess.run(['docker', 'ps'], capture_output=True, text=True)
+            if result.returncode != 0:
+                print("⚠️  Docker está instalado mas não está rodando")
+                print("   Inicie o Docker Desktop")
+                docker_available = False
+        else:
+            print("❌ Docker: Não encontrado")
+    except FileNotFoundError:
+        print("❌ Docker: Não instalado")
+        print("   Instale: https://www.docker.com/products/docker-desktop")
+    
+    print()
+    return git_available, docker_available
+
+
 def main():
     """Função principal do script"""
     print("=== Script de Automação de Pesquisa GitHub ===")
-    print("Versão simplificada - foco na coleta de dados GitHub\n")
+    print("Versão com análise SonarQube via Docker\n")
+    
+    # Verifica pré-requisitos
+    git_available, docker_available = check_prerequisites()
+    
+    if not git_available:
+        print("ERRO: Git é obrigatório para clonar repositórios")
+        sys.exit(1)
     
     # Verifica variáveis de ambiente obrigatórias
     github_token = os.getenv('GITHUB_TOKEN')
@@ -935,9 +1053,16 @@ def main():
     sonar_host = os.getenv('SONAR_HOST', 'http://localhost:9000')
     sonar_token = os.getenv('SONAR_TOKEN')
     
+    # Aviso sobre SonarQube
     if not sonar_token:
-        print("AVISO: SONAR_TOKEN não configurado. Análise SonarQube será pulada.")
-        print("Para habilitar SonarQube, configure SONAR_TOKEN no .env\n")
+        print("⚠️  AVISO: SONAR_TOKEN não configurado. Análise SonarQube será pulada.")
+        print("   Para habilitar SonarQube, configure SONAR_TOKEN no .env\n")
+    elif not docker_available:
+        print("⚠️  AVISO: Docker não disponível. Análise SonarQube será pulada.")
+        print("   Para habilitar SonarQube, instale e inicie o Docker Desktop\n")
+        sonar_token = None  # Desabilita SonarQube se Docker não estiver disponível
+    else:
+        print(f"✅ SonarQube configurado: {sonar_host}\n")
     
     # Configuração do banco de dados
     db_config = {
@@ -983,7 +1108,7 @@ def main():
         
         processed_repos = set()
         total_processed = 0
-        target_repos_per_type = 10  # Ainda mais reduzido para teste inicial
+        target_repos_per_type = 1  # Ainda mais reduzido para teste inicial
         
         print(f"Iniciando busca de repositórios (máximo {target_repos_per_type} por linguagem)...")
         print("Para aumentar, modifique 'target_repos_per_type' no código\n")
@@ -1044,13 +1169,23 @@ def main():
             db_manager.disconnect()
         
         # Limpa diretório temporário base (apenas se foi criado para SonarQube)
-        temp_base = "/tmp/repos_analise"
+        temp_base = os.path.join(tempfile.gettempdir(), "repos_analise")
         if os.path.exists(temp_base):
             try:
-                shutil.rmtree(temp_base)
+                def handle_remove_readonly(func, path, exc):
+                    """Trata erros de permissão ao remover arquivos no Windows"""
+                    import stat
+                    if not os.access(path, os.W_OK):
+                        os.chmod(path, stat.S_IWUSR | stat.S_IREAD)
+                        func(path)
+                    else:
+                        raise
+                
+                shutil.rmtree(temp_base, onerror=handle_remove_readonly)
                 print(f"Diretório temporário base {temp_base} limpo")
-            except:
-                pass
+            except Exception as e:
+                print(f"AVISO: Não foi possível limpar {temp_base}: {e}")
+                print(f"Você pode precisar remover manualmente o diretório")
         
         print("\n🎉 Execução finalizada!")
 
