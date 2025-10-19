@@ -12,7 +12,7 @@ load_dotenv()
 
 def test_contributors():
     """Testa contagem de contribuidores em repositórios conhecidos"""
-    from research_automation_script import GitHubAPI
+    from utils import GitHubAPI
     
     github_token = os.getenv('GITHUB_TOKEN')
     if not github_token:

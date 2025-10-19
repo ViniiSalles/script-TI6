@@ -19,7 +19,7 @@ def test_database_manager():
     
     # Importa DatabaseManager
     try:
-        from research_automation_script import DatabaseManager
+        from utils import DatabaseManager
         print("✅ DatabaseManager importado com sucesso")
     except ImportError as e:
         print(f"❌ Erro ao importar DatabaseManager: {e}")

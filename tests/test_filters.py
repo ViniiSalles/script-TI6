@@ -18,7 +18,7 @@ load_dotenv()
 # Adiciona path do script principal
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from research_automation_script import GitHubAPI
+from utils import GitHubAPI
 
 def test_repository_filters(owner: str, name: str, github_api: GitHubAPI):
     """Testa se um repositório passa nos filtros"""
