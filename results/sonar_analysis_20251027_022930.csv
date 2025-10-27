@@ -1,0 +1,6 @@
+name_with_owner,url,stars,forks,release_count,ncloc,complexity,cognitive_complexity,violations,bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density,analyzed_at
+Significant-Gravitas/AutoGPT,https://github.com/Significant-Gravitas/AutoGPT,179256,46078,78,168938,19133,15450,2263,68,1,2194,0.00,3.3,2025-10-27T05:04:45.961628
+tensorflow/tensorflow,https://github.com/tensorflow/tensorflow,192202,74916,219,1116139,121865,93393,21829,1065,11,20753,0.00,6.8,2025-10-27T04:58:40.745270
+vuejs/vue,https://github.com/vuejs/vue,209621,33794,249,63139,10963,6537,1701,162,0,1539,0.00,9.0,2025-10-27T04:47:56.943161
+vuejs/vue,https://github.com/vuejs/vue,209621,33794,249,63139,10963,6537,1701,162,0,1539,0.00,9.0,2025-10-27T04:47:56.943161
+facebook/react,https://github.com/facebook/react,240043,49659,106,538836,86740,59376,24031,985,0,23046,0.00,17.7,2025-10-27T04:45:57.084458

@@ -1,0 +1,87 @@
+{
+  "export_date": "2025-10-27T02:29:30.833124",
+  "total_repositories": 4,
+  "total_metrics": 5,
+  "statistics": {
+    "avg_ncloc": 390038,
+    "max_ncloc": 1116139,
+    "min_ncloc": 63139,
+    "avg_bugs": 488,
+    "max_bugs": 1065,
+    "min_bugs": 68,
+    "avg_vulnerabilities": 2,
+    "max_vulnerabilities": 11,
+    "avg_code_smells": 9814,
+    "max_code_smells": 23046,
+    "avg_complexity": 49933,
+    "max_complexity": 121865,
+    "avg_coverage": 0.0,
+    "avg_duplication": 9.16
+  },
+  "top_bugs": [
+    {
+      "name_with_owner": "tensorflow/tensorflow",
+      "bugs": 1065
+    },
+    {
+      "name_with_owner": "facebook/react",
+      "bugs": 985
+    },
+    {
+      "name_with_owner": "vuejs/vue",
+      "bugs": 162
+    },
+    {
+      "name_with_owner": "vuejs/vue",
+      "bugs": 162
+    },
+    {
+      "name_with_owner": "Significant-Gravitas/AutoGPT",
+      "bugs": 68
+    }
+  ],
+  "top_code_smells": [
+    {
+      "name_with_owner": "facebook/react",
+      "code_smells": 23046
+    },
+    {
+      "name_with_owner": "tensorflow/tensorflow",
+      "code_smells": 20753
+    },
+    {
+      "name_with_owner": "Significant-Gravitas/AutoGPT",
+      "code_smells": 2194
+    },
+    {
+      "name_with_owner": "vuejs/vue",
+      "code_smells": 1539
+    },
+    {
+      "name_with_owner": "vuejs/vue",
+      "code_smells": 1539
+    }
+  ],
+  "top_lines_of_code": [
+    {
+      "name_with_owner": "tensorflow/tensorflow",
+      "ncloc": 1116139
+    },
+    {
+      "name_with_owner": "facebook/react",
+      "ncloc": 538836
+    },
+    {
+      "name_with_owner": "Significant-Gravitas/AutoGPT",
+      "ncloc": 168938
+    },
+    {
+      "name_with_owner": "vuejs/vue",
+      "ncloc": 63139
+    },
+    {
+      "name_with_owner": "vuejs/vue",
+      "ncloc": 63139
+    }
+  ]
+}
