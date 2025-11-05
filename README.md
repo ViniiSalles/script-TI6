@@ -1,6 +1,16 @@
-# Script de Automação de Pesquisa GitHub + SonarQube
+# Script de Automação de Pesquisa GitHub + SonarQube (Análise por Release)
 
-Este projeto automatiza a pesquisa comparativa entre projetos de software open-source com Rapid Release Cycles (RRCs) e Slow Releases, coletando dados do GitHub via API GraphQL, executando análises de qualidade de código com SonarQube e persistindo métricas em PostgreSQL.
+Este projeto automatiza a pesquisa comparativa entre projetos de software open-source com Rapid Release Cycles (RRCs) e Slow Releases, coletando dados do GitHub via API GraphQL, **executando análises de qualidade de código com SonarQube em CADA RELEASE individual** e persistindo métricas em PostgreSQL.
+
+## ✨ Funcionalidade Principal
+
+O script agora:
+- 🔍 Busca repositórios no GitHub conforme critérios definidos
+- 📊 Classifica repositórios como Rapid Release (5-35 dias) ou Slow Release (>60 dias)
+- 🏷️ **Identifica TODAS as releases de cada repositório**
+- 📦 **Analisa o SonarQube em CADA release individualmente**
+- 💾 Armazena métricas de qualidade vinculadas a cada release específica
+- 📈 Permite análise da evolução da qualidade do código ao longo do tempo
 
 ## 📋 Pré-requisitos
 

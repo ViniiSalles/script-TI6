@@ -1,0 +1,1001 @@
+owner,name,stars,forks,language,release_count,contributors,avg_release_interval,release_type,reason
+codecrafters-io,build-your-own-x,434373,40732,Markdown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+freeCodeCamp,freeCodeCamp,431241,42241,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sindresorhus,awesome,412160,32111,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+EbookFoundation,free-programming-books,376167,65318,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+public-apis,public-apis,375992,39751,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+kamranahmedse,developer-roadmap,342819,43294,TypeScript,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+jwasham,coding-interview-university,332408,81113,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+donnemartin,system-design-primer,325580,53048,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+996icu,996.ICU,274733,21023,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+vinta,awesome-python,267929,26646,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+awesome-selfhosted,awesome-selfhosted,256540,11843,Unknown,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+practical-tutorials,project-based-learning,248974,32560,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+facebook,react,240335,49748,JavaScript,106,195500,48.4,NOT_ELIGIBLE,Intervalo inadequado (48.4 dias)
+TheAlgorithms,Python,212478,49129,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+vuejs,vue,209663,33798,TypeScript,249,38100,19.4,RAPID,19.4 dias entre releases
+torvalds,linux,206395,58242,C,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ossu,computer-science,197085,24566,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+trekhleb,javascript-algorithms,193881,30939,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+trimstray,the-book-of-secret-knowledge,192573,11806,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+tensorflow,tensorflow,192321,74957,C++,219,496300,17.9,RAPID,17.9 dias entre releases
+getify,You-Dont-Know-JS,183730,33669,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+CyC2018,CS-Notes,182744,51261,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ohmyzsh,ohmyzsh,182503,26269,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Significant-Gravitas,AutoGPT,179501,46097,Python,79,79600,13.1,RAPID,13.1 dias entre releases
+microsoft,vscode,178234,35959,TypeScript,183,284900,11.9,RAPID,11.9 dias entre releases
+jackfrued,Python-100-Days,174049,54807,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+flutter,flutter,173724,29456,Dart,7,0,0,NOT_ELIGIBLE,Poucas releases (7)
+twbs,bootstrap,173663,79162,MDX,94,164800,57.7,NOT_ELIGIBLE,Intervalo inadequado (57.7 dias)
+github,gitignore,170503,83000,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+jlevy,the-art-of-command-line,158681,14748,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+AUTOMATIC1111,stable-diffusion-webui,157865,29298,Python,27,64000,23.4,RAPID,23.4 dias entre releases
+avelino,awesome-go,156679,12744,Go,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ollama,ollama,155425,13544,Go,158,54300,5.8,RAPID,5.8 dias entre releases
+massgravel,Microsoft-Activation-Scripts,154972,14956,Batchfile,26,800,86.1,SLOW,86.1 dias entre releases
+n8n-io,n8n,154253,49268,TypeScript,427,50900,3.3,NOT_ELIGIBLE,Intervalo inadequado (3.3 dias)
+Snailclimb,JavaGuide,152413,46038,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+huggingface,transformers,152132,31050,Python,231,363900,12.2,RAPID,12.2 dias entre releases
+airbnb,javascript,147741,26797,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ytdl-org,youtube-dl,138678,10524,Python,341,101000,6.1,RAPID,6.1 dias entre releases
+langflow-ai,langflow,137237,7918,Python,269,31400,6.3,RAPID,6.3 dias entre releases
+f,awesome-chatgpt-prompts,136144,18113,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+vercel,next.js,135472,29754,JavaScript,1000,398800,2.3,NOT_ELIGIBLE,Intervalo inadequado (2.3 dias)
+yt-dlp,yt-dlp,133921,10754,Python,124,167300,15.1,RAPID,15.1 dias entre releases
+521xueweihan,HelloGitHub,133123,10848,Python,59,1100,41.9,NOT_ELIGIBLE,Intervalo inadequado (41.9 dias)
+yangshun,tech-interview-handbook,131591,15964,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+golang,go,130689,18435,Go,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Genymobile,scrcpy,130677,12235,C,49,15700,62.1,SLOW,62.1 dias entre releases
+labuladong,fucking-algorithm,129746,23458,Markdown,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+Chalarangelo,30-seconds-of-code,125699,12364,JavaScript,12,0,0,NOT_ELIGIBLE,Poucas releases (12)
+microsoft,PowerToys,125460,7461,C#,122,58600,18.4,RAPID,18.4 dias entre releases
+facebook,react-native,124418,24930,C++,424,404600,10.9,RAPID,10.9 dias entre releases
+electron,electron,118978,16619,C++,1000,152800,4.0,NOT_ELIGIBLE,Intervalo inadequado (4.0 dias)
+langchain-ai,langchain,118957,19594,Python,1000,354000,2.1,NOT_ELIGIBLE,Intervalo inadequado (2.1 dias)
+kubernetes,kubernetes,118409,41643,Go,763,549400,7.9,RAPID,7.9 dias entre releases
+krahets,hello-algo,118238,14517,Java,9,0,0,NOT_ELIGIBLE,Poucas releases (9)
+langgenius,dify,118121,18257,TypeScript,148,103500,6.8,RAPID,6.8 dias entre releases
+justjavac,free-programming-books-zh_CN,115609,28360,Unknown,3,0,0,NOT_ELIGIBLE,Poucas releases (3)
+DigitalPlatDev,FreeDomain,115181,2108,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ripienaar,free-for-dev,114615,11727,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+open-webui,open-webui,114337,15940,JavaScript,131,71200,6.6,RAPID,6.6 dias entre releases
+nodejs,node,114162,33683,JavaScript,467,423500,8.9,RAPID,8.9 dias entre releases
+d3,d3,111733,22851,Shell,194,15300,26.7,RAPID,26.7 dias entre releases
+excalidraw,excalidraw,109719,11412,TypeScript,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+mrdoob,three.js,109236,36058,JavaScript,173,243900,33.7,RAPID,33.7 dias entre releases
+axios,axios,108084,11388,JavaScript,104,53200,36.1,NOT_ELIGIBLE,Intervalo inadequado (36.1 dias)
+rust-lang,rust,107653,13939,Rust,142,796900,33.4,RAPID,33.4 dias entre releases
+microsoft,TypeScript,106633,13089,TypeScript,213,92100,20.2,RAPID,20.2 dias entre releases
+denoland,deno,105028,5759,Rust,351,112800,7.5,RAPID,7.5 dias entre releases
+goldbergyoni,nodebestpractices,104492,10630,Dockerfile,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+facebook,create-react-app,103822,27145,JavaScript,83,94600,33.6,RAPID,33.6 dias entre releases
+GrowingGit,GitHub-Chinese-Top-Charts,103480,13377,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+godotengine,godot,102917,23522,C++,64,354800,63.4,SLOW,63.4 dias entre releases
+rustdesk,rustdesk,101948,14942,Rust,33,39000,53.6,NOT_ELIGIBLE,Intervalo inadequado (53.6 dias)
+microsoft,generative-ai-for-beginners,101382,53780,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+microsoft,terminal,100777,8894,C++,142,45700,35.0,RAPID,35.0 dias entre releases
+fatedier,frp,100337,14583,Go,107,13500,34.4,RAPID,34.4 dias entre releases
+Hack-with-Github,Awesome-Hacking,100194,9653,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+deepseek-ai,DeepSeek-V3,100153,16323,Python,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+papers-we-love,papers-we-love,99965,6155,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+angular,angular,99224,26731,TypeScript,500,251500,6.1,RAPID,6.1 dias entre releases
+shadcn-ui,ui,99114,7115,TypeScript,62,37400,18.0,RAPID,18.0 dias entre releases
+tauri-apps,tauri,98586,3149,Rust,1000,51300,12.5,RAPID,12.5 dias entre releases
+iptv-org,iptv,98310,4193,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mui,material-ui,96942,32690,JavaScript,551,339700,7.8,RAPID,7.8 dias entre releases
+ant-design,ant-design,96542,53909,TypeScript,720,261300,5.7,RAPID,5.7 dias entre releases
+Anduin2017,HowToCook,95585,10662,Dockerfile,4,0,0,NOT_ELIGIBLE,Poucas releases (4)
+pytorch,pytorch,94711,25793,Python,62,602200,54.1,NOT_ELIGIBLE,Intervalo inadequado (54.1 dias)
+nvbn,thefuck,94584,3798,Python,17,0,0,NOT_ELIGIBLE,Poucas releases (17)
+x1xhlol,system-prompts-and-models-of-ai-tools,94492,25496,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+neovim,neovim,94004,6396,Vim Script,47,134200,77.7,SLOW,77.7 dias entre releases
+mtdvio,every-programmer-should-know,94004,8450,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+microsoft,Web-Dev-For-Beginners,93998,14611,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ryanmcdermott,clean-code-javascript,93977,12485,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+iluwatar,java-design-patterns,93286,27325,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+comfyanonymous,ComfyUI,92832,10449,Python,90,25000,12.3,RAPID,12.3 dias entre releases
+puppeteer,puppeteer,92792,9323,TypeScript,604,53600,9.8,RAPID,9.8 dias entre releases
+jaywcjlove,awesome-mac,92554,6987,JavaScript,12,0,0,NOT_ELIGIBLE,Poucas releases (12)
+supabase,supabase,91950,10493,TypeScript,22,171600,83.8,SLOW,83.8 dias entre releases
+fastapi,fastapi,91559,8164,Python,223,84900,12.8,RAPID,12.8 dias entre releases
+deepseek-ai,DeepSeek-R1,91440,11783,Unknown,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+tailwindlabs,tailwindcss,90918,4775,TypeScript,295,32800,14.0,RAPID,14.0 dias entre releases
+openai,whisper,90394,11321,Python,13,0,0,NOT_ELIGIBLE,Poucas releases (13)
+PanJiaChen,vue-element-admin,90080,30655,Vue,49,12400,23.4,RAPID,23.4 dias entre releases
+2dust,v2rayN,89451,13578,C#,282,11300,8.6,RAPID,8.6 dias entre releases
+ggml-org,llama.cpp,89093,13551,C++,1000,133200,1.2,NOT_ELIGIBLE,Intervalo inadequado (1.2 dias)
+nvm-sh,nvm,88898,9522,Shell,70,40700,60.8,SLOW,60.8 dias entre releases
+storybookjs,storybook,88581,9766,TypeScript,1000,251800,3.1,NOT_ELIGIBLE,Intervalo inadequado (3.1 dias)
+florinpop17,app-ideas,87623,10109,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+gin-gonic,gin,86826,8476,Go,28,49400,163.6,SLOW,163.6 dias entre releases
+bitcoin,bitcoin,86655,38158,C++,60,126900,70.3,SLOW,70.3 dias entre releases
+ChatGPTNextWeb,NextChat,86340,60870,TypeScript,77,30100,13.3,RAPID,13.3 dias entre releases
+django,django,85661,33192,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+opencv,opencv,84752,56345,C++,66,233900,84.7,SLOW,84.7 dias entre releases
+sveltejs,svelte,84656,4664,JavaScript,547,87000,2.7,NOT_ELIGIBLE,Intervalo inadequado (2.7 dias)
+gohugoio,hugo,84550,8081,Go,347,90300,14.1,RAPID,14.1 dias entre releases
+mermaid-js,mermaid,83912,8237,TypeScript,174,74300,30.1,RAPID,30.1 dias entre releases
+immich-app,immich,83526,4381,TypeScript,278,76700,6.4,RAPID,6.4 dias entre releases
+laravel,laravel,82658,24561,Blade,207,83300,16.6,RAPID,16.6 dias entre releases
+microsoft,markitdown,82571,4657,Python,15,0,0,NOT_ELIGIBLE,Poucas releases (15)
+gothinkster,realworld,82498,7532,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+animate-css,animate.css,82415,16150,CSS,22,13100,127.0,SLOW,127.0 dias entre releases
+home-assistant,core,82389,35763,Python,1000,498600,3.8,NOT_ELIGIBLE,Intervalo inadequado (3.8 dias)
+macrozheng,mall,82037,29531,Java,3,0,0,NOT_ELIGIBLE,Poucas releases (3)
+oven-sh,bun,81995,3474,Zig,201,86300,8.5,RAPID,8.5 dias entre releases
+3b1b,manim,81636,6922,Python,13,0,0,NOT_ELIGIBLE,Poucas releases (13)
+google-gemini,gemini-cli,81558,9107,TypeScript,159,34500,2.0,NOT_ELIGIBLE,Intervalo inadequado (2.0 dias)
+clash-verge-rev,clash-verge-rev,80585,5965,TypeScript,53,11600,14.2,RAPID,14.2 dias entre releases
+tonsky,FiraCode,80481,3176,Clojure,29,12800,102.8,SLOW,102.8 dias entre releases
+bregman-arie,devops-exercises,79712,18044,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+MunGell,awesome-for-beginners,79403,7573,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+microsoft,playwright,78997,4788,TypeScript,154,66800,13.7,RAPID,13.7 dias entre releases
+spring-projects,spring-boot,78884,41614,Java,326,149800,25.8,RAPID,25.8 dias entre releases
+microsoft,ML-For-Beginners,78643,18167,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+doocs,advanced-java,78454,19288,Java,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+ruanyf,weekly,78333,3692,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+DopplerHQ,awesome-interview-questions,78167,9212,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+rasbt,LLMs-from-scratch,77963,11508,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+louislam,uptime-kuma,77934,6880,JavaScript,116,87900,15.9,RAPID,15.9 dias entre releases
+ByteByteGoHq,system-design-101,77752,8439,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+tensorflow,models,77666,45424,Python,50,94900,54.4,NOT_ELIGIBLE,Intervalo inadequado (54.4 dias)
+syncthing,syncthing,77368,4821,Go,452,37100,8.2,RAPID,8.2 dias entre releases
+fighting41love,funNLP,77014,15053,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+nomic-ai,gpt4all,76864,8294,C++,38,12200,14.8,RAPID,14.8 dias entre releases
+hoppscotch,hoppscotch,76809,5400,TypeScript,89,29900,26.1,RAPID,26.1 dias entre releases
+anuraghazra,github-readme-stats,76802,26738,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+netdata,netdata,76576,6219,C,125,66800,29.5,RAPID,29.5 dias entre releases
+MisterBooo,LeetCodeAnimation,76503,14015,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+vitejs,vite,76371,7438,TypeScript,624,118900,4.4,NOT_ELIGIBLE,Intervalo inadequado (4.4 dias)
+FortAwesome,Font-Awesome,75789,12204,JavaScript,62,300,46.1,NOT_ELIGIBLE,Intervalo inadequado (46.1 dias)
+elastic,elasticsearch,75371,25596,Java,217,238900,14.6,RAPID,14.6 dias entre releases
+typicode,json-server,75295,7238,JavaScript,38,9200,125.7,SLOW,125.7 dias entre releases
+hacksider,Deep-Live-Cam,75279,10954,Python,6,0,0,NOT_ELIGIBLE,Poucas releases (6)
+Shubhamsaboo,awesome-llm-apps,74960,9823,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+junegunn,fzf,74902,2610,Go,73,30900,24.9,RAPID,24.9 dias entre releases
+sdmg15,Best-websites-a-programmer-should-visit,74601,8524,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+coder,code-server,74527,6325,TypeScript,209,27200,14.8,RAPID,14.8 dias entre releases
+unionlabs,union,74504,3837,Rust,100,3000,16.8,RAPID,16.8 dias entre releases
+punkpeye,awesome-mcp-servers,74307,6221,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+d2l-ai,d2l-zh,73660,11973,Python,16,0,0,NOT_ELIGIBLE,Poucas releases (16)
+vuejs,awesome-vue,73354,9478,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+nestjs,nest,73340,8084,TypeScript,133,62600,22.9,RAPID,22.9 dias entre releases
+browser-use,browser-use,72159,8560,Python,97,27300,5.1,RAPID,5.1 dias entre releases
+ventoy,Ventoy,72143,4556,C,105,12000,19.7,RAPID,19.7 dias entre releases
+astral-sh,uv,72017,2196,Rust,228,46900,3.0,NOT_ELIGIBLE,Intervalo inadequado (3.0 dias)
+modelcontextprotocol,servers,71985,8638,TypeScript,20,93400,27.4,RAPID,27.4 dias entre releases
+CompVis,stable-diffusion,71751,10516,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+thedaviddias,Front-End-Checklist,71635,6594,Unknown,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+redis,redis,71571,24304,C,107,87500,32.2,RAPID,32.2 dias entre releases
+swisskyrepo,PayloadsAllTheThings,71421,16178,Python,5,0,0,NOT_ELIGIBLE,Poucas releases (5)
+abi,screenshot-to-code,71132,8811,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+moby,moby,71011,18832,Go,247,252200,17.0,RAPID,17.0 dias entre releases
+tesseract-ocr,tesseract,70716,10354,C++,34,22600,115.9,SLOW,115.9 dias entre releases
+pallets,flask,70708,16610,Python,37,85800,88.4,SLOW,88.4 dias entre releases
+grafana,grafana,70671,13148,TypeScript,560,286500,11.3,RAPID,11.3 dias entre releases
+enaqx,awesome-react,70642,7459,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Alvin9999,new-pac,70563,10503,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+josephmisiti,awesome-machine-learning,70488,15144,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+strapi,strapi,70256,9245,TypeScript,496,122000,9.2,RAPID,9.2 dias entre releases
+awesomedata,awesome-public-datasets,70182,10882,Unknown,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+Developer-Y,cs-video-courses,70131,9422,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sherlock-project,sherlock,70102,8232,Python,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+localsend,localsend,69870,3734,Dart,24,21800,34.8,RAPID,34.8 dias entre releases
+hakimel,reveal.js,69779,16773,JavaScript,49,36000,102.9,SLOW,102.9 dias entre releases
+python,cpython,69677,33296,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+binary-husky,gpt_academic,69555,8389,Python,32,11200,24.3,RAPID,24.3 dias entre releases
+protocolbuffers,protobuf,69540,15927,C++,199,137400,28.5,RAPID,28.5 dias entre releases
+Stirling-Tools,Stirling-PDF,69507,5873,Java,140,27400,8.8,RAPID,8.8 dias entre releases
+swiftlang,swift,69248,10571,C++,63,153700,54.5,NOT_ELIGIBLE,Intervalo inadequado (54.5 dias)
+zed-industries,zed,69196,5840,Rust,1000,131800,3.5,NOT_ELIGIBLE,Intervalo inadequado (3.5 dias)
+ocornut,imgui,69152,11308,C++,116,52100,36.9,NOT_ELIGIBLE,Intervalo inadequado (36.9 dias)
+openai,openai-cookbook,69041,11539,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+apache,superset,68813,16109,TypeScript,236,138800,19.6,RAPID,19.6 dias entre releases
+PKUFlyingPig,cs-self-learning,68754,7686,HTML,5,0,0,NOT_ELIGIBLE,Poucas releases (5)
+base,node,68648,2957,Go,62,7900,17.4,RAPID,17.4 dias entre releases
+expressjs,express,68138,21428,JavaScript,160,36500,42.3,NOT_ELIGIBLE,Intervalo inadequado (42.3 dias)
+obsproject,obs-studio,67885,8763,C,229,72400,20.1,RAPID,20.1 dias entre releases
+caddyserver,caddy,67725,4528,Go,130,35000,31.4,RAPID,31.4 dias entre releases
+twitter,the-algorithm,67692,12612,Scala,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+fffaraz,awesome-cpp,67510,8145,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+lobehub,lobe-chat,67459,13933,TypeScript,1000,28800,1.4,NOT_ELIGIBLE,Intervalo inadequado (1.4 dias)
+jesseduffield,lazygit,67331,2314,Go,172,37800,24.3,RAPID,24.3 dias entre releases
+infiniflow,ragflow,67136,7149,Python,34,37100,18.0,RAPID,18.0 dias entre releases
+Eugeny,tabby,67013,3744,TypeScript,202,17300,16.7,RAPID,16.7 dias entre releases
+ansible,ansible,66928,24116,Python,183,691400,10.6,RAPID,10.6 dias entre releases
+nektos,act,66807,1771,Go,90,21100,31.4,RAPID,31.4 dias entre releases
+chartjs,Chart.js,66733,11982,JavaScript,117,52600,40.4,NOT_ELIGIBLE,Intervalo inadequado (40.4 dias)
+danielmiessler,SecLists,66727,24750,PHP,29,35000,97.8,SLOW,97.8 dias entre releases
+mlabonne,llm-course,66655,7515,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+binhnguyennus,awesome-scalability,66544,6680,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+firecrawl,firecrawl,66435,5195,TypeScript,29,12100,14.4,RAPID,14.4 dias entre releases
+AppFlowy-IO,AppFlowy,66336,4700,Dart,117,37400,12.6,RAPID,12.6 dias entre releases
+dair-ai,Prompt-Engineering-Guide,66010,6866,MDX,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+leonardomso,33-js-concepts,65908,9194,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+webpack,webpack,65740,9167,JavaScript,440,95600,9.5,RAPID,9.5 dias entre releases
+xtekky,gpt4free,65471,13708,Python,368,25900,3.6,NOT_ELIGIBLE,Intervalo inadequado (3.6 dias)
+juliangarnier,anime,65156,4363,JavaScript,27,6600,135.0,SLOW,135.0 dias entre releases
+lydiahallie,javascript-questions,65060,9206,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+apache,echarts,64953,19780,TypeScript,122,32100,40.5,NOT_ELIGIBLE,Intervalo inadequado (40.5 dias)
+OpenHands,OpenHands,64716,7865,Python,90,40200,5.7,RAPID,5.7 dias entre releases
+kdn251,interviews,64633,12936,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+kelseyhightower,nocode,64260,4777,Dockerfile,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+prakhar1989,awesome-courses,64204,8263,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+TheAlgorithms,Java,64149,20740,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+labmlai,annotated_deep_learning_paper_implementations,64137,6501,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+scikit-learn,scikit-learn,63921,26403,Python,48,343600,75.4,SLOW,75.4 dias entre releases
+chrislgarry,Apollo-11,63812,7356,Assembly,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sindresorhus,awesome-nodejs,63545,6098,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+bradtraversy,design-resources-for-developers,63538,11893,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+keras-team,keras,63533,19644,Python,82,144300,45.1,NOT_ELIGIBLE,Intervalo inadequado (45.1 dias)
+PaddlePaddle,PaddleOCR,62714,9241,Python,26,26700,80.3,SLOW,80.3 dias entre releases
+resume,resume.github.com,62677,1361,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+socketio,socket.io,62564,10146,TypeScript,76,55100,50.2,NOT_ELIGIBLE,Intervalo inadequado (50.2 dias)
+facebook,docusaurus,62507,9518,TypeScript,154,127400,21.8,RAPID,21.8 dias entre releases
+vllm-project,vllm,62140,11045,Python,75,175000,13.0,RAPID,13.0 dias entre releases
+FuelLabs,sway,62123,5431,Rust,183,15300,10.2,RAPID,10.2 dias entre releases
+hiyouga,LLaMA-Factory,61868,7481,Python,34,22400,22.1,RAPID,22.1 dias entre releases
+NationalSecurityAgency,ghidra,61855,6875,Java,46,37800,51.6,NOT_ELIGIBLE,Intervalo inadequado (51.6 dias)
+reduxjs,redux,61374,15188,TypeScript,78,105600,61.8,SLOW,61.8 dias entre releases
+lodash,lodash,61343,7088,JavaScript,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+localstack,localstack,61341,4298,Python,100,63700,33.0,RAPID,33.0 dias entre releases
+prometheus,prometheus,61124,9905,Go,349,126700,11.9,RAPID,11.9 dias entre releases
+alacritty,alacritty,60920,3228,Rust,105,46800,28.4,RAPID,28.4 dias entre releases
+atom,atom,60844,17321,JavaScript,538,64300,9.1,RAPID,9.1 dias entre releases
+openinterpreter,open-interpreter,60785,5212,Python,48,13100,11.2,RAPID,11.2 dias entre releases
+h5bp,Front-end-Developer-Interview-Questions,60677,11109,Nunjucks,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+xingshaocheng,architect-awesome,60511,17799,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+rust-lang,rustlings,60499,10981,Rust,46,46700,56.9,NOT_ELIGIBLE,Intervalo inadequado (56.9 dias)
+ryanoasis,nerd-fonts,60339,3830,CSS,38,21100,111.1,SLOW,111.1 dias entre releases
+adam-p,markdown-here,60053,11175,JavaScript,17,0,0,NOT_ELIGIBLE,Poucas releases (17)
+tldr-pages,tldr,59971,4861,Markdown,6,0,0,NOT_ELIGIBLE,Poucas releases (6)
+jquery,jquery,59630,20545,JavaScript,11,0,0,NOT_ELIGIBLE,Poucas releases (11)
+gorhill,uBlock,59569,3795,JavaScript,281,12600,16.3,RAPID,16.3 dias entre releases
+FoundationAgents,MetaGPT,59207,7194,Python,22,14700,29.4,RAPID,29.4 dias entre releases
+toeverything,AFFiNE,59196,4018,TypeScript,629,19000,4.2,NOT_ELIGIBLE,Intervalo inadequado (4.2 dias)
+spring-projects,spring-framework,59115,38819,Java,347,120100,29.7,RAPID,29.7 dias entre releases
+shadowsocks,shadowsocks-windows,59112,16342,C#,55,8700,48.1,NOT_ELIGIBLE,Intervalo inadequado (48.1 dias)
+youngyangyang04,leetcode-master,59002,12237,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+angular,angular.js,58957,27327,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+meta-llama,llama,58899,9812,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+scrapy,scrapy,58864,11138,Python,43,68800,85.8,SLOW,85.8 dias entre releases
+CorentinJ,Real-Time-Voice-Cloning,58764,9371,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+commaai,openpilot,58747,10392,Python,59,70000,48.2,NOT_ELIGIBLE,Intervalo inadequado (48.2 dias)
+nuxt,nuxt,58705,5422,TypeScript,266,124300,16.8,RAPID,16.8 dias entre releases
+nocodb,nocodb,58587,4331,TypeScript,179,33400,17.6,RAPID,17.6 dias entre releases
+minio,minio,57849,6423,Go,521,53200,6.8,RAPID,6.8 dias entre releases
+Solido,awesome-flutter,57839,6820,Dart,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+rails,rails,57813,22021,Ruby,159,686000,31.4,RAPID,31.4 dias entre releases
+jgraph,drawio-desktop,57697,5480,JavaScript,163,1600,20.2,RAPID,20.2 dias entre releases
+traefik,traefik,57519,5545,Go,488,99800,11.0,RAPID,11.0 dias entre releases
+FuelLabs,fuel-core,57480,2856,Rust,124,6800,13.0,RAPID,13.0 dias entre releases
+h5bp,html5-boilerplate,57242,12309,JavaScript,34,31200,176.4,SLOW,176.4 dias entre releases
+git,git,57122,26925,C,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+BurntSushi,ripgrep,57078,2301,Rust,74,45300,89.4,SLOW,89.4 dias entre releases
+FiloSottile,mkcert,57054,3001,Go,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+scutan90,DeepLearning-500-questions,56785,15974,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+topjohnwu,Magisk,56776,15817,Rust,153,32900,33.3,RAPID,33.3 dias entre releases
+zylon-ai,private-gpt,56766,7596,Python,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+PlexPt,awesome-chatgpt-prompts-zh,56711,13572,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+soimort,you-get,56533,9801,Python,123,26400,34.9,RAPID,34.9 dias entre releases
+gatsbyjs,gatsby,55939,10268,JavaScript,156,437100,24.9,RAPID,24.9 dias entre releases
+ultralytics,yolov5,55929,17300,Python,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+remix-run,react-router,55827,10755,TypeScript,317,123400,17.8,RAPID,17.8 dias entre releases
+azl397985856,leetcode,55696,9479,JavaScript,40,8500,27.6,RAPID,27.6 dias entre releases
+ageitgey,face_recognition,55694,13700,Python,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+sharkdp,bat,55689,1398,Rust,42,43300,73.4,SLOW,73.4 dias entre releases
+pmndrs,zustand,55545,1844,TypeScript,98,31400,23.3,RAPID,23.3 dias entre releases
+unclecode,crawl4ai,55445,5554,Python,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+LadybirdBrowser,ladybird,55188,2447,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+AntonOsika,gpt-engineer,54997,7333,Python,20,10700,21.6,RAPID,21.6 dias entre releases
+deepfakes,faceswap,54665,13421,Python,4,0,0,NOT_ELIGIBLE,Poucas releases (4)
+TapXWorld,ChinaTextbook,54442,12251,Roff,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+FFmpeg,FFmpeg,54414,13166,C,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+meilisearch,meilisearch,54367,2247,Rust,276,23300,9.1,RAPID,9.1 dias entre releases
+golang-standards,project-layout,54321,5409,Makefile,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+wasabeef,awesome-android-ui,54321,10244,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Textualize,rich,54290,1932,Python,171,27700,14.5,RAPID,14.5 dias entre releases
+OpenBB-finance,OpenBB,54291,5238,Python,52,25300,29.1,RAPID,29.1 dias entre releases
+ElemeFE,element,54244,14587,Vue,145,65800,20.2,RAPID,20.2 dias entre releases
+withastro,astro,54225,2949,TypeScript,1000,103300,2.9,NOT_ELIGIBLE,Intervalo inadequado (2.9 dias)
+lencx,ChatGPT,54214,6192,Rust,34,3100,11.2,RAPID,11.2 dias entre releases
+pi-hole,pi-hole,54089,2905,Shell,121,25900,37.2,NOT_ELIGIBLE,Intervalo inadequado (37.2 dias)
+Z4nzu,hackingtool,53950,5878,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+necolas,normalize.css,53632,10507,CSS,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+rust-unofficial,awesome-rust,53593,3060,Rust,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+appwrite,appwrite,53443,4797,TypeScript,117,40900,23.2,RAPID,23.2 dias entre releases
+psf,requests,53434,9586,Python,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+rclone,rclone,53357,4755,Go,117,102000,36.9,NOT_ELIGIBLE,Intervalo inadequado (36.9 dias)
+maybe-finance,maybe,53348,4564,Ruby,28,12400,17.4,RAPID,17.4 dias entre releases
+tiimgreen,github-cheat-sheet,53343,5357,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+wagoodman,dive,52504,1919,Go,28,6800,101.8,SLOW,101.8 dias entre releases
+google,material-design-icons,52465,9681,Unknown,16,0,0,NOT_ELIGIBLE,Poucas releases (16)
+pocketbase,pocketbase,52430,2800,Go,228,4400,6.1,RAPID,6.1 dias entre releases
+facebookresearch,segment-anything,52377,6132,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+marktext,marktext,52208,3835,JavaScript,36,15600,45.0,NOT_ELIGIBLE,Intervalo inadequado (45.0 dias)
+mozilla,pdf.js,52183,10502,JavaScript,79,49500,54.0,NOT_ELIGIBLE,Intervalo inadequado (54.0 dias)
+ionic-team,ionic-framework,52164,13420,TypeScript,920,52900,8.2,RAPID,8.2 dias entre releases
+cline,cline,52104,7629,TypeScript,185,23600,3.6,NOT_ELIGIBLE,Intervalo inadequado (3.6 dias)
+RVC-Boss,GPT-SoVITS,52066,5705,Python,4,0,0,NOT_ELIGIBLE,Poucas releases (4)
+vuejs,core,52064,8930,TypeScript,249,58400,10.9,RAPID,10.9 dias entre releases
+starship,starship,52044,2278,Rust,136,63900,23.7,RAPID,23.7 dias entre releases
+laurent22,joplin,52016,5585,TypeScript,391,72400,8.3,RAPID,8.3 dias entre releases
+Asabeneh,30-Days-Of-Python,51972,9934,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+go-gitea,gitea,51823,6188,Go,221,167600,16.1,RAPID,16.1 dias entre releases
+ngosang,trackerslist,51772,6677,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sickcodes,Docker-OSX,51677,2867,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+JetBrains,kotlin,51556,6080,Kotlin,273,110100,17.0,RAPID,17.0 dias entre releases
+romkatv,powerlevel10k,51503,2369,Shell,33,31000,56.0,NOT_ELIGIBLE,Intervalo inadequado (56.0 dias)
+microsoft,autogen,51428,7828,Python,98,53200,7.7,RAPID,7.7 dias entre releases
+google,guava,51241,11084,Java,57,47000,64.9,SLOW,64.9 dias entre releases
+firstcontributions,first-contributions,51196,93770,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Semantic-Org,Semantic-UI,51190,4918,JavaScript,154,23600,30.1,RAPID,30.1 dias entre releases
+prettier,prettier,51153,4603,JavaScript,127,78100,28.5,RAPID,28.5 dias entre releases
+TryGhost,Ghost,51122,11142,JavaScript,920,79300,5.6,RAPID,5.6 dias entre releases
+jekyll,jekyll,51051,10228,Ruby,112,124800,42.3,NOT_ELIGIBLE,Intervalo inadequado (42.3 dias)
+WerWolv,ImHex,50964,2254,C++,80,17200,27.8,RAPID,27.8 dias entre releases
+Mintplex-Labs,anything-llm,50726,5351,JavaScript,21,16300,21.7,RAPID,21.7 dias entre releases
+etcd-io,etcd,50704,10205,Go,263,113500,22.5,RAPID,22.5 dias entre releases
+PowerShell,PowerShell,50689,8054,C#,191,54100,23.5,RAPID,23.5 dias entre releases
+FoundationAgents,OpenManus,50672,8846,Python,3,0,0,NOT_ELIGIBLE,Poucas releases (3)
+DefinitelyTyped,DefinitelyTyped,50584,30518,TypeScript,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+xai-org,grok-1,50554,8371,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+dani-garcia,vaultwarden,50529,2361,Rust,73,17000,36.3,NOT_ELIGIBLE,Intervalo inadequado (36.3 dias)
+vsouza,awesome-ios,50315,6929,Swift,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+chinese-poetry,chinese-poetry,50293,10129,JavaScript,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+ethereum,go-ethereum,50224,21505,Go,224,117500,19.3,RAPID,19.3 dias entre releases
+poteto,hiring-without-whiteboards,50145,3876,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+jgthms,bulma,49981,3937,CSS,22,43000,136.8,SLOW,136.8 dias entre releases
+openai,codex,49841,6156,Rust,223,21200,2.4,NOT_ELIGIBLE,Intervalo inadequado (2.4 dias)
+charlax,professional-programming,49707,3919,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+agalwood,Motrix,49679,4744,JavaScript,21,7300,112.2,SLOW,112.2 dias entre releases
+justjavac,awesome-wechat-weapp,49463,8941,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+cypress-io,cypress,49403,3367,TypeScript,379,53000,11.6,RAPID,11.6 dias entre releases
+pathwaycom,pathway,49293,1442,Python,79,3100,10.2,RAPID,10.2 dias entre releases
+NARKOZ,hacker-scripts,49215,6683,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mastodon,mastodon,49196,7338,Ruby,305,107000,16.9,RAPID,16.9 dias entre releases
+karpathy,nanoGPT,48974,8201,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Avik-Jain,100-Days-Of-ML-Code,48652,11175,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+AlistGo,alist,48487,8006,Go,140,18000,14.3,RAPID,14.3 dias entre releases
+ReactiveX,RxJava,48426,7610,Java,243,33700,20.5,RAPID,20.5 dias entre releases
+iamkun,dayjs,48350,2385,JavaScript,125,34900,30.7,RAPID,30.7 dias entre releases
+ultralytics,ultralytics,48303,9312,Python,299,30900,4.1,NOT_ELIGIBLE,Intervalo inadequado (4.1 dias)
+dockur,windows,48250,3619,Shell,117,2700,6.2,RAPID,6.2 dias entre releases
+opendatalab,MinerU,48151,3975,Python,132,8500,7.0,RAPID,7.0 dias entre releases
+moment,moment,48082,7044,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+algorithm-visualizer,algorithm-visualizer,47980,7482,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+JuliaLang,julia,47934,5671,Julia,186,184900,24.7,RAPID,24.7 dias entre releases
+unslothai,unsloth,47934,3918,Python,20,9700,24.7,RAPID,24.7 dias entre releases
+huginn,huginn,47888,4154,Ruby,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+nlohmann,json,47792,7199,C++,45,34500,84.0,SLOW,84.0 dias entre releases
+typst,typst,47774,1297,Rust,25,38800,40.6,NOT_ELIGIBLE,Intervalo inadequado (40.6 dias)
+harry0703,MoneyPrinterTurbo,47542,6638,Python,9,0,0,NOT_ELIGIBLE,Poucas releases (9)
+minimaxir,big-list-of-naughty-strings,47475,2160,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+jesseduffield,lazydocker,47383,1485,Go,42,8500,73.0,SLOW,73.0 dias entre releases
+TanStack,query,47271,3543,TypeScript,1000,100000,3.2,NOT_ELIGIBLE,Intervalo inadequado (3.2 dias)
+dkhamsing,open-source-ios-apps,47251,5649,Unknown,37,40300,73.2,SLOW,73.2 dias entre releases
+x64dbg,x64dbg,47159,2622,C++,4,0,0,NOT_ELIGIBLE,Poucas releases (4)
+gogs,gogs,47153,5055,Go,84,56000,60.5,SLOW,60.5 dias entre releases
+odoo,odoo,47071,30294,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+pandas-dev,pandas,47030,19243,Python,113,403600,38.8,NOT_ELIGIBLE,Intervalo inadequado (38.8 dias)
+hashicorp,terraform,47027,10103,Go,391,230400,10.3,RAPID,10.3 dias entre releases
+karan,Projects,47023,10687,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+kamranahmedse,design-patterns-for-humans,47006,5462,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+lyswhut,lx-music-desktop,46974,6486,TypeScript,110,1500,26.8,RAPID,26.8 dias entre releases
+lllyasviel,Fooocus,46967,7587,Python,21,5900,20.9,RAPID,20.9 dias entre releases
+coollabsio,coolify,46945,3121,PHP,642,53900,5.6,RAPID,5.6 dias entre releases
+type-challenges,type-challenges,46909,5129,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+serverless,serverless,46890,5743,JavaScript,464,123000,10.3,RAPID,10.3 dias entre releases
+typescript-cheatsheets,react,46752,4263,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+square,okhttp,46723,9251,Kotlin,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+v2ray,v2ray-core,46649,8904,Go,247,9800,8.7,RAPID,8.7 dias entre releases
+2dust,v2rayNG,46624,6556,Kotlin,263,6500,12.3,RAPID,12.3 dias entre releases
+termux,termux-app,46608,5414,Java,95,8500,40.6,NOT_ELIGIBLE,Intervalo inadequado (40.6 dias)
+pathwaycom,llm-app,46532,1201,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+bigskysoftware,htmx,46434,1535,JavaScript,27,44700,45.6,NOT_ELIGIBLE,Intervalo inadequado (45.6 dias)
+slab,quill,46404,3589,TypeScript,95,16100,45.4,NOT_ELIGIBLE,Intervalo inadequado (45.4 dias)
+FlowiseAI,Flowise,46299,23003,TypeScript,76,26800,12.0,RAPID,12.0 dias entre releases
+kelseyhightower,kubernetes-the-hard-way,46265,15273,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+serhii-londar,open-source-mac-os-apps,46136,2427,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ziishaned,learn-regex,46132,6246,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+dbeaver,dbeaver,46067,3892,Java,235,41900,15.2,RAPID,15.2 dias entre releases
+skylot,jadx,46028,5319,Java,32,14700,143.6,SLOW,143.6 dias entre releases
+pixijs,pixijs,45993,4914,TypeScript,297,58400,16.6,RAPID,16.6 dias entre releases
+brillout,awesome-react-components,45977,3651,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+jakevdp,PythonDataScienceHandbook,45942,18586,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+usememos,memos,45731,3267,Go,82,31400,15.0,RAPID,15.0 dias entre releases
+akullpp,awesome-java,45558,7560,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Asabeneh,30-Days-Of-JavaScript,45555,10365,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+discourse,discourse,45498,8704,Ruby,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+jellyfin,jellyfin,45420,4100,C#,98,157800,27.4,RAPID,27.4 dias entre releases
+android,architecture-samples,45381,11819,Kotlin,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+oobabooga,text-generation-webui,45324,5818,Python,85,37600,12.4,RAPID,12.4 dias entre releases
+Homebrew,brew,45324,10623,Ruby,457,127800,7.4,RAPID,7.4 dias entre releases
+github,spec-kit,45294,3884,Shell,79,6500,2.2,NOT_ELIGIBLE,Intervalo inadequado (2.2 dias)
+dypsilon,frontend-dev-bookmarks,45259,5153,Unknown,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+jestjs,jest,45127,6613,TypeScript,213,172400,21.2,RAPID,21.2 dias entre releases
+ColorlibHQ,AdminLTE,45124,18257,CSS,77,11900,64.7,SLOW,64.7 dias entre releases
+run-llama,llama_index,45087,6499,Python,418,176300,2.5,NOT_ELIGIBLE,Intervalo inadequado (2.5 dias)
+1c7,chinese-independent-developer,45008,3788,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+google,zx,44788,1176,JavaScript,100,6400,19.3,RAPID,19.3 dias entre releases
+meteor,meteor,44748,5263,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+LeCoupa,awesome-cheatsheets,44679,6606,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+expo,expo,44661,9654,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+DovAmir,awesome-design-patterns,44641,3141,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+microsoft,monaco-editor,44507,3902,JavaScript,163,32200,22.0,RAPID,22.0 dias entre releases
+vercel,hyper,44482,3541,TypeScript,88,28700,41.3,NOT_ELIGIBLE,Intervalo inadequado (41.3 dias)
+acmesh-official,acme.sh,44454,5396,Shell,44,65800,78.2,SLOW,78.2 dias entre releases
+metabase,metabase,44439,5995,Clojure,694,47900,9.5,RAPID,9.5 dias entre releases
+isocpp,CppCoreGuidelines,44369,5524,CSS,4,0,0,NOT_ELIGIBLE,Poucas releases (4)
+freqtrade,freqtrade,44330,9076,Python,104,37300,29.7,RAPID,29.7 dias entre releases
+ggml-org,whisper.cpp,44272,4891,C++,30,64800,35.1,NOT_ELIGIBLE,Intervalo inadequado (35.1 dias)
+jeecgboot,JeecgBoot,44242,15635,Java,64,3200,37.6,NOT_ELIGIBLE,Intervalo inadequado (37.6 dias)
+prisma,prisma,44234,1907,TypeScript,232,32500,10.5,RAPID,10.5 dias entre releases
+GokuMohandas,Made-With-ML,44151,6866,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+react-hook-form,react-hook-form,44111,2319,TypeScript,590,36600,5.5,RAPID,5.5 dias entre releases
+astaxie,build-web-application-with-golang,44043,10574,Go,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+parcel-bundler,parcel,43998,2270,JavaScript,50,43100,42.2,NOT_ELIGIBLE,Intervalo inadequado (42.2 dias)
+microsoft,ai-agents-for-beginners,43929,14821,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+grpc,grpc,43915,10969,C++,360,111400,12.0,RAPID,12.0 dias entre releases
+Leaflet,Leaflet,43888,6018,JavaScript,34,101400,117.8,SLOW,117.8 dias entre releases
+ClickHouse,ClickHouse,43818,7788,C++,701,262200,5.1,RAPID,5.1 dias entre releases
+RocketChat,Rocket.Chat,43787,12386,TypeScript,1000,104100,5.0,RAPID,5.0 dias entre releases
+babel,babel,43785,5776,TypeScript,446,123900,10.6,RAPID,10.6 dias entre releases
+square,retrofit,43781,7345,HTML,4,0,0,NOT_ELIGIBLE,Poucas releases (4)
+aymericdamien,TensorFlow-Examples,43754,14843,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+streamich,react-use,43704,3275,TypeScript,256,19600,16.3,RAPID,16.3 dias entre releases
+tldraw,tldraw,43666,2826,TypeScript,92,20700,12.2,RAPID,12.2 dias entre releases
+yangshun,front-end-interview-handbook,43658,5950,MDX,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+microsoft,AI-For-Beginners,43592,8572,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+astral-sh,ruff,43573,1600,Rust,386,74500,4.9,NOT_ELIGIBLE,Intervalo inadequado (4.9 dias)
+pyenv,pyenv,43569,3217,Roff,137,46600,23.8,RAPID,23.8 dias entre releases
+GitSquared,edex-ui,43558,2886,JavaScript,29,6300,55.6,NOT_ELIGIBLE,Intervalo inadequado (55.6 dias)
+FuelLabs,fuels-rs,43552,1361,Rust,120,5500,13.0,RAPID,13.0 dias entre releases
+coreybutler,nvm-windows,43537,3654,Go,23,8900,187.2,SLOW,187.2 dias entre releases
+FuelLabs,fuels-ts,43535,1370,TypeScript,155,6300,9.8,RAPID,9.8 dias entre releases
+sudheerj,reactjs-interview-questions,43432,10149,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+cloudcommunity,Free-Certifications,43316,2901,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+coqui-ai,TTS,43313,5731,Python,98,16600,13.0,RAPID,13.0 dias entre releases
+NaiboWang,EasySpider,43299,5322,JavaScript,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+OpenCut-app,OpenCut,43286,4114,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+tw93,Pake,43252,8287,Rust,35,5200,38.9,NOT_ELIGIBLE,Intervalo inadequado (38.9 dias)
+apache,airflow,43073,15898,Python,107,396200,35.7,NOT_ELIGIBLE,Intervalo inadequado (35.7 dias)
+docling-project,docling,43060,3083,Python,134,14000,4.3,NOT_ELIGIBLE,Intervalo inadequado (4.3 dias)
+bevyengine,bevy,42949,4208,Rust,48,142400,39.6,NOT_ELIGIBLE,Intervalo inadequado (39.6 dias)
+GitHubDaily,GitHubDaily,42795,4344,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mem0ai,mem0,42709,4602,Python,269,24700,4.6,NOT_ELIGIBLE,Intervalo inadequado (4.6 dias)
+Unitech,pm2,42692,2663,JavaScript,133,33000,34.5,RAPID,34.5 dias entre releases
+iina,iina,42504,2705,Swift,47,15300,70.4,SLOW,70.4 dias entre releases
+k88hudson,git-flight-rules,42443,3203,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+alex,what-happens-when,42427,5719,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+getsentry,sentry,42371,4501,Python,156,99400,26.1,RAPID,26.1 dias entre releases
+ChrisTitusTech,winutil,42370,2258,PowerShell,25,10800,20.2,RAPID,20.2 dias entre releases
+Light-City,CPlusPlusThings,42366,8800,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+faif,python-patterns,42363,7055,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+AykutSarac,jsoncrack.com,42354,3039,TypeScript,22,3800,59.4,NOT_ELIGIBLE,Intervalo inadequado (59.4 dias)
+spf13,cobra,42331,3017,Go,26,32000,130.2,SLOW,130.2 dias entre releases
+docker,awesome-compose,42238,7813,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+apache,spark,42228,28917,Scala,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+KRTirtho,spotube,42220,1861,Dart,41,8900,41.4,NOT_ELIGIBLE,Intervalo inadequado (41.4 dias)
+virattt,ai-hedge-fund,42213,7469,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+SimplifyJobs,Summer2026-Internships,42205,3101,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Alamofire,Alamofire,42205,7639,Swift,102,28200,40.3,NOT_ELIGIBLE,Intervalo inadequado (40.3 dias)
+Kong,kong,42117,5011,Lua,145,44200,27.0,RAPID,27.0 dias entre releases
+streamlit,streamlit,42081,3859,Python,109,30000,16.4,RAPID,16.4 dias entre releases
+ziglang,zig,42016,3091,Zig,21,131800,150.2,SLOW,150.2 dias entre releases
+Stability-AI,stablediffusion,41944,5336,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mingrammer,diagrams,41691,2691,Python,44,17400,48.3,NOT_ELIGIBLE,Intervalo inadequado (48.3 dias)
+apachecn,ailearning,41669,11597,Python,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+zhongyang219,TrafficMonitor,41638,3522,C++,26,4400,103.4,SLOW,103.4 dias entre releases
+apache,dubbo,41562,26546,Java,112,66800,43.0,NOT_ELIGIBLE,Intervalo inadequado (43.0 dias)
+nolimits4web,swiper,41547,9728,JavaScript,91,35300,19.3,RAPID,19.3 dias entre releases
+yarnpkg,yarn,41540,2733,JavaScript,152,53600,25.3,RAPID,25.3 dias entre releases
+anthropics,claude-code,41446,2711,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+nwjs,nw.js,41430,3879,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+gedoor,legado,41387,4697,Kotlin,115,7200,13.1,RAPID,13.1 dias entre releases
+cli,cli,41262,7373,Go,181,62500,13.7,RAPID,13.7 dias entre releases
+slidevjs,slidev,41258,1739,TypeScript,403,31500,7.5,RAPID,7.5 dias entre releases
+hpcaitech,ColossalAI,41220,4536,Python,50,19700,27.3,RAPID,27.3 dias entre releases
+dcloudio,uni-app,41213,3717,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+bailicangdu,vue2-elm,41183,12370,Vue,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+zai-org,ChatGLM-6B,41154,5215,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+psf,black,41122,2658,Python,47,48500,53.6,NOT_ELIGIBLE,Intervalo inadequado (53.6 dias)
+mitmproxy,mitmproxy,41098,4344,Python,78,58000,68.7,SLOW,68.7 dias entre releases
+helix-editor,helix,41080,3147,Rust,30,126900,60.6,SLOW,60.6 dias entre releases
+penpot,penpot,41024,2269,Clojure,62,24600,28.6,RAPID,28.6 dias entre releases
+styled-components,styled-components,40977,2521,TypeScript,176,37900,22.4,RAPID,22.4 dias entre releases
+upscayl,upscayl,40971,1919,TypeScript,29,4900,32.4,RAPID,32.4 dias entre releases
+hexojs,hexo,40968,5012,TypeScript,117,20000,47.1,NOT_ELIGIBLE,Intervalo inadequado (47.1 dias)
+bannedbook,fanqiang,40817,7404,Kotlin,3,0,0,NOT_ELIGIBLE,Poucas releases (3)
+vuetifyjs,vuetify,40789,7106,TypeScript,617,113600,6.6,RAPID,6.6 dias entre releases
+lukasz-madon,awesome-remote-job,40724,4345,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+fastlane,fastlane,40638,5954,Ruby,552,160800,8.7,RAPID,8.7 dias entre releases
+dylanaraps,pure-bash-bible,40614,3597,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+deepspeedai,DeepSpeed,40609,4613,Python,102,42600,19.7,RAPID,19.7 dias entre releases
+colinhacks,zod,40601,1668,TypeScript,191,45100,23.5,RAPID,23.5 dias entre releases
+chubin,cheat.sh,40416,1879,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+gradio-app,gradio,40415,3114,Python,1000,45400,6.8,RAPID,6.8 dias entre releases
+sharkdp,fd,40385,939,Rust,41,20800,81.3,SLOW,81.3 dias entre releases
+tabler,tabler,40276,4272,HTML,51,15500,57.1,NOT_ELIGIBLE,Intervalo inadequado (57.1 dias)
+yeongpin,cursor-free-vip,40180,4854,Python,69,4600,3.2,NOT_ELIGIBLE,Intervalo inadequado (3.2 dias)
+LC044,WeChatMsg,40106,4522,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+crewAIInc,crewAI,40066,5342,Python,122,26700,7.5,RAPID,7.5 dias entre releases
+jgm,pandoc,40048,3674,Haskell,151,60900,31.0,RAPID,31.0 dias entre releases
+bradtraversy,50projects50days,40008,9699,CSS,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+files-community,Files,39995,2492,C#,126,30900,20.2,RAPID,20.2 dias entre releases
+chakra-ui,chakra-ui,39916,3524,TypeScript,1000,77400,13.2,RAPID,13.2 dias entre releases
+byoungd,English-level-up-tips,39874,4271,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+curl,curl,39789,6932,C,93,145200,41.7,NOT_ELIGIBLE,Intervalo inadequado (41.7 dias)
+ccxt,ccxt,39745,8332,Python,188,86000,4.6,NOT_ELIGIBLE,Intervalo inadequado (4.6 dias)
+makeplane,plane,39736,2849,TypeScript,50,13100,21.5,RAPID,21.5 dias entre releases
+QSCTech,zju-icicles,39730,9591,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+wg,wrk,39716,3023,C,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ray-project,ray,39682,6867,Python,115,139300,26.7,RAPID,26.7 dias entre releases
+DIYgod,RSSHub,39674,8692,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+google-research,bert,39625,9704,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+php,php-src,39588,7956,C,29,156300,27.2,RAPID,27.2 dias entre releases
+zhayujie,chatgpt-on-wechat,39583,9478,Python,63,9500,15.1,RAPID,15.1 dias entre releases
+tmux,tmux,39517,2300,C,37,4000,156.2,SLOW,156.2 dias entre releases
+hiroi-sora,Umi-OCR,39513,3907,Python,31,1700,38.6,NOT_ELIGIBLE,Intervalo inadequado (38.6 dias)
+remoteintech,remote-jobs,39459,3866,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+evanw,esbuild,39415,1249,Go,304,12100,6.8,RAPID,6.8 dias entre releases
+floodsung,Deep-Learning-Papers-Reading-Roadmap,39357,7344,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+pingcap,tidb,39268,6045,Go,211,102900,16.4,RAPID,16.4 dias entre releases
+saadeghi,daisyui,39258,1563,Svelte,162,29500,8.7,RAPID,8.7 dias entre releases
+logseq,logseq,39257,2355,Clojure,151,30400,13.1,RAPID,13.1 dias entre releases
+videojs,video.js,39255,7523,JavaScript,332,54500,15.9,RAPID,15.9 dias entre releases
+lm-sys,FastChat,39215,4767,Python,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+vim,vim,39215,5857,Vim Script,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Dogfalo,materialize,39138,4687,JavaScript,41,30600,35.5,NOT_ELIGIBLE,Intervalo inadequado (35.5 dias)
+aria2,aria2,39131,3766,C++,24,7400,134.5,SLOW,134.5 dias entre releases
+janhq,jan,39129,2363,TypeScript,92,12100,11.0,RAPID,11.0 dias entre releases
+go-gorm,gorm,39078,4118,Go,11,0,0,NOT_ELIGIBLE,Poucas releases (11)
+juspay,hyperswitch,39057,4515,Rust,149,24100,10.7,RAPID,10.7 dias entre releases
+fastapi,full-stack-fastapi-template,38883,7514,TypeScript,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+siyuan-note,siyuan,38833,2384,TypeScript,832,8700,2.4,NOT_ELIGIBLE,Intervalo inadequado (2.4 dias)
+trpc,trpc,38814,1429,TypeScript,222,48500,10.3,RAPID,10.3 dias entre releases
+photoprism,photoprism,38697,2161,Go,78,18700,22.1,RAPID,22.1 dias entre releases
+calcom,cal.com,38679,10957,TypeScript,559,84700,3.4,NOT_ELIGIBLE,Intervalo inadequado (3.4 dias)
+Zie619,n8n-workflows,38675,3672,Python,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+suno-ai,bark,38655,4650,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+google,styleguide,38642,12997,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+NanmiCoder,MediaCrawler,38642,8766,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+QuivrHQ,quivr,38579,3684,Python,354,11900,3.0,NOT_ELIGIBLE,Intervalo inadequado (3.0 dias)
+payloadcms,payload,38572,3062,TypeScript,535,46300,4.5,NOT_ELIGIBLE,Intervalo inadequado (4.5 dias)
+phaserjs,phaser,38567,7126,JavaScript,172,66200,26.7,RAPID,26.7 dias entre releases
+DataExpert-io,data-engineer-handbook,38482,7396,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+karanpratapsingh,system-design,38482,4752,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+freefq,free,38455,5690,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+impress,impress.js,38411,6636,JavaScript,15,0,0,NOT_ELIGIBLE,Poucas releases (15)
+koalaman,shellcheck,38377,1883,Haskell,30,16900,171.9,SLOW,171.9 dias entre releases
+appsmithorg,appsmith,38368,4329,TypeScript,295,37400,6.8,RAPID,6.8 dias entre releases
+goabstract,Awesome-Design-Tools,38357,2166,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+usebruno,bruno,38329,1948,JavaScript,147,39200,9.2,RAPID,9.2 dias entre releases
+gofiber,fiber,38326,1891,Go,129,42400,16.7,RAPID,16.7 dias entre releases
+google,leveldb,38303,8069,C++,21,7300,162.2,SLOW,162.2 dias entre releases
+milvus-io,milvus,38284,3496,Go,137,33500,17.4,RAPID,17.4 dias entre releases
+Aider-AI,aider,38229,3644,Python,93,17500,8.5,RAPID,8.5 dias entre releases
+novuhq,novu,38146,4160,TypeScript,82,48500,30.1,RAPID,30.1 dias entre releases
+PhilJay,MPAndroidChart,38145,9056,Java,44,8100,44.4,NOT_ELIGIBLE,Intervalo inadequado (44.4 dias)
+preactjs,preact,38131,2028,JavaScript,232,36600,18.2,RAPID,18.2 dias entre releases
+2noise,ChatTTS,38103,4132,Python,6,0,0,NOT_ELIGIBLE,Poucas releases (6)
+zbezj,HEU_KMS_Activator,37946,3674,Unknown,48,100,445.7,SLOW,445.7 dias entre releases
+gto76,python-cheatsheet,37901,6686,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ghostty-org,ghostty,37894,1215,Zig,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+facebookresearch,faiss,37797,4097,C++,20,25600,142.8,SLOW,142.8 dias entre releases
+freeCodeCamp,devdocs,37757,2516,Ruby,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ant-design,ant-design-pro,37630,8217,TypeScript,26,36000,73.4,SLOW,73.4 dias entre releases
+istio,istio,37596,8121,Go,406,136400,9.6,RAPID,9.6 dias entre releases
+lapce,lapce,37584,1193,Rust,34,18800,44.9,NOT_ELIGIBLE,Intervalo inadequado (44.9 dias)
+zen-browser,desktop,37575,1143,C++,132,16600,4.3,NOT_ELIGIBLE,Intervalo inadequado (4.3 dias)
+FreeCodeCampChina,freecodecamp.cn,37546,1402,CSS,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+LAION-AI,Open-Assistant,37487,3300,Python,127,30600,6.3,RAPID,6.3 dias entre releases
+Kong,insomnia,37469,2165,TypeScript,534,34800,9.9,RAPID,9.9 dias entre releases
+naptha,tesseract.js,37450,2345,JavaScript,56,8500,68.5,SLOW,68.5 dias entre releases
+google,googletest,37407,10572,C++,11,0,0,NOT_ELIGIBLE,Poucas releases (11)
+denysdovhan,wtfjs,37388,2667,JavaScript,25,8700,59.7,NOT_ELIGIBLE,Intervalo inadequado (59.7 dias)
+dotnet,aspnetcore,37353,10483,C#,264,153600,17.9,RAPID,17.9 dias entre releases
+chatboxai,chatbox,37312,3774,TypeScript,50,5800,25.0,RAPID,25.0 dias entre releases
+eugenp,tutorials,37290,54035,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+halo-dev,halo,37222,10127,Java,228,15700,13.1,RAPID,13.1 dias entre releases
+mudler,LocalAI,37215,2937,Go,90,15200,11.1,RAPID,11.1 dias entre releases
+TencentARC,GFPGAN,37194,6225,Python,8,0,0,NOT_ELIGIBLE,Poucas releases (8)
+nushell,nushell,37163,1959,Rust,113,80600,20.1,RAPID,20.1 dias entre releases
+imputnet,cobalt,37123,3066,Svelte,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+huihut,interview,37091,8127,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mindsdb,mindsdb,37066,5957,Python,319,87800,9.4,RAPID,9.4 dias entre releases
+NervJS,taro,37052,4875,TypeScript,203,78800,11.1,RAPID,11.1 dias entre releases
+HeyPuter,puter,37051,3152,JavaScript,8,0,0,NOT_ELIGIBLE,Poucas releases (8)
+0voice,interview_internal_reference,37043,9447,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+inkonchain,docs,36957,442,MDX,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+vlang,v,36949,2209,V,286,87200,8.1,RAPID,8.1 dias entre releases
+httpie,cli,36938,3782,Python,47,17300,112.3,SLOW,112.3 dias entre releases
+inkonchain,node,36920,629,Shell,6,0,0,NOT_ELIGIBLE,Poucas releases (6)
+ToolJet,ToolJet,36863,4870,JavaScript,370,65600,5.7,RAPID,5.7 dias entre releases
+exacity,deeplearningbook-chinese,36860,9169,TeX,7,0,0,NOT_ELIGIBLE,Poucas releases (7)
+rapid7,metasploit-framework,36835,14603,Ruby,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+inkonchain,ink-kit,36828,425,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+alibaba,arthas,36826,7603,Java,61,22200,47.7,NOT_ELIGIBLE,Intervalo inadequado (47.7 dias)
+satwikkansal,wtfpython,36776,2673,Python,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+openai,gym,36744,8713,Python,19,0,0,NOT_ELIGIBLE,Poucas releases (19)
+babysor,MockingBird,36739,5272,Python,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+AobingJava,JavaFamily,36705,7801,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+google-research,google-research,36664,8231,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+twentyhq,twenty,36633,4498,TypeScript,51,52100,16.8,RAPID,16.8 dias entre releases
+open-guides,og-aws,36439,3902,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+chatchat-space,Langchain-Chatchat,36438,6053,Python,31,17300,16.3,RAPID,16.3 dias entre releases
+docker,compose,36429,5546,Go,269,23800,16.7,RAPID,16.7 dias entre releases
+shadowsocks,shadowsocks-android,36366,11557,Kotlin,185,5200,20.9,RAPID,20.9 dias entre releases
+charmbracelet,bubbletea,36308,1021,Go,69,14200,28.7,RAPID,28.7 dias entre releases
+kilimchoi,engineering-blogs,36284,1897,Ruby,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+date-fns,date-fns,36264,1866,TypeScript,122,41700,31.0,RAPID,31.0 dias entre releases
+upstash,context7,36244,1789,JavaScript,22,9300,10.4,RAPID,10.4 dias entre releases
+lerna,lerna,36040,2279,TypeScript,245,36300,19.0,RAPID,19.0 dias entre releases
+opentofu,manifesto,36032,1062,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+PKUanonym,REKCARC-TSC-UHT,36022,7815,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+SheetJS,sheetjs,36011,7996,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+formulahendry,955.WLB,35994,1759,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+XingangPan,DragGAN,35987,3443,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+markedjs,marked,35981,3497,JavaScript,160,20700,19.6,RAPID,19.6 dias entre releases
+typeorm,typeorm,35980,6452,TypeScript,39,119100,41.5,NOT_ELIGIBLE,Intervalo inadequado (41.5 dias)
+pola-rs,polars,35945,2456,Rust,239,62700,6.1,RAPID,6.1 dias entre releases
+geekxh,hello-algorithm,35859,6460,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+roboflow,supervision,35814,2992,Python,33,11500,30.1,RAPID,30.1 dias entre releases
+hankcs,HanLP,35810,10830,Python,62,4700,63.2,SLOW,63.2 dias entre releases
+carbon-app,carbon,35778,1970,JavaScript,215,19600,9.6,RAPID,9.6 dias entre releases
+karpathy,nanochat,35776,4115,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+outline,outline,35745,2933,TypeScript,152,22000,19.7,RAPID,19.7 dias entre releases
+alebcay,awesome-shell,35739,2446,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sqlmapproject,sqlmap,35700,6096,Python,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+koajs,koa,35677,3223,JavaScript,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+huggingface,pytorch-image-models,35668,5059,Python,72,18300,35.1,NOT_ELIGIBLE,Intervalo inadequado (35.1 dias)
+RSSNext,Folo,35633,1748,TypeScript,78,14500,4.0,NOT_ELIGIBLE,Intervalo inadequado (4.0 dias)
+fengdu78,Coursera-ML-AndrewNg-Notes,35579,11074,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+spacedriveapp,spacedrive,35540,1113,TypeScript,26,11700,21.7,RAPID,21.7 dias entre releases
+TeamNewPipe,NewPipe,35529,3306,Java,137,101600,26.5,RAPID,26.5 dias entre releases
+airbnb,lottie-android,35510,5440,Java,63,16700,61.0,SLOW,61.0 dias entre releases
+alvarotrigo,fullPage.js,35487,7227,JavaScript,105,17000,44.0,NOT_ELIGIBLE,Intervalo inadequado (44.0 dias)
+jondot,awesome-react-native,35461,4024,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+karpathy,LLM101n,35459,1930,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ManimCommunity,manim,35386,2512,Python,29,46700,59.2,NOT_ELIGIBLE,Intervalo inadequado (59.2 dias)
+myshell-ai,OpenVoice,35365,3882,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+junegunn,vim-plug,35359,1953,Vim Script,8,0,0,NOT_ELIGIBLE,Poucas releases (8)
+nativefier,nativefier,35322,2246,TypeScript,99,14100,35.1,NOT_ELIGIBLE,Intervalo inadequado (35.1 dias)
+llvm,llvm-project,35241,15083,LLVM,142,812100,16.7,RAPID,16.7 dias entre releases
+reworkd,AgentGPT,35173,9483,TypeScript,12,0,0,NOT_ELIGIBLE,Poucas releases (12)
+PatrickJS,awesome-cursorrules,35158,2983,MDX,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sahat,hackathon-starter,35135,8202,JavaScript,17,0,0,NOT_ELIGIBLE,Poucas releases (17)
+doocs,leetcode,35128,9150,Java,21,19200,87.8,SLOW,87.8 dias entre releases
+huiyadanli,RevokeMsgPatcher,35104,3803,C#,21,600,109.7,SLOW,109.7 dias entre releases
+unknwon,the-way-to-go_ZH_CN,35073,8581,Go,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+CherryHQ,cherry-studio,35066,3176,TypeScript,222,30000,2.7,NOT_ELIGIBLE,Intervalo inadequado (2.7 dias)
+portainer,portainer,35053,2710,TypeScript,167,25500,21.2,RAPID,21.2 dias entre releases
+bumptech,glide,34980,6179,Java,54,18700,89.8,SLOW,89.8 dias entre releases
+fastify,fastify,34940,2509,JavaScript,300,84800,13.0,RAPID,13.0 dias entre releases
+agno-agi,agno,34892,4576,Python,123,33400,2.8,NOT_ELIGIBLE,Intervalo inadequado (2.8 dias)
+jaywcjlove,linux-command,34768,6524,Markdown,31,19600,111.6,SLOW,111.6 dias entre releases
+BVLC,caffe,34718,18597,C++,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+sorrycc,awesome-javascript,34702,4490,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+drawdb-io,drawdb,34687,2593,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+exelban,stats,34580,1108,Swift,310,16800,7.5,RAPID,7.5 dias entre releases
+netty,netty,34565,16216,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+solidjs,solid,34537,1002,TypeScript,35,18100,58.8,NOT_ELIGIBLE,Intervalo inadequado (58.8 dias)
+fxsjy,jieba,34522,6726,Python,9,0,0,NOT_ELIGIBLE,Poucas releases (9)
+geekan,HowToLiveLonger,34499,2365,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mifi,lossless-cut,34476,1623,TypeScript,101,15200,38.0,NOT_ELIGIBLE,Intervalo inadequado (38.0 dias)
+typicode,husky,34381,1078,JavaScript,80,13400,35.1,NOT_ELIGIBLE,Intervalo inadequado (35.1 dias)
+veggiemonk,awesome-docker,34380,3167,Unknown,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+nodejs,node-v0.x-archive,34366,7286,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+aseprite,aseprite,34358,7490,C++,119,14700,42.1,NOT_ELIGIBLE,Intervalo inadequado (42.1 dias)
+chenfei-wu,TaskMatrix,34354,3272,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+deepseek-ai,awesome-deepseek-integration,34349,3844,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mattermost,mattermost,34336,8113,TypeScript,883,117700,8.6,RAPID,8.6 dias entre releases
+jaredpalmer,formik,34332,2794,TypeScript,196,45800,23.7,RAPID,23.7 dias entre releases
+xitu,gold-miner,34285,5039,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+anoma,anoma,34276,4100,Elixir,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+geekcomputers,Python,34270,12804,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ShareX,ShareX,34254,3502,C#,83,28300,56.8,NOT_ELIGIBLE,Intervalo inadequado (56.8 dias)
+laravel,framework,34250,11648,PHP,885,467500,5.9,RAPID,5.9 dias entre releases
+zenorocha,clipboard.js,34179,3941,JavaScript,42,6300,82.5,SLOW,82.5 dias entre releases
+danielmiessler,Fabric,34164,3493,JavaScript,276,21900,5.0,RAPID,5.0 dias entre releases
+zsh-users,zsh-autosuggestions,34136,1918,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+testerSunshine,12306,34125,9729,Python,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+paperless-ngx,paperless-ngx,34066,2126,Python,130,42200,12.0,RAPID,12.0 dias entre releases
+atlassian,react-beautiful-dnd,34052,2730,JavaScript,68,13100,32.3,RAPID,32.3 dias entre releases
+chatanywhere,GPT_API_free,34019,2421,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+python-poetry,poetry,34007,2380,Python,144,61400,21.9,RAPID,21.9 dias entre releases
+YunaiV,ruoyi-vue-pro,33997,7331,Java,48,37600,45.8,NOT_ELIGIBLE,Intervalo inadequado (45.8 dias)
+xkcoding,spring-boot-demo,33969,11001,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+duckdb,duckdb,33942,2696,C++,53,61900,43.5,NOT_ELIGIBLE,Intervalo inadequado (43.5 dias)
+jax-ml,jax,33895,3230,Python,128,98400,23.4,RAPID,23.4 dias entre releases
+TheAlgorithms,JavaScript,33883,5800,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+CorentinTh,it-tools,33877,4190,Vue,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+ryanhanwu,How-To-Ask-Questions-The-Smart-Way,33864,5752,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+9001,copyparty,33854,1344,Python,322,7700,7.8,RAPID,7.8 dias entre releases
+qbittorrent,qBittorrent,33805,4447,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+halfrost,LeetCode-Go,33739,5765,Go,4,0,0,NOT_ELIGIBLE,Poucas releases (4)
+AmruthPillai,Reactive-Resume,33721,3651,TypeScript,99,17400,34.1,RAPID,34.1 dias entre releases
+alibaba,easyexcel,33688,7645,Java,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+zxing,zxing,33679,9430,Java,31,18000,158.7,SLOW,158.7 dias entre releases
+AFNetworking,AFNetworking,33672,10499,Objective-C,40,37500,65.7,SLOW,65.7 dias entre releases
+servo,servo,33667,3336,Rust,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+Blankj,AndroidUtilCode,33664,10704,Java,117,5100,22.4,RAPID,22.4 dias entre releases
+shadowsocks,shadowsocks,33643,18376,Python,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+facebookresearch,detectron2,33608,7846,Python,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+xyflow,xyflow,33602,2174,TypeScript,360,13600,9.7,RAPID,9.7 dias entre releases
+ehang-io,nps,33594,6019,Go,59,3500,18.6,RAPID,18.6 dias entre releases
+SeleniumHQ,selenium,33582,8610,Java,111,92000,40.1,NOT_ELIGIBLE,Intervalo inadequado (40.1 dias)
+Pythagora-io,gpt-pilot,33570,3463,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+harness,harness,33556,2877,Go,53,7100,30.8,RAPID,30.8 dias entre releases
+vnpy,vnpy,33505,10296,Python,65,15000,55.1,NOT_ELIGIBLE,Intervalo inadequado (55.1 dias)
+pbatard,rufus,33482,2857,C,86,21100,58.8,NOT_ELIGIBLE,Intervalo inadequado (58.8 dias)
+carbon-language,carbon-lang,33426,1518,C++,486,16300,1.5,NOT_ELIGIBLE,Intervalo inadequado (1.5 dias)
+hashicorp,vault,33419,4475,Go,172,161200,17.6,RAPID,17.6 dias entre releases
+directus,directus,33415,4449,TypeScript,345,49600,13.0,RAPID,13.0 dias entre releases
+CMU-Perceptual-Computing-Lab,openpose,33396,8036,C++,15,0,0,NOT_ELIGIBLE,Poucas releases (15)
+alan2207,bulletproof-react,33389,3019,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+qishibo,AnotherRedisDesktopManager,33366,2680,JavaScript,53,4000,40.6,NOT_ELIGIBLE,Intervalo inadequado (40.6 dias)
+ueberdosis,tiptap,33344,2729,TypeScript,928,44600,13.5,RAPID,13.5 dias entre releases
+DataTalksClub,data-engineering-zoomcamp,33341,7091,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+XX-net,XX-Net,33341,7619,Python,390,9400,14.7,RAPID,14.7 dias entre releases
+microsoft,qlib,33333,5135,Python,23,14400,84.6,SLOW,84.6 dias entre releases
+TheAlgorithms,C-Plus-Plus,33285,7619,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+nextcloud,server,33285,4615,PHP,373,133600,17.0,RAPID,17.0 dias entre releases
+lllyasviel,ControlNet,33258,2978,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+refinedev,refine,33194,2795,TypeScript,1000,30600,5.1,RAPID,5.1 dias entre releases
+adobe,brackets,33134,7561,JavaScript,69,46100,40.3,NOT_ELIGIBLE,Intervalo inadequado (40.3 dias)
+pnpm,pnpm,33102,1222,TypeScript,1000,34200,4.3,NOT_ELIGIBLE,Intervalo inadequado (4.3 dias)
+immutable-js,immutable-js,33085,1780,TypeScript,90,23800,60.2,SLOW,60.2 dias entre releases
+xinntao,Real-ESRGAN,33074,4130,Python,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+gchq,CyberChef,33049,3721,JavaScript,447,19600,13.1,RAPID,13.1 dias entre releases
+gulpjs,gulp,33045,4203,JavaScript,24,26200,230.2,SLOW,230.2 dias entre releases
+bilibili,ijkplayer,33035,8225,C,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+lib-pku,libpku,33026,8293,TeX,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+bayandin,awesome-awesomeness,32971,3585,Ruby,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+jqlang,jq,32936,1674,C,15,0,0,NOT_ELIGIBLE,Poucas releases (15)
+swc-project,swc,32898,1346,Rust,749,34500,3.9,NOT_ELIGIBLE,Intervalo inadequado (3.9 dias)
+shadowsocks,ShadowsocksX-NG,32857,7888,Swift,30,3600,116.9,SLOW,116.9 dias entre releases
+mouredev,Hello-Python,32777,2100,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+RVC-Project,Retrieval-based-Voice-Conversion-WebUI,32774,4609,Python,7,0,0,NOT_ELIGIBLE,Poucas releases (7)
+explosion,spaCy,32763,4614,Python,129,77600,29.6,RAPID,29.6 dias entre releases
+pcottle,learnGitBranching,32719,5918,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+TriliumNext,Trilium,32713,2169,TypeScript,339,28900,8.6,RAPID,8.6 dias entre releases
+vadimdemedes,ink,32618,765,TypeScript,67,14700,52.6,NOT_ELIGIBLE,Intervalo inadequado (52.6 dias)
+gkd-kit,gkd,32605,1583,Kotlin,58,600,15.0,RAPID,15.0 dias entre releases
+mckaywrigley,chatbot-ui,32589,9401,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+certbot,certbot,32587,3470,Python,64,54200,33.8,RAPID,33.8 dias entre releases
+mpv-player,mpv,32557,3151,C,87,77700,50.7,NOT_ELIGIBLE,Intervalo inadequado (50.7 dias)
+SerenityOS,serenity,32555,3271,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ibraheemdev,modern-unix,32543,816,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+juanfont,headscale,32531,1733,Go,127,22800,14.1,RAPID,14.1 dias entre releases
+jingyaogong,minimind,32523,3762,Python,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+balena-io,etcher,32485,2288,TypeScript,289,10500,18.5,RAPID,18.5 dias entre releases
+GorvGoyl,Clone-Wars,32459,2868,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+v2fly,v2ray-core,32401,4915,Go,114,16700,20.8,RAPID,20.8 dias entre releases
+TabbyML,tabby,32368,1631,Rust,245,11500,4.5,NOT_ELIGIBLE,Intervalo inadequado (4.5 dias)
+beego,beego,32314,5627,Go,42,52700,73.9,SLOW,73.9 dias entre releases
+exo-explore,exo,32283,2187,Python,12,0,0,NOT_ELIGIBLE,Poucas releases (12)
+IceWhaleTech,CasaOS,32278,1785,Go,97,2600,15.7,RAPID,15.7 dias entre releases
+XTLS,Xray-core,32275,4668,Go,96,18600,19.5,RAPID,19.5 dias entre releases
+google,material-design-lite,32243,4972,HTML,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+alibaba,nacos,32230,13168,Java,86,48200,33.3,RAPID,33.3 dias entre releases
+google,comprehensive-rust,32228,1923,Rust,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+lizongying,my-tv,32172,3603,C,72,1000,3.3,NOT_ELIGIBLE,Intervalo inadequado (3.3 dias)
+The-Run-Philosophy-Organization,run,32140,2602,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+Raphire,Win11Debloat,32127,1258,PowerShell,12,0,0,NOT_ELIGIBLE,Poucas releases (12)
+binarywang,WxJava,32109,8991,Java,30,54400,107.8,SLOW,107.8 dias entre releases
+vercel,swr,32078,1295,TypeScript,123,19400,18.4,RAPID,18.4 dias entre releases
+yewstack,yew,32075,1448,Rust,35,43700,65.0,SLOW,65.0 dias entre releases
+ziadoz,awesome-php,32068,5130,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+floating-ui,floating-ui,32057,1660,TypeScript,497,11900,12.7,RAPID,12.7 dias entre releases
+zeromicro,go-zero,32055,4219,Go,145,31800,17.8,RAPID,17.8 dias entre releases
+Textualize,textual,32003,1008,Python,192,18200,10.1,RAPID,10.1 dias entre releases
+qier222,YesPlayMusic,31978,4687,Vue,32,7600,63.1,SLOW,63.1 dias entre releases
+remix-run,remix,31947,2711,TypeScript,224,75400,12.8,RAPID,12.8 dias entre releases
+open-mmlab,mmdetection,31939,9780,Python,53,45500,27.7,RAPID,27.7 dias entre releases
+facebookresearch,fairseq,31918,6622,Python,16,0,0,NOT_ELIGIBLE,Poucas releases (16)
+Chanzhaoyu,chatgpt-web,31911,11101,Vue,43,7900,14.1,RAPID,14.1 dias entre releases
+1Panel-dev,1Panel,31904,2819,Go,99,9200,10.3,RAPID,10.3 dias entre releases
+yunjey,pytorch-tutorial,31900,8264,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+schollz,croc,31882,1248,Go,178,12400,22.0,RAPID,22.0 dias entre releases
+filebrowser,filebrowser,31849,3554,Go,102,22100,29.7,RAPID,29.7 dias entre releases
+kuchin,awesome-cto,31846,1948,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mli,paper-reading,31845,2738,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+google-ai-edge,mediapipe,31835,5599,C++,63,10300,36.2,NOT_ELIGIBLE,Intervalo inadequado (36.2 dias)
+linera-io,linera-protocol,31829,2202,Rust,19,0,0,NOT_ELIGIBLE,Poucas releases (19)
+Trinea,android-open-project,31822,11899,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ZuodaoTech,everyone-can-use-english,31818,4528,TypeScript,48,7100,10.4,RAPID,10.4 dias entre releases
+hasura,graphql-engine,31793,2844,TypeScript,296,42200,10.1,RAPID,10.1 dias entre releases
+labstack,echo,31756,2296,Go,109,30500,38.4,NOT_ELIGIBLE,Intervalo inadequado (38.4 dias)
+hyprwm,Hyprland,31755,1382,C++,98,55100,13.9,RAPID,13.9 dias entre releases
+backstage,backstage,31730,6886,TypeScript,462,247600,6.5,RAPID,6.5 dias entre releases
+derailed,k9s,31723,1999,Go,255,35800,14.7,RAPID,14.7 dias entre releases
+lutzroeder,netron,31719,3019,JavaScript,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+shardeum,shardeum,31716,696,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ocrmypdf,OCRmyPDF,31689,2201,Python,44,11700,21.3,RAPID,21.3 dias entre releases
+sst,opencode,31668,2451,TypeScript,471,26500,2.0,NOT_ELIGIBLE,Intervalo inadequado (2.0 dias)
+DioxusLabs,dioxus,31641,1348,Rust,30,38100,51.2,NOT_ELIGIBLE,Intervalo inadequado (51.2 dias)
+niklasvh,html2canvas,31629,4887,TypeScript,45,5600,96.7,SLOW,96.7 dias entre releases
+awesome-foss,awesome-sysadmin,31612,1846,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+cursor,cursor,31603,2090,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+MonitorControl,MonitorControl,31599,897,Swift,26,8000,102.3,SLOW,102.3 dias entre releases
+GyulyVGC,sniffnet,31599,1126,Rust,16,0,0,NOT_ELIGIBLE,Poucas releases (16)
+amix,vimrc,31556,7313,Vim Script,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+0xAX,linux-insides,31548,3458,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+microsoft,MS-DOS,31542,4511,Assembly,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ReactiveX,rxjs,31530,3004,TypeScript,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+airbnb,lottie-web,31508,2931,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+huggingface,diffusers,31494,6472,Python,87,100200,17.0,RAPID,17.0 dias entre releases
+khoj-ai,khoj,31463,1852,Python,161,6200,9.7,RAPID,9.7 dias entre releases
+cockroachdb,cockroach,31450,4005,Go,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+dokku,dokku,31447,2010,Shell,310,57500,15.5,RAPID,15.5 dias entre releases
+utmapp,UTM,31438,1562,Swift,124,9500,16.3,RAPID,16.3 dias entre releases
+openai,CLIP,31426,3819,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+umami-software,umami,31417,5731,TypeScript,99,35300,19.8,RAPID,19.8 dias entre releases
+fish-shell,fish-shell,31415,2153,Rust,54,115400,97.0,SLOW,97.0 dias entre releases
+danny-avila,LibreChat,31363,6087,TypeScript,65,26800,15.9,RAPID,15.9 dias entre releases
+lovell,sharp,31347,1365,JavaScript,104,22800,31.7,RAPID,31.7 dias entre releases
+ianstormtaylor,slate,31282,3323,TypeScript,206,60100,24.3,RAPID,24.3 dias entre releases
+microsoft,Data-Science-For-Beginners,31240,6579,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+apache,kafka,31230,14774,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+k3s-io,k3s,31219,2534,Go,900,29300,9.6,RAPID,9.6 dias entre releases
+linexjlin,GPTs,31209,4280,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+drizzle-team,drizzle-orm,31103,1065,TypeScript,151,13200,9.3,RAPID,9.3 dias entre releases
+kubernetes,minikube,31100,5092,Go,152,102300,22.5,RAPID,22.5 dias entre releases
+codex-team,editor.js,31097,2213,TypeScript,103,5600,35.2,NOT_ELIGIBLE,Intervalo inadequado (35.2 dias)
+medusajs,medusa,31073,3804,TypeScript,136,40900,9.5,RAPID,9.5 dias entre releases
+coolsnowwolf,lede,31061,19553,C,7,0,0,NOT_ELIGIBLE,Poucas releases (7)
+mqyqingfeng,Blog,31060,4686,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mathiasbynens,dotfiles,31044,8682,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+firecracker-microvm,firecracker,30974,2129,Rust,80,26500,38.6,NOT_ELIGIBLE,Intervalo inadequado (38.6 dias)
+facebook,rocksdb,30928,6641,C++,208,111200,26.5,RAPID,26.5 dias entre releases
+ajeetdsouza,zoxide,30908,687,Rust,36,9500,57.3,NOT_ELIGIBLE,Intervalo inadequado (57.3 dias)
+donnemartin,interactive-coding-challenges,30904,4594,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+LizardByte,Sunshine,30889,1475,C++,46,15100,51.9,NOT_ELIGIBLE,Intervalo inadequado (51.9 dias)
+blueimp,jQuery-File-Upload,30872,7861,PHP,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+SortableJS,Sortable,30852,3743,JavaScript,30,17800,134.6,SLOW,134.6 dias entre releases
+influxdata,influxdb,30787,3664,Rust,94,68600,47.0,NOT_ELIGIBLE,Intervalo inadequado (47.0 dias)
+wailsapp,wails,30781,1503,Go,255,32300,15.5,RAPID,15.5 dias entre releases
+keycloak,keycloak,30781,7774,Java,92,168200,19.9,RAPID,19.9 dias entre releases
+AdguardTeam,AdGuardHome,30775,2156,Go,222,10400,15.3,RAPID,15.3 dias entre releases
+alibaba,p3c,30771,8064,Kotlin,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+parallax,jsPDF,30758,4772,JavaScript,37,22000,133.7,SLOW,133.7 dias entre releases
+numpy,numpy,30750,11660,Python,134,199300,24.2,RAPID,24.2 dias entre releases
+symfony,symfony,30747,9737,PHP,565,454400,14.3,RAPID,14.3 dias entre releases
+BerriAI,litellm,30714,4599,Python,1000,97300,1.9,NOT_ELIGIBLE,Intervalo inadequado (1.9 dias)
+microsoft,calculator,30694,5666,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+restic,restic,30658,1662,Go,49,45400,76.3,SLOW,76.3 dias entre releases
+tqdm,tqdm,30622,1405,Python,131,11800,28.8,RAPID,28.8 dias entre releases
+ityouknow,spring-boot-examples,30617,12333,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+ascoders,weekly,30615,3279,JavaScript,193,8900,9.4,RAPID,9.4 dias entre releases
+OWASP,CheatSheetSeries,30612,4276,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+docsifyjs,docsify,30602,5827,JavaScript,16,0,0,NOT_ELIGIBLE,Poucas releases (16)
+iawia002,lux,30583,3218,Go,86,11600,29.9,RAPID,29.9 dias entre releases
+alpinejs,alpine,30576,1329,HTML,139,29700,19.2,RAPID,19.2 dias entre releases
+webtorrent,webtorrent,30568,2784,JavaScript,228,20400,12.1,RAPID,12.1 dias entre releases
+fabricjs,fabric.js,30557,3601,TypeScript,175,33300,27.3,RAPID,27.3 dias entre releases
+OAI,OpenAPI-Specification,30540,9164,Markdown,14,0,0,NOT_ELIGIBLE,Poucas releases (14)
+tinygrad,tinygrad,30535,3710,Python,13,0,0,NOT_ELIGIBLE,Poucas releases (13)
+vbenjs,vue-vben-admin,30484,8263,Vue,60,12700,28.8,RAPID,28.8 dias entre releases
+AMAI-GmbH,AI-Expert-Roadmap,30454,2548,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+nicolargo,glances,30453,1633,Python,54,21100,77.5,SLOW,77.5 dias entre releases
+nothings,stb,30431,7915,C,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+transloadit,uppy,30427,2089,TypeScript,345,46800,11.7,RAPID,11.7 dias entre releases
+layui,layui,30401,7417,JavaScript,166,7300,24.0,RAPID,24.0 dias entre releases
+Lightning-AI,pytorch-lightning,30378,3592,Python,170,104500,14.7,RAPID,14.7 dias entre releases
+DevToys-app,DevToys,30345,1670,C#,38,7800,31.2,RAPID,31.2 dias entre releases
+s0md3v,roop,30335,6900,Python,6,0,0,NOT_ELIGIBLE,Poucas releases (6)
+surrealdb,surrealdb,30325,1068,Rust,103,15600,14.6,RAPID,14.6 dias entre releases
+Binaryify,NeteaseCloudMusicApi,30316,15803,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+microsoft,WSL,30269,1508,C++,95,10000,23.4,RAPID,23.4 dias entre releases
+joshbuchea,HEAD,30231,1933,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sequelize,sequelize,30219,4307,TypeScript,488,124500,12.5,RAPID,12.5 dias entre releases
+tatsu-lab,stanford_alpaca,30211,4036,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+motiondivision,motion,30186,1052,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+VincentGarreau,particles.js,30174,4848,JavaScript,6,0,0,NOT_ELIGIBLE,Poucas releases (6)
+chinabugotech,hutool,30158,7666,Java,154,44900,16.1,RAPID,16.1 dias entre releases
+tokio-rs,tokio,30153,2819,Rust,139,97300,19.4,RAPID,19.4 dias entre releases
+conductor-oss,conductor,30071,750,Java,27,38200,24.7,RAPID,24.7 dias entre releases
+trailofbits,algo,30041,2358,Python,3,0,0,NOT_ELIGIBLE,Poucas releases (3)
+facebook,folly,30022,5797,C++,265,175000,7.0,RAPID,7.0 dias entre releases
+iperov,DeepFaceLive,29994,965,Python,35,1100,27.0,RAPID,27.0 dias entre releases
+DavidHDev,react-bits,29996,1293,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+mantinedev,mantine,29970,2178,TypeScript,280,71500,6.3,RAPID,6.3 dias entre releases
+herrbischoff,awesome-macos-command-line,29956,1435,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+frappe,erpnext,29950,9735,Python,1000,83500,4.1,NOT_ELIGIBLE,Intervalo inadequado (4.1 dias)
+PostHog,posthog,29950,2018,Python,33,36600,9.7,RAPID,9.7 dias entre releases
+jobbole,awesome-python-cn,29937,7978,Makefile,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+valinet,ExplorerPatcher,29883,1212,C,296,1700,11.0,RAPID,11.0 dias entre releases
+cheeriojs,cheerio,29879,1677,TypeScript,61,16300,97.7,SLOW,97.7 dias entre releases
+square,leakcanary,29821,3975,Kotlin,43,16500,74.3,SLOW,74.3 dias entre releases
+stanfordnlp,dspy,29815,2376,Python,100,37600,7.7,RAPID,7.7 dias entre releases
+foundation,foundation-sites,29778,5438,HTML,79,133500,57.7,NOT_ELIGIBLE,Intervalo inadequado (57.7 dias)
+cfenollosa,os-tutorial,29765,3487,C,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+pmndrs,react-three-fiber,29750,1745,TypeScript,126,22900,27.1,RAPID,27.1 dias entre releases
+XIU2,TrackersListCollection,29714,1736,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+aquasecurity,trivy,29712,2807,Go,175,48500,15.2,RAPID,15.2 dias entre releases
+apolloconfig,apollo,29696,10223,Java,41,20100,74.1,SLOW,74.1 dias entre releases
+vuejs,vue-cli,29674,6296,JavaScript,178,48200,26.9,RAPID,26.9 dias entre releases
+continuedev,continue,29665,3728,TypeScript,629,45200,2.2,NOT_ELIGIBLE,Intervalo inadequado (2.2 dias)
+JushBJJ,Mr.-Ranedeer-AI-Tutor,29654,3377,Unknown,3,0,0,NOT_ELIGIBLE,Poucas releases (3)
+refined-github,refined-github,29642,1620,TypeScript,177,39400,10.6,RAPID,10.6 dias entre releases
+encode,django-rest-framework,29640,7031,Python,21,145900,158.4,SLOW,158.4 dias entre releases
+datalab-to,marker,29635,1991,Python,70,2900,10.4,RAPID,10.4 dias entre releases
+kovidgoyal,kitty,29622,1182,Python,131,38200,25.1,RAPID,25.1 dias entre releases
+Byaidu,PDFMathTranslate,29599,2621,Python,24,5200,12.9,RAPID,12.9 dias entre releases
+ageron,handson-ml2,29559,13222,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+aosabook,500lines,29554,5861,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+elsewhencode,project-guidelines,29549,3195,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+GoogleChrome,lighthouse,29545,9604,JavaScript,128,37100,28.0,RAPID,28.0 dias entre releases
+AllThingsSmitty,css-protips,29543,2209,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+containers,podman,29540,2847,Go,232,88900,12.2,RAPID,12.2 dias entre releases
+react-boilerplate,react-boilerplate,29532,6090,JavaScript,16,0,0,NOT_ELIGIBLE,Poucas releases (16)
+xuxueli,xxl-job,29508,11352,Java,39,10800,92.9,SLOW,92.9 dias entre releases
+heyverse,hey,29504,1781,TypeScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+spf13,viper,29502,2085,Go,35,19100,78.2,SLOW,78.2 dias entre releases
+ariya,phantomjs,29489,5742,C++,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+hashicorp,consul,29487,4543,Go,221,111000,16.2,RAPID,16.2 dias entre releases
+alibaba,canal,29448,7668,Java,32,24600,121.1,SLOW,121.1 dias entre releases
+sxyazi,yazi,29435,640,Rust,27,14600,33.0,RAPID,33.0 dias entre releases
+IanLunn,Hover,29400,5713,SCSS,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+standard,standard,29378,2325,JavaScript,7,0,0,NOT_ELIGIBLE,Poucas releases (7)
+google-research,tuning_playbook,29334,2399,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+realpython,python-guide,29322,5901,Batchfile,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sampotts,plyr,29298,3110,JavaScript,92,20900,58.1,NOT_ELIGIBLE,Intervalo inadequado (58.1 dias)
+dragonflydb,dragonfly,29270,1114,C++,111,13900,11.7,RAPID,11.7 dias entre releases
+StevenBlack,hosts,29206,2360,Python,797,16600,3.5,NOT_ELIGIBLE,Intervalo inadequado (3.5 dias)
+composer,composer,29198,4705,PHP,216,126600,30.5,RAPID,30.5 dias entre releases
+NginxProxyManager,nginx-proxy-manager,29185,3362,TypeScript,79,22000,38.2,NOT_ELIGIBLE,Intervalo inadequado (38.2 dias)
+glanceapp,glance,29191,1092,Go,33,7400,14.0,RAPID,14.0 dias entre releases
+openai,openai-python,29177,4397,Python,348,14500,7.3,RAPID,7.3 dias entre releases
+lukehoban,es6features,29173,2831,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+raysan5,raylib,29147,2763,C,24,83600,171.3,SLOW,171.3 dias entre releases
+AvaloniaUI,Avalonia,29123,2520,C#,114,60500,28.9,RAPID,28.9 dias entre releases
+kodecocodes,swift-algorithm-club,29118,5001,Swift,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+grafana,k6,29106,1435,Go,79,23900,42.3,NOT_ELIGIBLE,Intervalo inadequado (42.3 dias)
+Pierian-Data,Complete-Python-3-Bootcamp,29105,87345,Jupyter Notebook,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+sunface,rust-course,29093,2498,Rust,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+meta-llama,llama3,29072,3474,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+eriklindernoren,ML-From-Scratch,29054,4937,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+MichaelCade,90DaysOfDevOps,29044,6649,Shell,2,0,0,NOT_ELIGIBLE,Poucas releases (2)
+feder-cr,Jobs_Applier_AI_Agent_AIHawk,29043,4411,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+VSCodium,vscodium,29032,1457,Shell,251,13100,13.4,RAPID,13.4 dias entre releases
+daytonaio,daytona,29027,2485,TypeScript,117,20400,6.1,RAPID,6.1 dias entre releases
+CSSEGISandData,COVID-19,29021,18209,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+vercel,turborepo,29021,2125,Rust,515,58700,4.5,NOT_ELIGIBLE,Intervalo inadequado (4.5 dias)
+microsoft,graphrag,29010,3034,Python,29,5000,16.7,RAPID,16.7 dias entre releases
+telegramdesktop,tdesktop,29009,5979,C++,809,22400,6.5,RAPID,6.5 dias entre releases
+wuyouzhuguli,SpringAll,28972,8172,Java,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+pear-devs,pear-desktop,28965,1625,TypeScript,87,54600,33.2,RAPID,33.2 dias entre releases
+jumpserver,jumpserver,28958,5591,Python,260,17700,16.7,RAPID,16.7 dias entre releases
+pmndrs,react-spring,28957,1215,TypeScript,54,19700,57.6,NOT_ELIGIBLE,Intervalo inadequado (57.6 dias)
+openssl,openssl,28955,10904,C,292,137600,50.5,NOT_ELIGIBLE,Intervalo inadequado (50.5 dias)
+postcss,postcss,28894,1581,TypeScript,268,43700,18.9,RAPID,18.9 dias entre releases
+helm,helm,28887,7383,Go,222,94700,17.6,RAPID,17.6 dias entre releases
+wesbos,JavaScript30,28875,41303,HTML,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+statelyai,xstate,28873,1334,TypeScript,453,37500,11.3,RAPID,11.3 dias entre releases
+tastejs,todomvc,28867,13777,JavaScript,6,0,0,NOT_ELIGIBLE,Poucas releases (6)
+alibaba,spring-cloud-alibaba,28846,8487,Java,50,21300,66.8,SLOW,66.8 dias entre releases
+immerjs,immer,28694,866,JavaScript,112,20900,34.5,RAPID,34.5 dias entre releases
+Ebazhanov,linkedin-skill-assessments-quizzes,28659,13133,Python,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+ZuzooVn,machine-learning-for-software-engineers,28636,6217,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+donnemartin,data-science-ipython-notebooks,28636,8026,Python,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+kenwheeler,slick,28616,5835,JavaScript,48,18700,43.1,NOT_ELIGIBLE,Intervalo inadequado (43.1 dias)
+ashishpatel26,500-AI-Machine-learning-Deep-learning-Computer-vision-NLP-Projects-with-code,28558,6398,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+kingToolbox,WindTerm,28547,2206,C,32,200,74.5,SLOW,74.5 dias entre releases
+eugeneyan,applied-ml,28487,3823,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+dnSpy,dnSpy,28485,5398,C#,1,0,0,NOT_ELIGIBLE,Poucas releases (1)
+casey,just,28481,603,Rust,126,20300,28.8,RAPID,28.8 dias entre releases
+shengxinjing,programmer-job-blacklist,28464,1791,Shell,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+nginx,nginx,28454,7597,C,10,0,0,NOT_ELIGIBLE,Poucas releases (10)
+vuejs,vuex,28418,9553,JavaScript,51,33600,51.7,NOT_ELIGIBLE,Intervalo inadequado (51.7 dias)
+jamiebuilds,the-super-tiny-compiler,28403,2882,JavaScript,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+viraptor,reverse-interview,28400,2128,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+GitbookIO,gitbook,28388,4009,TypeScript,119,2900,15.0,RAPID,15.0 dias entre releases
+codepath,android_guides,28367,6292,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+dgtlmoon,changedetection.io,28368,1575,Python,174,10900,13.2,RAPID,13.2 dias entre releases
+python-telegram-bot,python-telegram-bot,28365,5904,Python,129,20400,32.5,RAPID,32.5 dias entre releases
+JaidedAI,EasyOCR,28323,3493,Python,23,12900,70.2,SLOW,70.2 dias entre releases
+zhiwehu,Python-programming-exercises,28313,6922,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)
+swagger-api,swagger-ui,28304,9238,JavaScript,387,61200,13.6,RAPID,13.6 dias entre releases
+abhisheknaiidu,awesome-github-profile-readme,28294,4179,Unknown,0,0,0,NOT_ELIGIBLE,Poucas releases (0)

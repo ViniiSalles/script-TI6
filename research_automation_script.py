@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Script de Automação de Pesquisa de Repositórios GitHub com Análise SonarQube
 
@@ -53,6 +54,16 @@ import requests
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
+
+# Configurar encoding UTF-8 para evitar problemas com emojis no Windows
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace', line_buffering=True)
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace', line_buffering=True)
+
+# Força flush automático em todos os prints
+import functools
+print = functools.partial(print, flush=True)
 
 # Carrega variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -316,6 +327,71 @@ class GitHubAPI:
         except Exception as e:
             print(f"Erro ao obter contribuidores de {owner}/{name}: {e}")
             return 0
+    
+    def get_all_releases(self, owner: str, name: str) -> List[dict]:
+        """Obtém todas as releases de um repositório com paginação via GraphQL"""
+        all_releases = []
+        has_next_page = True
+        after_cursor = None
+        
+        query = """
+        query GetAllReleases($owner: String!, $name: String!, $after: String) {
+          repository(owner: $owner, name: $name) {
+            releases(first: 100, after: $after, orderBy: {field: CREATED_AT, direction: DESC}) {
+              nodes {
+                name
+                tagName
+                createdAt
+                publishedAt
+              }
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              totalCount
+            }
+          }
+        }
+        """
+        
+        try:
+            while has_next_page:
+                variables = {
+                    "owner": owner,
+                    "name": name,
+                    "after": after_cursor
+                }
+                
+                result = self._run_query(query, variables)
+                
+                if "data" in result and result["data"] and result["data"]["repository"]:
+                    releases_data = result["data"]["repository"]["releases"]
+                    
+                    # Adiciona releases à lista
+                    nodes = releases_data.get("nodes", [])
+                    all_releases.extend(nodes)
+                    
+                    # Verifica paginação
+                    page_info = releases_data.get("pageInfo", {})
+                    has_next_page = page_info.get("hasNextPage", False)
+                    after_cursor = page_info.get("endCursor")
+                    
+                    print(f"Buscadas {len(nodes)} releases (total acumulado: {len(all_releases)})")
+                    
+                    # Pequeno delay para respeitar rate limiting
+                    if has_next_page:
+                        time.sleep(1)
+                else:
+                    print(f"Erro ao buscar releases de {owner}/{name}")
+                    break
+            
+            print(f"Total de releases encontradas para {owner}/{name}: {len(all_releases)}")
+            return all_releases
+            
+        except Exception as e:
+            print(f"Erro ao obter todas as releases de {owner}/{name}: {e}")
+            return all_releases  # Retorna o que foi coletado até o erro
+
 
 
 class SonarQubeAPI:
@@ -434,9 +510,21 @@ class DatabaseManager:
             )
             """,
             """
+            CREATE TABLE IF NOT EXISTS research_releases (
+                id SERIAL PRIMARY KEY,
+                repo_id INTEGER REFERENCES research_repositories(id),
+                tag_name VARCHAR(255) NOT NULL,
+                release_name VARCHAR(500),
+                created_at TIMESTAMP,
+                published_at TIMESTAMP,
+                UNIQUE(repo_id, tag_name)
+            )
+            """,
+            """
             CREATE TABLE IF NOT EXISTS research_sonarqube_metrics (
                 id SERIAL PRIMARY KEY,
                 repo_id INTEGER REFERENCES research_repositories(id),
+                release_id INTEGER REFERENCES research_releases(id),
                 analysis_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 bugs INTEGER,
                 vulnerabilities INTEGER,
@@ -451,7 +539,7 @@ class DatabaseManager:
                 security_rating VARCHAR(10),
                 sqale_rating VARCHAR(10),
                 alert_status VARCHAR(50),
-                UNIQUE(repo_id, analysis_date)
+                UNIQUE(repo_id, release_id, analysis_date)
             )
             """
         ]
@@ -576,25 +664,56 @@ class DatabaseManager:
         except Exception as e:
             print(f"Erro ao inserir issue: {e}")
     
-    def insert_sonarqube_metrics(self, repo_id: int, metrics: dict):
-        """Insere métricas do SonarQube"""
+    def insert_release(self, repo_id: int, release_data: dict) -> Optional[int]:
+        """Insere dados de uma release e retorna seu ID"""
         if not self.connection:
-            print(f"[SIMULAÇÃO] Inserindo métricas SonarQube para repo ID {repo_id}")
+            print(f"[SIMULAÇÃO] Inserindo Release {release_data.get('tag_name', 'N/A')} do repo ID {repo_id}")
+            return 1  # ID fictício
+            
+        sql = """
+        INSERT INTO research_releases (
+            repo_id, tag_name, release_name, created_at, published_at
+        ) VALUES (
+            %(repo_id)s, %(tag_name)s, %(release_name)s, %(created_at)s, %(published_at)s
+        )
+        ON CONFLICT (repo_id, tag_name) DO UPDATE SET
+            release_name = EXCLUDED.release_name,
+            created_at = EXCLUDED.created_at,
+            published_at = EXCLUDED.published_at
+        RETURNING id
+        """
+        
+        release_data['repo_id'] = repo_id
+        
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(sql, release_data)
+                result = cursor.fetchone()
+                return result[0] if result else None
+        except Exception as e:
+            print(f"Erro ao inserir release: {e}")
+            return None
+    
+    def insert_sonarqube_metrics(self, repo_id: int, metrics: dict, release_id: Optional[int] = None):
+        """Insere métricas do SonarQube vinculadas a uma release específica"""
+        if not self.connection:
+            release_info = f" (release ID {release_id})" if release_id else ""
+            print(f"[SIMULAÇÃO] Inserindo métricas SonarQube para repo ID {repo_id}{release_info}")
             return
             
         sql = """
         INSERT INTO research_sonarqube_metrics (
-            repo_id, bugs, vulnerabilities, code_smells, sqale_index,
+            repo_id, release_id, bugs, vulnerabilities, code_smells, sqale_index,
             coverage, duplicated_lines_density, ncloc, complexity,
             cognitive_complexity, reliability_rating, security_rating,
             sqale_rating, alert_status
         ) VALUES (
-            %(repo_id)s, %(bugs)s, %(vulnerabilities)s, %(code_smells)s, %(sqale_index)s,
+            %(repo_id)s, %(release_id)s, %(bugs)s, %(vulnerabilities)s, %(code_smells)s, %(sqale_index)s,
             %(coverage)s, %(duplicated_lines_density)s, %(ncloc)s, %(complexity)s,
             %(cognitive_complexity)s, %(reliability_rating)s, %(security_rating)s,
             %(sqale_rating)s, %(alert_status)s
         )
-        ON CONFLICT (repo_id, analysis_date) DO UPDATE SET
+        ON CONFLICT (repo_id, release_id, analysis_date) DO UPDATE SET
             bugs = EXCLUDED.bugs,
             vulnerabilities = EXCLUDED.vulnerabilities,
             code_smells = EXCLUDED.code_smells,
@@ -611,6 +730,7 @@ class DatabaseManager:
         """
         
         metrics['repo_id'] = repo_id
+        metrics['release_id'] = release_id
         
         try:
             with self.connection.cursor() as cursor:
@@ -740,11 +860,16 @@ class RepositoryProcessor:
         
         try:
             print(f"Clonando repositório {owner}/{name}...")
+            # Configurações para lidar com repositórios grandes
             result = subprocess.run(
-                ['git', 'clone', '--depth', '1', repo_url, temp_dir],
+                ['git', 'clone', 
+                 '--config', 'http.postBuffer=524288000',  # 500MB buffer
+                 '--config', 'http.lowSpeedLimit=1000',     # Mínimo 1KB/s
+                 '--config', 'http.lowSpeedTime=600',       # Por 10 minutos
+                 repo_url, temp_dir],
                 capture_output=True,
                 text=True,
-                timeout=300  # Timeout de 5 minutos
+                timeout=1800  # Timeout de 30 minutos para clone completo
             )
             
             if result.returncode == 0:
@@ -767,9 +892,41 @@ class RepositoryProcessor:
             self._cleanup_temp_dir(temp_dir)
             return None
     
-    def _run_sonar_scanner(self, repo_dir: str, owner: str, name: str) -> bool:
+    def _checkout_release(self, repo_dir: str, tag_name: str) -> bool:
+        """Faz checkout de uma tag/release específica no repositório clonado"""
+        try:
+            print(f"Fazendo checkout da tag {tag_name}...")
+            result = subprocess.run(
+                ['git', 'checkout', tag_name],
+                cwd=repo_dir,
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+            
+            if result.returncode == 0:
+                print(f"✅ Checkout da tag {tag_name} realizado com sucesso")
+                return True
+            else:
+                print(f"❌ Erro ao fazer checkout da tag {tag_name}: {result.stderr}")
+                return False
+                
+        except subprocess.TimeoutExpired:
+            print(f"⏱️ Timeout ao fazer checkout da tag {tag_name}")
+            return False
+        except Exception as e:
+            print(f"❌ Erro ao fazer checkout da tag {tag_name}: {e}")
+            return False
+    
+    def _run_sonar_scanner(self, repo_dir: str, owner: str, name: str, tag_name: str = None) -> bool:
         """Executa o SonarScanner via Docker em um repositório"""
-        project_key = f"{owner}_{name}"
+        # Se tag_name for fornecido, inclui no project_key para diferenciar análises por release
+        if tag_name:
+            project_key = f"{owner}_{name}_{tag_name.replace('/', '_').replace('.', '_')}"
+            project_name = f"{owner}/{name}@{tag_name}"
+        else:
+            project_key = f"{owner}_{name}"
+            project_name = f"{owner}/{name}"
         
         # Obtém configurações do ambiente
         sonar_host = os.getenv("SONAR_HOST", "http://localhost:9000")
@@ -800,14 +957,14 @@ class RepositoryProcessor:
             '-v', docker_volume,
             'sonarsource/sonar-scanner-cli',
             '-Dsonar.projectKey=' + project_key,
-            '-Dsonar.projectName=' + project_key,
+            '-Dsonar.projectName=' + project_name,
             '-Dsonar.sources=.',
             '-Dsonar.python.version=3.13'
         ]
         
         try:
-            print(f"Executando SonarScanner via Docker para {owner}/{name}...")
-            print(f"Comando: {' '.join(docker_cmd)}")
+            print(f"Executando SonarScanner via Docker para {project_name}...")
+            print(f"Project Key: {project_key}")
             
             result = subprocess.run(
                 docker_cmd,
@@ -822,7 +979,7 @@ class RepositoryProcessor:
                 print("STDOUT:", result.stdout[-500:])  # Últimos 500 chars
             
             if result.returncode == 0:
-                print(f"✅ SonarScanner executado com sucesso para {owner}/{name}")
+                print(f"✅ SonarScanner executado com sucesso para {project_name}")
                 # Aguarda processamento no SonarQube
                 print("Aguardando processamento no SonarQube...")
                 time.sleep(30)
@@ -834,14 +991,14 @@ class RepositoryProcessor:
                 return False
                 
         except subprocess.TimeoutExpired:
-            print(f"⏱️ Timeout ao executar SonarScanner para {owner}/{name}")
+            print(f"⏱️ Timeout ao executar SonarScanner para {project_name}")
             return False
         except FileNotFoundError:
             print("❌ ERRO: Docker não está instalado ou não está no PATH")
             print("Instale o Docker Desktop: https://www.docker.com/products/docker-desktop")
             return False
         except Exception as e:
-            print(f"❌ Erro ao executar SonarScanner via Docker para {owner}/{name}: {e}")
+            print(f"❌ Erro ao executar SonarScanner via Docker para {project_name}: {e}")
             return False
     
     def _cleanup_temp_dir(self, temp_dir: str):
@@ -985,33 +1142,103 @@ class RepositoryProcessor:
         else:
             repo_id = 1  # ID fictício para continuar o processamento
         
+        # 7. Busca todas as releases do repositório
+        print(f"\n📦 Buscando todas as releases de {full_name}...")
+        all_releases = self.github_api.get_all_releases(owner, name)
         
-        # 8. Análise SonarQube (se token disponível)
+        if not all_releases:
+            print(f"❌ Nenhuma release encontrada para {full_name}")
+            return
+        
+        print(f"✅ Encontradas {len(all_releases)} releases para análise")
+        
+        # 8. Análise SonarQube por release (se token disponível)
         if self.sonarqube_api and os.getenv('SONAR_TOKEN'):
             temp_dir = None
             try:
-                # Clona repositório
+                # Clona repositório uma vez (clone completo para ter todas as tags)
                 temp_dir = self._clone_repository(owner, name)
-                if temp_dir:
-                    # Executa SonarScanner
-                    if self._run_sonar_scanner(temp_dir, owner, name):
-                        # Extrai métricas
-                        project_key = f"{owner}_{name}"
+                if not temp_dir:
+                    print(f"❌ Falha ao clonar repositório {full_name}")
+                    return
+                
+                # Processa cada release
+                print(f"\n{'='*80}")
+                print(f"INICIANDO ANÁLISE DE {len(all_releases)} RELEASES")
+                print(f"{'='*80}\n")
+                
+                for idx, release in enumerate(all_releases, 1):
+                    tag_name = release.get('tagName')
+                    release_name = release.get('name', tag_name)
+                    created_at = release.get('createdAt')
+                    published_at = release.get('publishedAt')
+                    
+                    if not tag_name:
+                        print(f"⚠️ Release sem tag, pulando...")
+                        continue
+                    
+                    print(f"\n{'─'*80}")
+                    print(f"📦 RELEASE {idx}/{len(all_releases)}: {tag_name}")
+                    print(f"   Nome: {release_name}")
+                    print(f"   Criada em: {created_at}")
+                    print(f"{'─'*80}")
+                    
+                    # Insere informações da release no banco
+                    release_data = {
+                        'tag_name': tag_name,
+                        'release_name': release_name,
+                        'created_at': created_at,
+                        'published_at': published_at
+                    }
+                    
+                    release_id = self.db_manager.insert_release(repo_id, release_data)
+                    if not release_id and self.db_manager.connection:
+                        print(f"❌ Falha ao inserir release {tag_name} no banco")
+                        continue
+                    elif not self.db_manager.connection:
+                        release_id = idx  # ID fictício
+                    
+                    # Faz checkout da release específica
+                    if not self._checkout_release(temp_dir, tag_name):
+                        print(f"❌ Falha ao fazer checkout da release {tag_name}, pulando...")
+                        continue
+                    
+                    # Executa SonarScanner para esta release
+                    if self._run_sonar_scanner(temp_dir, owner, name, tag_name):
+                        # Extrai métricas do SonarQube
+                        project_key = f"{owner}_{name}_{tag_name.replace('/', '_').replace('.', '_')}"
                         metrics = self.sonarqube_api.get_project_metrics(project_key)
                         
                         if metrics:
-                            self.db_manager.insert_sonarqube_metrics(repo_id, metrics)
-                            print(f"Métricas SonarQube inseridas para {full_name}")
+                            self.db_manager.insert_sonarqube_metrics(repo_id, metrics, release_id)
+                            print(f"✅ Métricas da release {tag_name} inseridas com sucesso")
+                            print(f"   Bugs: {metrics.get('bugs', 0)}, Code Smells: {metrics.get('code_smells', 0)}")
                         else:
-                            print(f"Nenhuma métrica SonarQube encontrada para {full_name}")
+                            print(f"⚠️ Nenhuma métrica encontrada para release {tag_name}")
+                    else:
+                        print(f"❌ Falha na análise SonarQube da release {tag_name}")
+                    
+                    # Pequeno delay entre releases
+                    time.sleep(2)
+                
+                print(f"\n{'='*80}")
+                print(f"✅ ANÁLISE DE RELEASES CONCLUÍDA PARA {full_name}")
+                print(f"   Total processadas: {len(all_releases)}")
+                print(f"{'='*80}\n")
+                
             except Exception as e:
                 print(f"ERRO durante análise SonarQube de {full_name}: {e}")
+                import traceback
+                traceback.print_exc()
             finally:
                 # Limpa diretório temporário
                 if temp_dir:
                     self._cleanup_temp_dir(temp_dir)
         else:
-            print("SonarQube não configurado, pulando análise de código")
+            if not os.getenv('SONAR_TOKEN'):
+                print("⚠️ SonarQube não configurado (SONAR_TOKEN ausente), pulando análise de código")
+            else:
+                print("⚠️ SonarQubeAPI não inicializada, pulando análise de código")
         
         print(f"=== Processamento de {full_name} concluído ===\n")
 
@@ -1124,7 +1351,7 @@ def main():
 
         processed_repos = set()
         total_processed = 0
-        target_repos_per_type = 10  # Aumentado para compensar filtros mais rigorosos
+        target_repos_per_type = 20
         
         print(f"\n{'='*80}")
         print(f"CRITÉRIOS DE FILTRAGEM:")
