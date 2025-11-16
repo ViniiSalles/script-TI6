@@ -11,6 +11,7 @@ Fornece funcionalidades para:
 
 import json
 import os
+import csv
 from datetime import datetime
 from typing import List, Dict, Optional
 from pathlib import Path
@@ -20,15 +21,16 @@ from psycopg2.extras import RealDictCursor
 
 
 class DatasetManager:
-    """Gerencia dataset de repositórios (JSON + PostgreSQL)"""
+    """Gerencia dataset de repositórios (JSON, CSV + PostgreSQL)"""
     
     def __init__(self, json_file: str = "repositories_dataset.json", db_config: Optional[dict] = None):
         self.json_file = json_file
         self.db_config = db_config
         self.connection = None
+        self.is_csv = json_file.endswith('.csv')
         
-        # Cria arquivo JSON se não existir
-        if not os.path.exists(json_file):
+        # Cria arquivo JSON se não existir (apenas para JSON)
+        if not self.is_csv and not os.path.exists(json_file):
             self._create_empty_dataset()
     
     def _create_empty_dataset(self):
@@ -50,7 +52,10 @@ class DatasetManager:
         print(f"✅ Dataset vazio criado: {self.json_file}")
     
     def load_dataset(self) -> dict:
-        """Carrega dataset do arquivo JSON"""
+        """Carrega dataset do arquivo JSON ou CSV"""
+        if self.is_csv:
+            return self._load_from_csv()
+        
         try:
             with open(self.json_file, 'r', encoding='utf-8') as f:
                 return json.load(f)
@@ -67,8 +72,59 @@ class DatasetManager:
                 "repositories": []
             }
     
+    def _load_from_csv(self) -> dict:
+        """Carrega dataset de arquivo CSV"""
+        try:
+            repositories = []
+            with open(self.json_file, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    # Converte CSV para formato do dataset
+                    repo = {
+                        'owner': row.get('owner', ''),
+                        'name': row.get('name', ''),
+                        'full_name': f"{row.get('owner', '')}/{row.get('name', '')}",
+                        'stargazer_count': int(row.get('stars', 0)),
+                        'fork_count': int(row.get('forks', 0)),
+                        'language': row.get('language', ''),
+                        'total_releases': int(row.get('release_count', 0)),
+                        'avg_release_interval_days': float(row.get('median_release_interval', 0)),
+                        'release_type': row.get('release_type', '').lower(),
+                        'collaborator_count': int(row.get('contributors', 0)),
+                        'distinct_releases_count': int(row.get('release_count', 0)),
+                        'collected_at': datetime.now().isoformat(),
+                        'sonarqube_analyzed': False
+                    }
+                    repositories.append(repo)
+            
+            return {
+                "metadata": {
+                    "created_at": datetime.now().isoformat(),
+                    "last_updated": datetime.now().isoformat(),
+                    "total_repositories": len(repositories),
+                    "rapid_releases_count": sum(1 for r in repositories if r['release_type'] == 'rapid'),
+                    "slow_releases_count": sum(1 for r in repositories if r['release_type'] == 'slow')
+                },
+                "repositories": repositories
+            }
+        except Exception as e:
+            print(f"❌ Erro ao carregar CSV: {e}")
+            return {
+                "metadata": {
+                    "created_at": datetime.now().isoformat(),
+                    "last_updated": datetime.now().isoformat(),
+                    "total_repositories": 0,
+                    "rapid_releases_count": 0,
+                    "slow_releases_count": 0
+                },
+                "repositories": []
+            }
+    
     def save_dataset(self, dataset: dict):
-        """Salva dataset no arquivo JSON"""
+        """Salva dataset no arquivo JSON ou CSV"""
+        if self.is_csv:
+            return self._save_to_csv_with_analysis(dataset)
+        
         try:
             # Atualiza metadados
             dataset["metadata"]["last_updated"] = datetime.now().isoformat()
@@ -87,6 +143,50 @@ class DatasetManager:
             return True
         except Exception as e:
             print(f"❌ Erro ao salvar dataset: {e}")
+            return False
+    
+    def _save_to_csv_with_analysis(self, dataset: dict):
+        """Salva dataset CSV com informações de análise"""
+        try:
+            # Cria novo arquivo CSV com análises
+            output_file = self.json_file.replace('.csv', '_analyzed.csv')
+            
+            repositories = dataset['repositories']
+            if not repositories:
+                return False
+            
+            # Define campos para CSV incluindo análise
+            fields = [
+                'owner', 'name', 'full_name', 'stargazer_count', 'fork_count', 
+                'language', 'total_releases', 'avg_release_interval_days', 
+                'release_type', 'collaborator_count', 'sonarqube_analyzed',
+                'sonarqube_analyzed_at', 'bugs', 'vulnerabilities', 'code_smells',
+                'coverage', 'ncloc', 'complexity'
+            ]
+            
+            with open(output_file, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fields, extrasaction='ignore')
+                writer.writeheader()
+                
+                for repo in repositories:
+                    row = repo.copy()
+                    # Adiciona métricas do SonarQube se existirem
+                    if 'sonarqube_metrics' in repo:
+                        metrics = repo['sonarqube_metrics']
+                        row.update({
+                            'bugs': metrics.get('bugs', ''),
+                            'vulnerabilities': metrics.get('vulnerabilities', ''),
+                            'code_smells': metrics.get('code_smells', ''),
+                            'coverage': metrics.get('coverage', ''),
+                            'ncloc': metrics.get('ncloc', ''),
+                            'complexity': metrics.get('complexity', '')
+                        })
+                    writer.writerow(row)
+            
+            print(f"✅ Dataset com análises salvo: {output_file}")
+            return True
+        except Exception as e:
+            print(f"❌ Erro ao salvar CSV com análises: {e}")
             return False
     
     def add_repository(self, repo_data: dict) -> bool:

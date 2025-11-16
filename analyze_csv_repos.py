@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 """
-Script 2: Análise SonarQube de Repositórios (Versão com Logging para Paralelo)
+Script: Análise SonarQube de Repositórios a partir de CSV
 
 OBJETIVO:
-Processar repositórios do dataset com análise de código SonarQube.
+Processar repositórios de um arquivo CSV com análise de código SonarQube.
 Suporta processamento paralelo com logging organizado.
 
 PRÉ-REQUISITOS:
 - Docker rodando
 - SonarQube configurado (http://localhost:9000)
-- Dataset de repositórios coletado (1_collect_repositories.py)
+- Arquivo CSV com repositórios (formato: owner,name,stars,forks,language,...)
 
 EXECUÇÃO:
-python 2_analyze_sonarqube.py --workers 4 --type rapid
+python analyze_csv_repos.py --csv slow_release_repos_20251115_053707.csv --workers 4
 
 OPÇÕES:
+--csv FILE      : Arquivo CSV com repositórios
 --workers N     : Número de processos paralelos (padrão: 1)
---type [rapid|slow|all] : Tipo de repositórios para analisar
 --limit N       : Limitar número de análises
 --skip-analyzed : Pular repositórios já analisados
---dataset FILE  : Arquivo do dataset
+--output FILE   : Arquivo de saída com análises (padrão: [input]_analyzed.csv)
 """
 
 import os
@@ -30,13 +30,11 @@ import subprocess
 import tempfile
 import shutil
 import stat
-import logging
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime
-from queue import Queue
-from threading import Thread, Lock
+from threading import Lock
 
 from dotenv import load_dotenv
 import psycopg2
@@ -331,10 +329,10 @@ class SonarQubeAnalyzer:
             if not metrics:
                 return (full_name, False, "Sem métricas")
             
-            # 4. Salva no BD
+            # 4. Salva no BD (opcional)
             self._save_metrics_to_db(full_name, metrics)
             
-            # 5. Atualiza dataset JSON
+            # 5. Atualiza dataset
             dataset = self.dataset.load_dataset()
             for repo in dataset['repositories']:
                 if repo['full_name'] == full_name:
@@ -355,11 +353,11 @@ class SonarQubeAnalyzer:
 
 
 def analyze_single_repo_worker(repo_data: dict, sonar_host: str, sonar_token: str, 
-                                dataset_file: str, worker_id: int) -> tuple:
+                                csv_file: str, worker_id: int) -> tuple:
     """Função auxiliar para análise paralela"""
     try:
         sonarqube_api = SonarQubeAPI(sonar_host, sonar_token)
-        dataset_manager = DatasetManager(dataset_file)
+        dataset_manager = DatasetManager(csv_file)
         analyzer = SonarQubeAnalyzer(sonarqube_api, dataset_manager, worker_id, quiet=True)
         
         full_name, success, message = analyzer.analyze_repository(repo_data)
@@ -372,23 +370,28 @@ def analyze_single_repo_worker(repo_data: dict, sonar_host: str, sonar_token: st
 def main():
     """Função principal"""
     parser = argparse.ArgumentParser(
-        description='Analisa repositórios do dataset com SonarQube'
+        description='Analisa repositórios de arquivo CSV com SonarQube'
     )
+    parser.add_argument('--csv', type=str, required=True,
+                       help='Arquivo CSV com repositórios')
     parser.add_argument('--workers', type=int, default=1,
                        help='Número de processos paralelos (padrão: 1)')
-    parser.add_argument('--type', choices=['rapid', 'slow', 'all'], default='all',
-                       help='Tipo de repositórios para analisar (padrão: all)')
     parser.add_argument('--limit', type=int, default=None,
                        help='Limitar número de análises')
     parser.add_argument('--skip-analyzed', action='store_true',
                        help='Pular repositórios já analisados')
-    parser.add_argument('--dataset', type=str, default='repositories_dataset.json',
-                       help='Arquivo do dataset (padrão: repositories_dataset.json)')
+    parser.add_argument('--output', type=str, default=None,
+                       help='Arquivo de saída (padrão: [input]_analyzed.csv)')
     
     args = parser.parse_args()
     
+    # Verifica se arquivo CSV existe
+    if not os.path.exists(args.csv):
+        print(f"❌ ERRO: Arquivo CSV não encontrado: {args.csv}")
+        sys.exit(1)
+    
     print("="*80)
-    print("🔬 SCRIPT 2: ANÁLISE SONARQUBE (Modo Paralelo Otimizado)")
+    print("🔬 ANÁLISE SONARQUBE A PARTIR DE CSV")
     print("="*80)
     
     # Verifica SonarQube
@@ -399,12 +402,10 @@ def main():
         print("❌ ERRO: SONAR_TOKEN não configurado!")
         sys.exit(1)
     
-    # Carrega dataset
-    dataset_manager = DatasetManager(args.dataset)
-    
-    # Filtra repositórios
-    release_type = None if args.type == 'all' else args.type
-    repositories = dataset_manager.get_repositories(release_type=release_type)
+    # Carrega dataset do CSV
+    dataset_manager = DatasetManager(args.csv)
+    dataset = dataset_manager.load_dataset()
+    repositories = dataset['repositories']
     
     if args.skip_analyzed:
         repositories = [r for r in repositories if not r.get('sonarqube_analyzed', False)]
@@ -413,11 +414,11 @@ def main():
         repositories = repositories[:args.limit]
     
     print(f"\n📊 Configuração:")
-    print(f"   • Repositórios: {len(repositories)}")
-    print(f"   • Tipo: {args.type}")
+    print(f"   • Arquivo CSV: {args.csv}")
+    print(f"   • Repositórios total: {len(dataset['repositories'])}")
+    print(f"   • Repositórios para analisar: {len(repositories)}")
     print(f"   • Workers: {args.workers}")
-    print(f"   • Skip analyzed: {args.skip_analyzed}")
-    print(f"   • Dataset: {args.dataset}\n")
+    print(f"   • Skip analyzed: {args.skip_analyzed}\n")
     
     if not repositories:
         print("⚠️  Nenhum repositório para analisar")
@@ -453,7 +454,7 @@ def main():
             for i, repo in enumerate(repositories):
                 future = executor.submit(
                     analyze_single_repo_worker, 
-                    repo, sonar_host, sonar_token, args.dataset, i % args.workers
+                    repo, sonar_host, sonar_token, args.csv, i % args.workers
                 )
                 futures[future] = repo
             
@@ -471,6 +472,10 @@ def main():
     print(f"❌ Falharam: {tracker.failed}")
     print(f"⏱️  Tempo total: {(time.time() - tracker.start_time) / 60:.1f} minutos")
     print(f"{'='*80}\n")
+    
+    # Define arquivo de saída
+    output_file = args.output or args.csv.replace('.csv', '_analyzed.csv')
+    print(f"📁 Resultados salvos em: {output_file}")
     
     dataset_manager.print_statistics()
 
