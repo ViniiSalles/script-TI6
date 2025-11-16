@@ -22,6 +22,7 @@ python diagnose_csv.py slow_release_repos_20251115_053707_analyzed.csv --truncat
 ```
 
 **Saída Esperada:**
+
 ```
 🔍 DIAGNÓSTICO: slow_release_repos_20251115_053707_analyzed.csv
 ================================================================================
@@ -59,6 +60,7 @@ python recover_from_sonarqube_db.py --csv slow_release_repos_20251115_053707_ana
 ```
 
 **Saída Esperada:**
+
 ```
 🔧 RECUPERAÇÃO DE MÉTRICAS DO BANCO SONARQUBE
 ================================================================================
@@ -165,6 +167,7 @@ AND m.name IN ('bugs', 'ncloc', 'coverage', ...);
 ### Conversão de Ratings
 
 SonarQube armazena ratings como números:
+
 - `1` = A (melhor)
 - `2` = B
 - `3` = C
@@ -212,10 +215,12 @@ python analyze_csv_repos.py --csv slow_release_repos.csv --workers 4 --skip-anal
 ## ⚠️ Limitações
 
 1. **Só recupera projetos que FORAM analisados pelo SonarQube**
+
    - Se repo nunca foi analisado, o banco não tem dados
    - Use `--list-projects` para ver o que está disponível
 
 2. **Requer acesso ao banco PostgreSQL**
+
    - Verifique `.env`: `DB_HOST`, `DB_USER`, `DB_PASSWORD`
    - Por padrão: `localhost:5432`, user `sonar`, senha `sonar`
 
