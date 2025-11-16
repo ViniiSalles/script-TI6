@@ -32,7 +32,7 @@ Academic research system for comparing **Rapid Release Cycle (RRC)** vs **Slow R
 
 ### DatasetManager (`dataset_manager.py`)
 
-Central persistence layer. **Always use this** instead of raw JSON/SQL. **Supports both JSON and CSV inputs**:
+Central persistence layer. **Always use this** instead of raw JSON/SQL. **Supports both JSON and CSV inputs with incremental analysis**:
 
 ```python
 from dataset_manager import DatasetManager
@@ -51,6 +51,11 @@ dm_csv.save_dataset(dataset)  # Creates slow_release_repos_analyzed.csv
 ```
 
 **CSV Format**: Expects columns: `owner,name,stars,forks,language,release_count,contributors,median_release_interval,release_type,reason`
+
+**Incremental persistence**: When `_analyzed.csv` exists, loads from it instead of original CSV, preserving previous analyses. This enables:
+- Resume after crashes with `--skip-analyzed`
+- Analyze 100s of repos across multiple runs
+- Never lose completed work
 
 **Dual persistence**: JSON/CSV (portable, versionable) + PostgreSQL (optional, for BI queries). Table prefix: `research_*` to avoid SonarQube conflicts.
 
@@ -229,12 +234,21 @@ return 'unclassified'  # Rejected
 
 ### SonarQube Metrics Mapping
 
-- `bugs`, `vulnerabilities`: Reliability/security issues
-- `code_smells`: Maintainability debt
-- `sqale_index`: Technical debt (minutes)
-- `coverage`: Test coverage %
-- `ncloc`: Lines of code (non-comment)
+**All 13 metrics saved to CSV:**
+
+- `bugs`: Number of bug issues
+- `vulnerabilities`: Number of vulnerability issues
+- `code_smells`: Number of code smell issues
+- `sqale_index`: Technical debt in minutes
+- `coverage`: Test coverage percentage
+- `duplicated_lines_density`: Percentage of duplicated lines
+- `ncloc`: Number of lines of code (non-comment, non-blank)
 - `complexity`: Cyclomatic complexity
+- `cognitive_complexity`: Cognitive complexity score
+- `reliability_rating`: Reliability rating (A-E)
+- `security_rating`: Security rating (A-E)
+- `sqale_rating`: Maintainability rating (A-E)
+- `alert_status`: Quality Gate status (OK/ERROR)
 
 ## File Organization
 

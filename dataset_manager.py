@@ -75,8 +75,15 @@ class DatasetManager:
     def _load_from_csv(self) -> dict:
         """Carrega dataset de arquivo CSV"""
         try:
+            # Se existe arquivo _analyzed.csv, carrega dele (mantém análises anteriores)
+            analyzed_file = self.json_file.replace('.csv', '_analyzed.csv')
+            csv_to_load = analyzed_file if os.path.exists(analyzed_file) else self.json_file
+            
+            if csv_to_load == analyzed_file:
+                print(f"📂 Carregando análises anteriores de: {analyzed_file}")
+            
             repositories = []
-            with open(self.json_file, 'r', encoding='utf-8') as f:
+            with open(csv_to_load, 'r', encoding='utf-8') as f:
                 reader = csv.DictReader(f)
                 for row in reader:
                     # Converte CSV para formato do dataset
@@ -84,17 +91,37 @@ class DatasetManager:
                         'owner': row.get('owner', ''),
                         'name': row.get('name', ''),
                         'full_name': f"{row.get('owner', '')}/{row.get('name', '')}",
-                        'stargazer_count': int(row.get('stars', 0)),
-                        'fork_count': int(row.get('forks', 0)),
+                        'stargazer_count': int(row.get('stars', row.get('stargazer_count', 0))),
+                        'fork_count': int(row.get('forks', row.get('fork_count', 0))),
                         'language': row.get('language', ''),
-                        'total_releases': int(row.get('release_count', 0)),
-                        'avg_release_interval_days': float(row.get('median_release_interval', 0)),
+                        'total_releases': int(row.get('release_count', row.get('total_releases', 0))),
+                        'avg_release_interval_days': float(row.get('median_release_interval', row.get('avg_release_interval_days', 0))),
                         'release_type': row.get('release_type', '').lower(),
-                        'collaborator_count': int(row.get('contributors', 0)),
-                        'distinct_releases_count': int(row.get('release_count', 0)),
+                        'collaborator_count': int(row.get('contributors', row.get('collaborator_count', 0))),
+                        'distinct_releases_count': int(row.get('release_count', row.get('total_releases', 0))),
                         'collected_at': datetime.now().isoformat(),
-                        'sonarqube_analyzed': False
+                        'sonarqube_analyzed': row.get('sonarqube_analyzed', 'False') == 'True',
+                        'sonarqube_analyzed_at': row.get('sonarqube_analyzed_at', '')
                     }
+                    
+                    # Carrega métricas SonarQube se existirem no CSV
+                    if row.get('bugs') or row.get('ncloc'):
+                        repo['sonarqube_metrics'] = {
+                            'bugs': int(row.get('bugs', 0)) if row.get('bugs') else 0,
+                            'vulnerabilities': int(row.get('vulnerabilities', 0)) if row.get('vulnerabilities') else 0,
+                            'code_smells': int(row.get('code_smells', 0)) if row.get('code_smells') else 0,
+                            'sqale_index': int(row.get('sqale_index', 0)) if row.get('sqale_index') else 0,
+                            'coverage': float(row.get('coverage', 0)) if row.get('coverage') else 0.0,
+                            'duplicated_lines_density': float(row.get('duplicated_lines_density', 0)) if row.get('duplicated_lines_density') else 0.0,
+                            'ncloc': int(row.get('ncloc', 0)) if row.get('ncloc') else 0,
+                            'complexity': int(row.get('complexity', 0)) if row.get('complexity') else 0,
+                            'cognitive_complexity': int(row.get('cognitive_complexity', 0)) if row.get('cognitive_complexity') else 0,
+                            'reliability_rating': row.get('reliability_rating', ''),
+                            'security_rating': row.get('security_rating', ''),
+                            'sqale_rating': row.get('sqale_rating', ''),
+                            'alert_status': row.get('alert_status', '')
+                        }
+                    
                     repositories.append(repo)
             
             return {
@@ -160,8 +187,12 @@ class DatasetManager:
                 'owner', 'name', 'full_name', 'stargazer_count', 'fork_count', 
                 'language', 'total_releases', 'avg_release_interval_days', 
                 'release_type', 'collaborator_count', 'sonarqube_analyzed',
-                'sonarqube_analyzed_at', 'bugs', 'vulnerabilities', 'code_smells',
-                'coverage', 'ncloc', 'complexity'
+                'sonarqube_analyzed_at', 
+                # Métricas SonarQube (13 campos)
+                'bugs', 'vulnerabilities', 'code_smells', 'sqale_index',
+                'coverage', 'duplicated_lines_density', 'ncloc', 'complexity',
+                'cognitive_complexity', 'reliability_rating', 'security_rating',
+                'sqale_rating', 'alert_status'
             ]
             
             with open(output_file, 'w', newline='', encoding='utf-8') as f:
@@ -177,9 +208,16 @@ class DatasetManager:
                             'bugs': metrics.get('bugs', ''),
                             'vulnerabilities': metrics.get('vulnerabilities', ''),
                             'code_smells': metrics.get('code_smells', ''),
+                            'sqale_index': metrics.get('sqale_index', ''),
                             'coverage': metrics.get('coverage', ''),
+                            'duplicated_lines_density': metrics.get('duplicated_lines_density', ''),
                             'ncloc': metrics.get('ncloc', ''),
-                            'complexity': metrics.get('complexity', '')
+                            'complexity': metrics.get('complexity', ''),
+                            'cognitive_complexity': metrics.get('cognitive_complexity', ''),
+                            'reliability_rating': metrics.get('reliability_rating', ''),
+                            'security_rating': metrics.get('security_rating', ''),
+                            'sqale_rating': metrics.get('sqale_rating', ''),
+                            'alert_status': metrics.get('alert_status', '')
                         })
                     writer.writerow(row)
             
