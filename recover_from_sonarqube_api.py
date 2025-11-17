@@ -26,6 +26,7 @@ import argparse
 from datetime import datetime
 from typing import Dict, Optional, List
 from dotenv import load_dotenv
+from sonarqube_validator import sanitize_project_key, validate_repository_data, fix_corrupted_csv_line
 
 load_dotenv()
 
@@ -158,14 +159,39 @@ class SonarQubeAPIRecovery:
         # Lê CSV original
         print(f"\n📂 Lendo CSV: {csv_file}")
         
+        corrupted_lines = 0
+        fixed_lines = 0
+        
         try:
             with open(csv_file, 'r', encoding='utf-8') as f:
                 reader = csv.DictReader(f)
                 original_fieldnames = list(reader.fieldnames)  # Preserva ordem original
-                repositories = list(reader)
+                repositories = []
+                
+                # PROTEÇÃO: Valida e corrige linhas durante leitura
+                for i, row in enumerate(reader, start=2):  # start=2 (header=1)
+                    # Detecta linhas corrompidas
+                    if not row.get('owner') or not row.get('name'):
+                        corrupted_lines += 1
+                        
+                        # Tenta corrigir
+                        fixed = fix_corrupted_csv_line(row)
+                        if fixed:
+                            row = fixed
+                            fixed_lines += 1
+                            print(f"   🔧 Linha {i} corrigida: {row['owner']}/{row['name']}")
+                        else:
+                            print(f"   ⚠️  Linha {i} inválida (owner ou name vazio), será ignorada")
+                    
+                    repositories.append(row)
             
             print(f"✅ {len(repositories)} repositórios no CSV")
             print(f"📋 Colunas: {len(original_fieldnames)} (preservadas)")
+            
+            if corrupted_lines > 0:
+                print(f"⚠️  {corrupted_lines} linhas corrompidas detectadas")
+                print(f"🔧 {fixed_lines} linhas corrigidas automaticamente")
+                
         except Exception as e:
             print(f"❌ Erro ao ler CSV: {e}")
             return
@@ -241,7 +267,21 @@ class SonarQubeAPIRecovery:
         for idx, repo in repos_to_process:
             owner = repo.get('owner', '')
             name = repo.get('name', '')
-            project_key = repo.get('project_key', f"{owner}_{name}")
+            
+            # PROTEÇÃO 1: Tenta corrigir dados corrompidos
+            if not owner or not name:
+                fixed = fix_corrupted_csv_line(repo)
+                if fixed:
+                    owner = fixed['owner']
+                    name = fixed['name']
+                    print(f"🔧 Dados corrompidos corrigidos: {owner}/{name}")
+                else:
+                    print("❌ Dados inválidos, pulando...")
+                    not_found += 1
+                    continue
+            
+            # PROTEÇÃO 2: Sanitiza project_key
+            project_key = sanitize_project_key(owner, name)
             
             print(f"[{recovered + not_found + 1}/{len(repos_to_process)}] {owner}/{name}", end=" ")
             

@@ -43,6 +43,7 @@ import psycopg2
 
 from dataset_manager import DatasetManager
 from utils import SonarQubeAPI
+from sonarqube_validator import sanitize_project_key, validate_repository_data
 
 # Carrega variáveis de ambiente
 load_dotenv()
@@ -167,7 +168,8 @@ class SonarQubeAnalyzer:
     
     def _run_sonar_scanner(self, repo_dir: str, owner: str, name: str) -> bool:
         """Executa o SonarScanner via Docker em um repositório"""
-        project_key = f"{owner}_{name}"
+        # PROTEÇÃO: Sanitiza project_key para evitar erros
+        project_key = sanitize_project_key(owner, name)
         
         sonar_host = os.getenv("SONAR_HOST", "http://localhost:9000")
         sonar_token = os.getenv("SONAR_TOKEN")
@@ -324,8 +326,8 @@ class SonarQubeAnalyzer:
             if not self._run_sonar_scanner(temp_dir, owner, name):
                 return (full_name, False, "SonarScanner falhou")
             
-            # 3. Extrai métricas
-            project_key = f"{owner}_{name}"
+            # 3. Extrai métricas (PROTEÇÃO: usa project_key sanitizado)
+            project_key = sanitize_project_key(owner, name)
             metrics = self.sonarqube_api.get_project_metrics(project_key)
             
             if not metrics:
